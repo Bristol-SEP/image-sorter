@@ -45,7 +45,6 @@ e.g. bankside and start line folders
 business to consumer rather than business to business
 - General plan is to run mvp for a year on rowing so Kit can test it all then 
 branch out to other sports as rowing is small market 
-- 
 
 ## MVP Requirements
 - Bare minimum is metadata tagging, but ideally aim for:
