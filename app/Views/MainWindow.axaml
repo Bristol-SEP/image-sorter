@@ -15,6 +15,43 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <Grid ColumnDefinitions="*, Auto, 4*, Auto">
+        <!-- menu -->
+        <Grid Grid.Column="0" 
+              Background="Aqua"
+              RowDefinitions="Auto, *, Auto">
+            <Rectangle Grid.Row="0" Fill="Blue" Height="60"></Rectangle>
+            <Rectangle Grid.Row="2" Fill="Blue" Height="40"></Rectangle>
+        </Grid>
+        <Rectangle Grid.Column="1" Width="40" Fill="White" />
+        <!-- main display -->
+        <Grid Grid.Column="2" Background="Gray"
+              RowDefinitions="Auto,*,Auto, 2*,Auto, Auto">
+            <!-- padding -->
+            <Rectangle Grid.Row="0" Height="20" Fill="White"/>
+            <!-- select features -->
+            <Grid Grid.Row="1"
+                  RowDefinitions="Auto, *">
+                <Rectangle Grid.Row="0" Fill="Black" Height="30"></Rectangle>
+                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+            </Grid>
+            <!-- padding -->
+            <Rectangle Grid.Row="2" Height="20" Fill="White"/>
+            <!-- add images -->
+            <Grid Grid.Row="3"
+                  RowDefinitions="Auto, *">
+                <Rectangle Grid.Row="0" Fill="Black" Height="30"></Rectangle>
+                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+            </Grid>
+            <!-- padding -->
+            <Rectangle Grid.Row="4" Height="20" Fill="White"/>
+            <!-- start processing -->
+            <Grid Grid.Row="5" Height="40"
+                  ColumnDefinitions="*, Auto, *">
+                <Rectangle Grid.Column="1" Width="60" Fill="Black"></Rectangle>
+            </Grid>
+        </Grid>
+        <!-- right padding -->
+        <Rectangle Grid.Column="3" Width="40" Fill="White" />
+    </Grid>
 </Window>
