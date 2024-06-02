@@ -9,6 +9,7 @@
         <local:ViewLocator />
     </Application.DataTemplates>
 
+    <!-- The colours to be used in the app -->
     <Application.Resources>
         <SolidColorBrush x:Key="Text">#000000</SolidColorBrush>
         <SolidColorBrush x:Key="Buttons">#ACACAC</SolidColorBrush>

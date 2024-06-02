@@ -6,6 +6,14 @@ namespace app.Styles.Converters;
 
 public class RoundEdgesConverter: IValueConverter
 {
+    /// <summary>
+    /// Converter which takes the height of an object and ellipses the corners
+    /// </summary>
+    /// <param name="value">Height of object</param>
+    /// <param name="targetType"></param>
+    /// <param name="parameter"></param>
+    /// <param name="culture"></param>
+    /// <returns>Half the height to be used for corners</returns>
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is double state) return state / 2;
