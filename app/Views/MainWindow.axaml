@@ -3,6 +3,7 @@
         xmlns:vm="using:app.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:styles="clr-namespace:app.Styles"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="app.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -12,46 +13,60 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
     <Grid ColumnDefinitions="*, Auto, 4*, Auto">
         <!-- menu -->
-        <Grid Grid.Column="0" 
+        <Grid Grid.Column="0"
               Background="Aqua"
               RowDefinitions="Auto, *, Auto">
             <Rectangle Grid.Row="0" Fill="Blue" Height="60"></Rectangle>
-            <Rectangle Grid.Row="2" Fill="Blue" Height="40"></Rectangle>
+            <Button Grid.Row="2">Settings</Button>
         </Grid>
         <Rectangle Grid.Column="1" Width="40" Fill="White" />
         <!-- main display -->
-        <Grid Grid.Column="2" Background="Gray"
+        <Grid Grid.Column="2" Background="{DynamicResource Background}"
               RowDefinitions="Auto,*,Auto, 2*,Auto, Auto">
             <!-- padding -->
-            <Rectangle Grid.Row="0" Height="20" Fill="White"/>
+            <Rectangle Grid.Row="0" Height="20" Fill="{DynamicResource Background}" />
             <!-- select features -->
             <Grid Grid.Row="1"
                   RowDefinitions="Auto, *">
-                <Rectangle Grid.Row="0" Fill="Black" Height="30"></Rectangle>
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Select Features"
+                                      Number="1"
+                                      RectangleHeight="30"
+                                      RectangleWidth="150"/>
+                </Grid>
                 <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
             </Grid>
             <!-- padding -->
-            <Rectangle Grid.Row="2" Height="20" Fill="White"/>
+            <Rectangle Grid.Row="2" Height="20" Fill="{DynamicResource Background}" />
             <!-- add images -->
             <Grid Grid.Row="3"
                   RowDefinitions="Auto, *">
-                <Rectangle Grid.Row="0" Fill="Black" Height="30"></Rectangle>
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Add Images"
+                                      Number="2"
+                                      RectangleHeight="30"
+                                      RectangleWidth="150"/>
+                </Grid>
                 <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
             </Grid>
             <!-- padding -->
-            <Rectangle Grid.Row="4" Height="20" Fill="White"/>
+            <Rectangle Grid.Row="4" Height="20" Fill="{DynamicResource Background}" />
             <!-- start processing -->
             <Grid Grid.Row="5" Height="40"
                   ColumnDefinitions="*, Auto, *">
-                <Rectangle Grid.Column="1" Width="60" Fill="Black"></Rectangle>
+                <Button Grid.Column="1" Background="{DynamicResource Buttons}">
+                    Start Processing
+                </Button>
             </Grid>
         </Grid>
         <!-- right padding -->
-        <Rectangle Grid.Column="3" Width="40" Fill="White" />
+        <Rectangle Grid.Column="3" Width="40" Fill="{DynamicResource Background}" />
     </Grid>
 </Window>

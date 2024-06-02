@@ -3,13 +3,22 @@
              x:Class="app.App"
              xmlns:local="using:app"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="Text">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="Buttons">#ACACAC</SolidColorBrush>
+        <SolidColorBrush x:Key="BackgroundWeak">#D9D9D9</SolidColorBrush>
+        <SolidColorBrush x:Key="BackgroundStrong">#ACACAC</SolidColorBrush>
+        <SolidColorBrush x:Key="Menu">#D9D9D9</SolidColorBrush>
+        <SolidColorBrush x:Key="Background">#ffffff</SolidColorBrush>
+    </Application.Resources>
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://app/Styles/StageText.axaml" />
     </Application.Styles>
 </Application>
