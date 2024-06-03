@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:styles="clr-namespace:app.Styles"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="app.Views.FolderStuctureDisplay">
+    <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
+        <!-- add images button -->
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
+            <Button Grid.Column="1" Classes="baseButton">Add Images</Button>
+        </Grid>
+        <!-- processing progress -->
+        <Grid Grid.Row="2" ColumnDefinitions="*, Auto, Auto, Auto, *">
+            <TextBlock Grid.Column="1" Padding="0,0,5,0">Processing</TextBlock>
+            <Panel Grid.Column="2">
+                <Rectangle Width="100" Height="15"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"
+                           Fill="{DynamicResource BackgroundWeak}" />
+                <Rectangle Width="54" Height="15"
+                           Fill="{DynamicResource BackgroundStrong}"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </Panel>
+            <TextBlock Grid.Column="3" Padding="5,0,0,0">54%</TextBlock>
+        </Grid>
+        <!-- select folder structure -->
+        <Grid Grid.Row="4"
+              RowDefinitions="Auto, *">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                <styles:StageText Grid.Column="0"
+                                  Text="Select Folder Structure"
+                                  Number="3"
+                                  RectangleHeight="30"
+                                  RectangleWidth="230" />
+            </Grid>
+            <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+        </Grid>
+        <Grid Grid.Row="6" ColumnDefinitions="*,Auto,*">
+            <Button Grid.Column="1" Classes="baseButton">Create Structure</Button>
+        </Grid>
+    </Grid>
+
+</UserControl>
