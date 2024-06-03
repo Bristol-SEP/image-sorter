@@ -10,4 +10,5 @@ public partial class AddImageDisplayView : UserControl
     {
         InitializeComponent();
     }
+
 }

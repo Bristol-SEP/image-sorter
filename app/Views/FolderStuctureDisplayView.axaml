@@ -2,18 +2,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
              xmlns:styles="clr-namespace:app.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:IFolderStructureDisplayViewModel"
              x:Class="app.Views.FolderStructureDisplayView">
     <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
         <!-- add images button -->
         <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
-            <Button Grid.Column="1" Classes="baseButton">Add Images</Button>
+            <Button Grid.Column="1" Classes="baseButton"
+                    Width="200"
+                    Command="{Binding ButtonPressed}">
+                <Grid RowDefinitions="*,*">
+                    <PathIcon Grid.Row="0" Width="15" Height="15" Data="{StaticResource ChevronUpRegular}"/>
+                    <TextBlock Grid.Row="1" Foreground="{DynamicResource Text}" Text="Add Images" />
+                </Grid>
+            </Button>
         </Grid>
         <!-- processing progress -->
         <Grid Grid.Row="2" ColumnDefinitions="*, Auto, Auto, Auto, *">
-            <TextBlock Grid.Column="1" Padding="0,0,5,0" 
-                       Foreground="{DynamicResource Text}">Processing</TextBlock>
+            <TextBlock Grid.Column="1" Padding="0,0,5,0"
+                       Foreground="{DynamicResource Text}">
+                Processing
+            </TextBlock>
             <Panel Grid.Column="2">
                 <Rectangle Width="100" Height="15"
                            HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -23,7 +34,9 @@
                            HorizontalAlignment="Left" VerticalAlignment="Top" />
             </Panel>
             <TextBlock Grid.Column="3" Padding="5,0,0,0"
-                       Foreground="{DynamicResource Text}">54%</TextBlock>
+                       Foreground="{DynamicResource Text}">
+                54%
+            </TextBlock>
         </Grid>
         <!-- select folder structure -->
         <Grid Grid.Row="4"

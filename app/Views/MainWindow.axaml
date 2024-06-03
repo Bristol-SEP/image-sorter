@@ -25,9 +25,9 @@
         <!-- main display -->
         <TransitioningContentControl Grid.Column="2"
                                      Content="{Binding CurrentPage}" >
-            <TransitioningContentControl.PageTransition>
-                <PageSlide Orientation="Vertical" Duration="0:00:00.500" />
-            </TransitioningContentControl.PageTransition>
+            <!-- <TransitioningContentControl.PageTransition> -->
+            <!--     <PageSlide Orientation="Vertical" Duration="0:00:00.500" /> -->
+            <!-- </TransitioningContentControl.PageTransition> -->
         </TransitioningContentControl>
         
     </Grid>

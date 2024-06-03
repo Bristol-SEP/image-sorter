@@ -23,5 +23,6 @@
         <FluentTheme />
         <StyleInclude Source="avares://app/Styles/StageText.axaml" />
         <StyleInclude Source="avares://app/Styles/ObjectStyles.axaml" />
+        <StyleInclude Source="avares://app/Styles/Icons.axaml" />
     </Application.Styles>
 </Application>
