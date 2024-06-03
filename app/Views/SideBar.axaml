@@ -10,6 +10,6 @@
             <!-- Logo -->
             <Rectangle Grid.Row="0" Fill="Blue" Height="60"></Rectangle>
             <!-- settings -->
-            <Button Grid.Row="2">Settings</Button>
+            <Button Grid.Row="2" Classes="baseButton" Height="60">Settings</Button>
         </Grid>
 </UserControl>

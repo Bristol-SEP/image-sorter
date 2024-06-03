@@ -34,7 +34,7 @@
             <!-- start processing -->
             <Grid Grid.Row="5" Height="40"
                   ColumnDefinitions="*, Auto, *">
-                <Button Grid.Column="1" Background="{DynamicResource Buttons}">
+                <Button Grid.Column="1" Classes="baseButton">
                     Start Processing
                 </Button>
             </Grid>

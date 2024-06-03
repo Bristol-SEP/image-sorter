@@ -51,7 +51,7 @@ public class StageText : TemplatedControl
     }
     
     /// <summary>
-    /// A <see cref="StyledProperty{TValue}">StyledProperty</see> that defines the <see cref="RectangleWidth"/>
+    /// A <see cref="StyledProperty{TValue}">StyledProperty</see> that defines the <see cref="RectangleHeight"/>
     /// </summary>
     public static readonly StyledProperty<double> RectangleHeightProperty =
         AvaloniaProperty.Register<StageText, double>(nameof(RectangleHeight), defaultValue:40);
