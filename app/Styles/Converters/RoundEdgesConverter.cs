@@ -4,6 +4,9 @@ using Avalonia.Data.Converters;
 
 namespace app.Styles.Converters;
 
+/// <summary>
+/// A converter which returns half the height for ellipse corners
+/// </summary>
 public class RoundEdgesConverter: IValueConverter
 {
     /// <summary>

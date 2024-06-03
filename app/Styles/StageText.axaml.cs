@@ -3,6 +3,9 @@ using Avalonia.Controls.Primitives;
 
 namespace app.Styles;
 
+/// <summary>
+/// An object to be used at the start of each stage
+/// </summary>
 public class StageText : TemplatedControl
 {
     /// <summary>

@@ -1,12 +1,12 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
 namespace app.Views;
-
-public partial class FolderStuctureDisplayView : UserControl
+/// <summary>
+/// A View for the folder structure stage
+/// </summary>
+public partial class FolderStructureDisplayView : UserControl
 {
-    public FolderStuctureDisplayView()
+    public FolderStructureDisplayView()
     {
         InitializeComponent();
     }

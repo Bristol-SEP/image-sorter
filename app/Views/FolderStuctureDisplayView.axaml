@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:styles="clr-namespace:app.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="app.Views.FolderStuctureDisplayView">
+             x:Class="app.Views.FolderStructureDisplayView">
     <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
         <!-- add images button -->
         <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
