@@ -3,10 +3,11 @@
         xmlns:vm="using:app.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:styles="clr-namespace:app.Styles"
+        xmlns:views="clr-namespace:app.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="app.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        MinWidth="300" MinHeight="300"
         Icon="/Assets/avalonia-logo.ico"
         Title="app">
 
@@ -16,62 +17,12 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="*, Auto, 4*, Auto">
+    <Grid ColumnDefinitions="5*, *, 20*, *"
+          Background="{DynamicResource Background}">
         <!-- menu -->
-        <Grid Grid.Column="0"
-              Background="{DynamicResource Menu}"
-              RowDefinitions="Auto, *, Auto">
-            <!-- Logo -->
-            <Rectangle Grid.Row="0" Fill="Blue" Height="60"></Rectangle>
-            <!-- settings -->
-            <Button Grid.Row="2">Settings</Button>
-        </Grid>
-        
-        <!-- padding -->
-        <Rectangle Grid.Column="1" Width="40" Fill="White" />
+        <views:SideBar Grid.Column="0"/>
         
         <!-- main display -->
-        <Grid Grid.Column="2" Background="{DynamicResource Background}"
-              RowDefinitions="Auto,*,Auto, 2*,Auto, Auto">
-            <!-- padding -->
-            <Rectangle Grid.Row="0" Height="20" Fill="{DynamicResource Background}" />
-            <!-- select features -->
-            <Grid Grid.Row="1"
-                  RowDefinitions="Auto, *">
-                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
-                    <styles:StageText Grid.Column="0"
-                                      Text="Select Features"
-                                      Number="1"
-                                      RectangleHeight="30"
-                                      RectangleWidth="150"/>
-                </Grid>
-                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
-            </Grid>
-            <!-- padding -->
-            <Rectangle Grid.Row="2" Height="20" Fill="{DynamicResource Background}" />
-            <!-- add images -->
-            <Grid Grid.Row="3"
-                  RowDefinitions="Auto, *">
-                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
-                    <styles:StageText Grid.Column="0"
-                                      Text="Add Images"
-                                      Number="2"
-                                      RectangleHeight="30"
-                                      RectangleWidth="150"/>
-                </Grid>
-                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
-            </Grid>
-            <!-- padding -->
-            <Rectangle Grid.Row="4" Height="20" Fill="{DynamicResource Background}" />
-            <!-- start processing -->
-            <Grid Grid.Row="5" Height="40"
-                  ColumnDefinitions="*, Auto, *">
-                <Button Grid.Column="1" Background="{DynamicResource Buttons}">
-                    Start Processing
-                </Button>
-            </Grid>
-        </Grid>
-        <!-- right padding -->
-        <Rectangle Grid.Column="3" Width="40" Fill="{DynamicResource Background}" />
+        <views:AddImageDisplay Grid.Column="2"/>
     </Grid>
 </Window>
