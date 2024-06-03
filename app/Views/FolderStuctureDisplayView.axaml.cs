@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace app.Views;
 
-public partial class FolderStuctureDisplay : UserControl
+public partial class FolderStuctureDisplayView : UserControl
 {
-    public FolderStuctureDisplay()
+    public FolderStuctureDisplayView()
     {
         InitializeComponent();
     }

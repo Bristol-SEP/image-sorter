@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:styles="clr-namespace:app.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="app.Views.FolderStuctureDisplay">
+             x:Class="app.Views.FolderStuctureDisplayView">
     <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
         <!-- add images button -->
         <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
@@ -12,7 +12,8 @@
         </Grid>
         <!-- processing progress -->
         <Grid Grid.Row="2" ColumnDefinitions="*, Auto, Auto, Auto, *">
-            <TextBlock Grid.Column="1" Padding="0,0,5,0">Processing</TextBlock>
+            <TextBlock Grid.Column="1" Padding="0,0,5,0" 
+                       Foreground="{DynamicResource Text}">Processing</TextBlock>
             <Panel Grid.Column="2">
                 <Rectangle Width="100" Height="15"
                            HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -21,7 +22,8 @@
                            Fill="{DynamicResource BackgroundStrong}"
                            HorizontalAlignment="Left" VerticalAlignment="Top" />
             </Panel>
-            <TextBlock Grid.Column="3" Padding="5,0,0,0">54%</TextBlock>
+            <TextBlock Grid.Column="3" Padding="5,0,0,0"
+                       Foreground="{DynamicResource Text}">54%</TextBlock>
         </Grid>
         <!-- select folder structure -->
         <Grid Grid.Row="4"

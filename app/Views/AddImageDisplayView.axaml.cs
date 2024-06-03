@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace app.Views;
 
-public partial class AddImageDisplay : UserControl
+public partial class AddImageDisplayView : UserControl
 {
-    public AddImageDisplay()
+    public AddImageDisplayView()
     {
         InitializeComponent();
     }
