@@ -19,6 +19,8 @@
         <SolidColorBrush x:Key="Menu">#D9D9D9</SolidColorBrush>
         <SolidColorBrush x:Key="Background">#ffffff</SolidColorBrush>
     </Application.Resources>
+    
+    <!-- the styles and custom objects being used in the app -->
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="avares://app/Styles/StageText.axaml" />
