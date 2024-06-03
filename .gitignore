@@ -1,2 +1,15 @@
 .DS_STORE
 # May need to add in more for .NET and Avalonia
+
+# Files built by Visual Studio
+.obj
+.iobj
+.pdb
+
+# Intellij
+.idea/*
+!.idea/codeStyles
+!.idea/runConfigurations
+
+# MSBuild Binary and Structured Log
+*.binlog
