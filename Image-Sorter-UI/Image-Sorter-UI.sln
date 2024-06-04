@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app.Test", "app.Test\app.Test.csproj", "{D99BEDAB-39FD-4AD6-B4B2-4E65BA9B0637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app", "..\app\app.csproj", "{9CF23D90-D2E7-4D45-9A78-3EA6A423C415}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app", "app\app.csproj", "{9CF23D90-D2E7-4D45-9A78-3EA6A423C415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
