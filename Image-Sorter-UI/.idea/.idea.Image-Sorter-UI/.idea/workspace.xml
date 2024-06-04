@@ -9,182 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="155caee6-ddc6-4c84-8fa3-1fc944640cc6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app.Test/Mocks/ViewModels/MockMainWindowViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.Test/ViewModels/AddImageDisplayViewModelTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.Test/ViewModels/FolderStructureDisplayViewModelTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.Test/ViewModels/MainWindowViewModelTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.Test/app.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/app.Test/app.Test.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/App.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/App.axaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Assets/avalonia-logo.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Styles/Converters/RoundEdgesConverter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Styles/Icons.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Styles/ObjectStyles.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Styles/StageText.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Styles/StageText.axaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewLocator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/AddImageDisplayViewModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/FolderStructureDisplayViewModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/Interfaces/IAddImageDisplayViewModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/Interfaces/IFolderStructureDisplayViewModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/Interfaces/IMainWindowViewModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/MainWindowViewModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ViewModels/ViewModelBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/AddImageDisplayView.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/AddImageDisplayView.axaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/FolderStuctureDisplayView.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/FolderStuctureDisplayView.axaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/MainWindow.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/MainWindow.axaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/SideBar.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Views/SideBar.axaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/app.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/app.manifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Base.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Controls.ColorPicker.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Controls.DataGrid.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Controls.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.DesignerSupport.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Desktop.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Diagnostics.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Dialogs.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Fonts.Inter.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.FreeDesktop.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Markup.Xaml.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Markup.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Metal.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.MicroCom.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Native.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.OpenGL.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.ReactiveUI.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Remote.Protocol.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Skia.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Themes.Fluent.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Themes.Simple.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.Win32.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.X11.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Avalonia.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/DynamicData.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/HarfBuzzSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/MicroCom.Runtime.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Microsoft.CodeAnalysis.CSharp.Scripting.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Microsoft.CodeAnalysis.CSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Microsoft.CodeAnalysis.Scripting.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Microsoft.CodeAnalysis.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ReactiveUI.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/SkiaSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Splat.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/System.Drawing.Common.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/System.IO.Pipelines.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/System.Reactive.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/Tmds.DBus.Protocol.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/app" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/app.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/app.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/app.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/app.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/cs/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/cs/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/cs/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/de/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/de/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/de/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/es/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/es/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/es/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/fr/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/fr/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/fr/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/it/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/it/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/it/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ja/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ja/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ja/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ko/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ko/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ko/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pl/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pl/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pl/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pt-BR/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/pt-BR/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ref/app.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ru/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ru/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/ru/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-arm/native/libHarfBuzzSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-arm/native/libSkiaSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-arm64/native/libHarfBuzzSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-arm64/native/libSkiaSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-musl-x64/native/libHarfBuzzSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-musl-x64/native/libSkiaSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-x64/native/libHarfBuzzSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/linux-x64/native/libSkiaSharp.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/osx/native/libAvaloniaNative.dylib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/osx/native/libHarfBuzzSharp.dylib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/osx/native/libSkiaSharp.dylib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-arm64/native/av_libglesv2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-arm64/native/libHarfBuzzSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-arm64/native/libSkiaSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-x64/native/av_libglesv2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-x64/native/libHarfBuzzSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-x64/native/libSkiaSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-x86/native/av_libglesv2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-x86/native/libHarfBuzzSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win-x86/native/libSkiaSharp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/tr/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/bin/Debug/net6.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/Avalonia/Resources.Inputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/Avalonia/original.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/Avalonia/original.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/Avalonia/original.ref.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/Avalonia/references" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/Avalonia/resources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/app.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/apphost" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/Debug/net6.0/ref/app.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/app.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/app.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/app.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Image-Sorter-UI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Image-Sorter-UI/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,6 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717494698720</updated>
       <workItem from="1717494699778" duration="4982000" />
+      <workItem from="1717499894261" duration="1350000" />
     </task>
     <task id="LOCAL-00001" summary="Basic structure">
       <option name="closed" value="true" />
@@ -305,7 +132,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717497364201</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Create ViewModel tests">
+      <option name="closed" value="true" />
+      <created>1717500414436</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717500414436</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Remove irrelevant files">
+      <option name="closed" value="true" />
+      <created>1717500765333</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717500765333</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,6 +170,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Basic structure" />
     <MESSAGE value="Commit all files not affected by .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit all files not affected by .gitignore" />
+    <MESSAGE value="Create ViewModel tests" />
+    <MESSAGE value="Remove irrelevant files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove irrelevant files" />
   </component>
 </project>
