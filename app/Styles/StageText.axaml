@@ -1,0 +1,44 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:app.Styles.Converters"
+        xmlns:controls="using:app.Styles">
+    <Design.PreviewWith>
+        <controls:StageText />
+    </Design.PreviewWith>
+
+    <Styles.Resources>
+        <converters:RoundEdgesConverter x:Key="RoundEdgesConverter" />
+    </Styles.Resources>
+    
+    <Style Selector="controls|StageText">
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <!-- background rectangle -->
+                    <Rectangle Width="{TemplateBinding RectangleWidth}"
+                               Height="{TemplateBinding RectangleHeight}"
+                               Fill="{DynamicResource BackgroundWeak}"
+                               RadiusX="{TemplateBinding RectangleHeight, Converter={StaticResource RoundEdgesConverter}}"
+                               RadiusY="{TemplateBinding RectangleHeight, Converter={StaticResource RoundEdgesConverter}}" />
+                    <Grid ColumnDefinitions="Auto, Auto, *">
+                        <!-- Ellipse -->
+                        <Ellipse Grid.Column="0"
+                                 Fill="{DynamicResource BackgroundStrong}"
+                                 Height="{TemplateBinding RectangleHeight}"
+                                 Width="{TemplateBinding RectangleHeight}" />
+                        <!-- the number and text -->
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource Text}"
+                                   Text="{TemplateBinding Number}" />
+                        <TextBlock Grid.Column="1" Margin="5,0,5,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource Text}"
+                                   Text="{TemplateBinding Text}" />
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

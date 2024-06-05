@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:styles="clr-namespace:app.Styles"
+             xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:IAddImageDisplayViewModel"
+             x:Class="app.Views.AddImageDisplayView">
+    
+    <Grid Background="{DynamicResource Background}"
+          RowDefinitions="*,5*,*, 10*, *, 40">
+            <!-- select features -->
+            <Grid Grid.Row="1" RowDefinitions="Auto, *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Select Features"
+                                      Number="1"
+                                      RectangleHeight="30"
+                                      RectangleWidth="150"/>
+                </Grid>
+                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+            </Grid>
+            <!-- add images -->
+            <Grid Grid.Row="3"
+                  RowDefinitions="Auto, *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Add Images"
+                                      Number="2"
+                                      RectangleHeight="30"
+                                      RectangleWidth="150"/>
+                </Grid>
+                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+            </Grid>
+            <!-- start processing -->
+            <Grid Grid.Row="5"
+                  ColumnDefinitions="*, Auto, *">
+                <Button Grid.Column="1" Classes="baseButton"
+                        Command="{Binding ButtonPressed}">
+                    Start Processing
+                </Button>
+            </Grid>
+            </Grid>
+</UserControl>

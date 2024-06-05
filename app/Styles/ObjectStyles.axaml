@@ -1,0 +1,23 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="Button.baseButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Background" Value="{DynamicResource Buttons}"/>
+    </Style>
+    <Style Selector="Button.baseButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ButtonSelected}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+    </Style>
+</Styles>
