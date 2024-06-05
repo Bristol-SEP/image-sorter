@@ -35,17 +35,16 @@ After step 4 run through our software which creates a new folder for each bow nu
 - Deadline for MVP?
 
 ## Answers
-- photos are uploaded in separate folders when multiple photographers are present
+- Photos are uploaded in separate folders when multiple photographers are present
 e.g. bankside and start line folders
-- there isn't a public database but kit is happy to do it manually
-- yes but head race time trial style is more important as it occurs earlier in the year
-- use any information you want
-- metadata is fine doesn't affect size enough to care
-- similar program used for london marathon with facial recognition, however is
+- There isn't a public database but Kit is happy to do it manually
+- Yes but head race time trial style is more important as it occurs earlier in the year
+- Use any information you want
+- Metadata is fine doesn't affect size enough to care
+- Similar program used for london marathon with facial recognition, however is
 business to consumer rather than business to business
-- general plan is to run mvp for a year on rowing so kit can test it all then 
+- General plan is to run mvp for a year on rowing so Kit can test it all then 
 branch out to other sports as rowing is small market 
-- 
 
 ## MVP Requirements
 - Bare minimum is metadata tagging, but ideally aim for:
