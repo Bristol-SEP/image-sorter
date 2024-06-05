@@ -27,6 +27,9 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
         set => this.RaiseAndSetIfChanged(ref _currentPage, value);
     }
 
+    /// <inheritdoc/>
+    public bool IsImagePage => CurrentPage == _addImageDisplayView;
+
     public MainWindowViewModel()
     {
         _addImageDisplayView = new AddImageDisplayViewModel(this);

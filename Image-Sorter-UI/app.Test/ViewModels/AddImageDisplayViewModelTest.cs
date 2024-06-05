@@ -1,6 +1,6 @@
+using System;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
-using Image_Sorter_UI.Mocks.ViewModels;
 using NUnit.Framework;
 
 namespace Image_Sorter_UI.ViewModels;
@@ -8,11 +8,18 @@ namespace Image_Sorter_UI.ViewModels;
 [TestFixture]
 public class AddImageDisplayViewModelTest
 {
-   [Test]
-   public void ButtonPressedTest()
-   {
-      IMainWindowViewModel mainViewModel = new MockMainWindowViewModel();
-      IAddImageDisplayViewModel viewModel = new AddImageDisplayViewModel(mainViewModel);
-      Assert.That(viewModel.ButtonPressed, Is.True);
-   }
+    [Test]
+    public void ButtonPressedTest()
+    {
+        IMainWindowViewModel mainViewModel = new MainWindowViewModel();
+        IAddImageDisplayViewModel viewModel = new AddImageDisplayViewModel(mainViewModel);
+        var pageHeld = mainViewModel.CurrentPage;
+        viewModel.ButtonPressed();
+        Assert.Multiple((() =>
+        {
+            Assert.That(mainViewModel.CurrentPage, Is.Not.EqualTo(pageHeld));
+            Assert.That(mainViewModel.IsImagePage, Is.False);
+            Assert.Throws<InvalidOperationException>(() => viewModel.ButtonPressed());
+        }));
+    }
 }
