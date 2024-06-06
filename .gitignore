@@ -336,3 +336,5 @@ ASALocalRun/
 
 # Ignore Nuget Folders
 **/*npkg
+
+**/env/
