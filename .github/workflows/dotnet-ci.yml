@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./Image-Sorter-UI/app/app.csproj
     - name: Build
-      run: dotnet build ./Image-Sorter-UI/app/app.csproj --no-restore 
+      run: dotnet build ./Image-Sorter-UI/app/app.csproj --configuration-Release --no-restore 
     - name: Test
       run: dotnet test ./Image-Sorter-UI/app.Test/app.Test.csproj --no-build --verbosity normal 
