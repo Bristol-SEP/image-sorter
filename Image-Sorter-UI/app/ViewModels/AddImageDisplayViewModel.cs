@@ -1,3 +1,4 @@
+using System;
 using app.ViewModels.Interfaces;
 
 namespace app.ViewModels;
@@ -15,15 +16,13 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
     /// to be called
     /// </summary>
-    private readonly IMainWindowViewModel? _mainModel;
+    private readonly IMainWindowViewModel _mainModel;
     
     /// <inheritdoc/>
     /// TODO pass data into python script
-    public bool ButtonPressed()
+    public void ButtonPressed()
     {
-        if (_mainModel is null) return false;
-        _mainModel.ToggleView(); 
-        return true;
-
+        if (!_mainModel.IsImagePage) throw new InvalidOperationException();
+        _mainModel.ToggleView();
     }
 }

@@ -8,8 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="155caee6-ddc6-4c84-8fa3-1fc944640cc6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+    <list default="true" id="155caee6-ddc6-4c84-8fa3-1fc944640cc6" name="Changes" comment="Implement full testing of ViewModels&#10;&#10;&#10;Changed ViewModels to be more rigid">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Image-Sorter-UI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Image-Sorter-UI/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,15 +26,15 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/App.axaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/App.axaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/ViewLocator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/ViewModels/MainWindowViewModel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/ViewModels/ViewModelBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/ViewModels/ViewModelBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/Views/MainWindow.axaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ed22699/Documents/image-sorter/app/Views/MainWindow.axaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app.Test/ViewModels/AddImageDisplayViewModelTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app.Test/ViewModels/FolderStructureDisplayViewModelTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app.Test/ViewModels/MainWindowViewModelTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app/ViewModels/AddImageDisplayViewModel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app/ViewModels/FolderStructureDisplayViewModel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app/ViewModels/Interfaces/IAddImageDisplayViewModel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app/ViewModels/Interfaces/IFolderStructureDisplayViewModel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app/ViewModels/Interfaces/IMainWindowViewModel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ed22699/Documents/image-sorter/Image-Sorter-UI/app/ViewModels/MainWindowViewModel.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -67,7 +66,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Project.Image-Sorter-UI">
+  <component name="RunManager">
     <configuration name="Image-Sorter-UI" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/app/bin/Debug/net6.0/app" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -86,24 +85,6 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="app" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/../app/app.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
-      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -115,6 +96,7 @@
       <updated>1717494698720</updated>
       <workItem from="1717494699778" duration="4982000" />
       <workItem from="1717499894261" duration="1350000" />
+      <workItem from="1717501260832" duration="5134000" />
     </task>
     <task id="LOCAL-00001" summary="Basic structure">
       <option name="closed" value="true" />
@@ -148,11 +130,37 @@
       <option name="project" value="LOCAL" />
       <updated>1717500765333</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Alter .gitignore">
+      <option name="closed" value="true" />
+      <created>1717501483808</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717501483808</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implement full testing of ViewModels&#10;&#10;&#10;Changed ViewModels to be more rigid">
+      <option name="closed" value="true" />
+      <created>1717587844165</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717587844165</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="150" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="249" />
+    <coverage-tree-state>
+      <expand />
+      <select />
+    </coverage-tree-state>
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +180,8 @@
     <MESSAGE value="Commit all files not affected by .gitignore" />
     <MESSAGE value="Create ViewModel tests" />
     <MESSAGE value="Remove irrelevant files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove irrelevant files" />
+    <MESSAGE value="Alter .gitignore" />
+    <MESSAGE value="Implement full testing of ViewModels&#10;&#10;&#10;Changed ViewModels to be more rigid" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement full testing of ViewModels&#10;&#10;&#10;Changed ViewModels to be more rigid" />
   </component>
 </project>
