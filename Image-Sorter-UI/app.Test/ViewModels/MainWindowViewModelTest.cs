@@ -18,6 +18,7 @@ public class MainWindowViewModelTest
     {
         var viewModel = new MainWindowViewModel();
         var firstPage = viewModel.CurrentPage;
+        Assert.That(viewModel.IsImagePage, Is.True);
         viewModel.ToggleView();
         var secondPage = viewModel.CurrentPage;
         Assert.That(firstPage, Is.Not.EqualTo(secondPage));
@@ -26,12 +27,14 @@ public class MainWindowViewModelTest
         {
             Assert.That(firstPage, Is.EqualTo(viewModel.CurrentPage));
             Assert.That(secondPage, Is.Not.EqualTo(viewModel.CurrentPage));
+            Assert.That(viewModel.IsImagePage, Is.True);
         }));
         viewModel.ToggleView();
         Assert.Multiple((() =>
         {
             Assert.That(firstPage, Is.Not.EqualTo(viewModel.CurrentPage));
             Assert.That(secondPage, Is.EqualTo(viewModel.CurrentPage));
+            Assert.That(viewModel.IsImagePage, Is.False);
         }));
     }
 }
