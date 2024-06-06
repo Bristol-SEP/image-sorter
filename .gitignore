@@ -338,3 +338,6 @@ ASALocalRun/
 **/*npkg
 
 **/env/
+model/ResNet_CTC.onnx
+model/frozen_east_text_detection.pb
+model/images/test
