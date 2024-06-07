@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:addImg="clr-namespace:app.ViewModels.AddImageDisplay"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="addImg:FeatureSelectionViewModel"
+             x:Class="app.Views.AddImageDisplay.FeatureSelection"
+             Background="{DynamicResource BackgroundStrong}"
+             HorizontalAlignment="Stretch">
+    <!-- <ScrollViewer> -->
+    <!--     <StackPanel> -->
+            <!-- <Expander Background="{DynamicResource BackgroundWeak}"  -->
+            <!--           HorizontalAlignment="Stretch" VerticalAlignment="Top"> -->
+            <!--     <Expander.Header>Rowing</Expander.Header> -->
+            <!--      -->
+            <!--     <StackPanel> -->
+            <!--         <CheckBox Foreground="{DynamicResource Text}">Boat Numbers</CheckBox> -->
+            <!--         <CheckBox Foreground="{DynamicResource Text}">Race Numbers</CheckBox> -->
+            <!--     </StackPanel> -->
+            <!-- </Expander> -->
+            <ItemsControl Background="Beige" ItemsSource="{Binding FeatureList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Foreground="Salmon" Text="test" />
+                            <ItemsControl ItemsSource="{Binding FeatureList}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="Aqua" Text="another test"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+    <!--     </StackPanel> -->
+    <!-- </ScrollViewer> -->
+</UserControl>

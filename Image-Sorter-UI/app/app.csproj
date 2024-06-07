@@ -6,11 +6,10 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <RootNamespace>Image-Sorter</RootNamespace>
+    <RootNamespace>app</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
@@ -27,13 +26,7 @@
 
 
   <ItemGroup>
-    <Compile Update="Views\AddImageDisplay\AddImageDisplayView.axaml.cs">
-      <DependentUpon>AddImageDisplayView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\FolderStructureDisplay\FolderStuctureDisplayView.axaml.cs">
-      <DependentUpon>FolderStuctureDisplayView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Folder Include="Views\FolderStructureDisplay\" />
   </ItemGroup>
+
 </Project>
