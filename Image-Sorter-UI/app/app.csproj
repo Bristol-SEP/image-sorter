@@ -24,4 +24,16 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.2" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Views\AddImageDisplay\AddImageDisplayView.axaml.cs">
+      <DependentUpon>AddImageDisplayView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\FolderStructureDisplay\FolderStuctureDisplayView.axaml.cs">
+      <DependentUpon>FolderStuctureDisplayView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
