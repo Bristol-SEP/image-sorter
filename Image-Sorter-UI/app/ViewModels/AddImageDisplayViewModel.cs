@@ -1,4 +1,5 @@
 using System;
+using app.Models;
 using app.ViewModels.Interfaces;
 
 namespace app.ViewModels;
@@ -24,5 +25,8 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     {
         if (!_mainModel.IsImagePage) throw new InvalidOperationException();
         _mainModel.ToggleView();
+        // testing the run python model
+        var model = new RunPython();
+        model.RunScript();
     }
 }
