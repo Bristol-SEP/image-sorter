@@ -14,7 +14,8 @@ public class AddImageDisplayViewModelTest
     public void ButtonPressedTest()
     {
         IMainWindowViewModel mainViewModel = _vmProvider.GetMainViewModel();
-        IAddImageDisplayViewModel viewModel = new AddImageDisplayViewModel(mainViewModel);
+        IAddImageDisplayViewModel viewModel = new AddImageDisplayViewModel();
+        viewModel.SetMainViewModel(mainViewModel);
         var pageHeld = mainViewModel.CurrentPage;
         viewModel.ButtonPressed();
         Assert.Multiple((() =>

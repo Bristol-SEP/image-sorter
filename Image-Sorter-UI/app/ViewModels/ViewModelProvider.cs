@@ -21,16 +21,13 @@ public sealed class ViewModelProvider : IViewModelProvider
     public static ViewModelProvider Instance => _viewModelProvider ??= new ViewModelProvider();
 
     /// <inheritdoc/>
-    public IMainWindowViewModel GetMainViewModel() =>
-        new MainWindowViewModel(this);
+    public IMainWindowViewModel GetMainViewModel() => new MainWindowViewModel(this);
 
     /// <inheritdoc/>
-    public IAddImageDisplayViewModel GetAddImageViewModel() =>
-        new AddImageDisplayViewModel(GetMainViewModel());
-    
+    public IAddImageDisplayViewModel GetAddImageViewModel() => new AddImageDisplayViewModel();
+
     /// <inheritdoc/>
-    public IFolderStructureDisplayViewModel GetFolderStructureViewModel() =>
-        new FolderStructureDisplayViewModel(GetMainViewModel());
+    public IFolderStructureDisplayViewModel GetFolderStructureViewModel() => new FolderStructureDisplayViewModel();
     
     /// <inheritdoc/>
     public IFeatureSelectionViewModel GetFeatureSelectionViewModel() =>

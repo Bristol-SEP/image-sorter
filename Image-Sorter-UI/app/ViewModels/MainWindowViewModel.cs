@@ -1,5 +1,4 @@
-﻿using app.ViewModels.AddImageDisplay;
-using app.ViewModels.Interfaces;
+﻿using app.ViewModels.Interfaces;
 using ReactiveUI;
 
 namespace app.ViewModels;
@@ -34,7 +33,9 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     public MainWindowViewModel(IViewModelProvider vmProvider)
     {
         AddImageDisplayViewModel = vmProvider.GetAddImageViewModel();
+        AddImageDisplayViewModel.SetMainViewModel(this);
         FolderStructureDisplayViewModel = vmProvider.GetFolderStructureViewModel();
+        FolderStructureDisplayViewModel.SetMainViewModel(this);
         _currentPage = (ViewModelBase)AddImageDisplayViewModel;
     }
 
