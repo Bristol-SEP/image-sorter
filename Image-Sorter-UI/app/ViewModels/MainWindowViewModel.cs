@@ -1,4 +1,5 @@
-﻿using app.ViewModels.Interfaces;
+﻿using app.ViewModels.AddImageDisplay;
+using app.ViewModels.Interfaces;
 using ReactiveUI;
 
 namespace app.ViewModels;
@@ -13,12 +14,12 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     /// <summary>
     /// Holds an instance of <see cref="FolderStructureDisplayViewModel"/>
     /// </summary>
-    private readonly ViewModelBase _folderStructureDisplayView;
+    private IFolderStructureDisplayViewModel FolderStructureDisplayViewModel { get; }
     
     /// <summary>
     /// Holds an instance of <see cref="AddImageDisplayViewModel"/>
     /// </summary>
-    private readonly ViewModelBase _addImageDisplayView;
+    private IAddImageDisplayViewModel AddImageDisplayViewModel { get; }
     
     /// <inheritdoc/>
     public ViewModelBase CurrentPage
@@ -28,23 +29,23 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     }
 
     /// <inheritdoc/>
-    public bool IsImagePage => CurrentPage == _addImageDisplayView;
+    public bool IsImagePage => _currentPage == AddImageDisplayViewModel;
 
     public MainWindowViewModel(IViewModelProvider vmProvider)
     {
-        _addImageDisplayView = new AddImageDisplayViewModel(this);
-        _folderStructureDisplayView = new FolderStructureDisplayViewModel(this);
-        _currentPage = _addImageDisplayView;
+        AddImageDisplayViewModel = vmProvider.GetAddImageViewModel();
+        FolderStructureDisplayViewModel = vmProvider.GetFolderStructureViewModel();
+        _currentPage = (ViewModelBase)AddImageDisplayViewModel;
     }
 
     /// <inheritdoc/>
     public void ToggleView()
     {
-        if (CurrentPage == _addImageDisplayView)
+        if (IsImagePage)
         {
-            CurrentPage = _folderStructureDisplayView;
+            CurrentPage = (ViewModelBase)FolderStructureDisplayViewModel;
             return;
         }
-        CurrentPage = _addImageDisplayView;
+        CurrentPage = (ViewModelBase)AddImageDisplayViewModel;
     }
 }

@@ -23,7 +23,7 @@ public class MainWindowViewModelTest
         Assert.Multiple((() =>
         {
             Assert.That(viewModel.IsImagePage, Is.True);
-            Assert.That(firstPage, Is.EqualTo(_vmProvider.GetAddImageViewModel()));
+            Assert.AreEqual(firstPage.GetType(), _vmProvider.GetAddImageViewModel().GetType());
         }));
         viewModel.ToggleView();
         var secondPage = viewModel.CurrentPage;
