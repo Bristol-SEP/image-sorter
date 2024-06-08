@@ -6,6 +6,10 @@ namespace app.ViewModels;
 /// <inheritdoc cref="IAddImageDisplayViewModel"/>
 public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
+    /// <summary>
+    /// Creates the <see cref="AddImageDisplayViewModel"/>
+    /// </summary>
+    /// <param name="mainViewModel">An instance of <see cref="IMainWindowViewModel"/></param>
     public AddImageDisplayViewModel(IMainWindowViewModel mainViewModel)
     {
         _mainModel = mainViewModel;

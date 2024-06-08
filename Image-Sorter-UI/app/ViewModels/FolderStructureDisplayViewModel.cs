@@ -12,6 +12,10 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// to be called
     /// </summary>
     private readonly IMainWindowViewModel _mainModel;
+    /// <summary>
+    /// Creates a <see cref="FolderStructureDisplayViewModel"/>
+    /// </summary>
+    /// <param name="mainModel">Instance of <see cref="IMainWindowViewModel"/></param>
     public FolderStructureDisplayViewModel(IMainWindowViewModel mainModel)
     {
         _mainModel = mainModel;

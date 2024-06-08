@@ -5,10 +5,12 @@ using app.ViewModels.Interfaces.AddImageDisplay;
 
 namespace app.ViewModels.AddImageDisplay;
 
-public class FeatureSelectionViewModel: IFeatureSelectionViewModel
+/// <inheritdoc cref="IFeatureSelectionViewModel"/>
+public class FeatureSelectionViewModel: ViewModelBase, IFeatureSelectionViewModel
 {
+    /// <inheritdoc/>
     public ObservableCollection<FeatureGroup> FeatureList { get; set; }
-
+    
     public FeatureSelectionViewModel()
     {
         FeatureGroup rowing = new FeatureGroup("Rowing");

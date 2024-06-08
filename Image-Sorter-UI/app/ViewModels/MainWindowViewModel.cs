@@ -30,10 +30,10 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     /// <inheritdoc/>
     public bool IsImagePage => CurrentPage == _addImageDisplayView;
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(IViewModelProvider vmProvider)
     {
         _addImageDisplayView = new AddImageDisplayViewModel(this);
-        _folderStructureDisplayView= new FolderStructureDisplayViewModel(this);
+        _folderStructureDisplayView = new FolderStructureDisplayViewModel(this);
         _currentPage = _addImageDisplayView;
     }
 
