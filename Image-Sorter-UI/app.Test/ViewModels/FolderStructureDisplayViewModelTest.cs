@@ -15,6 +15,7 @@ public class FolderStructureDisplayViewModelTest
    {
       IMainWindowViewModel mainViewModel = _vmProvider.GetMainViewModel();
       IFolderStructureDisplayViewModel viewModel = new FolderStructureDisplayViewModel();
+      Assert.Throws<NullReferenceException>((() => viewModel.ButtonPressed()));
       viewModel.SetMainViewModel(mainViewModel);
       var pageHeld = mainViewModel.CurrentPage;
       Assert.Throws<InvalidOperationException>((() => viewModel.ButtonPressed()));

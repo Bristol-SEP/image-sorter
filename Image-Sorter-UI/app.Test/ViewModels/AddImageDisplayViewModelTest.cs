@@ -15,6 +15,7 @@ public class AddImageDisplayViewModelTest
     {
         IMainWindowViewModel mainViewModel = _vmProvider.GetMainViewModel();
         IAddImageDisplayViewModel viewModel = new AddImageDisplayViewModel();
+        Assert.Throws<NullReferenceException>((() => viewModel.ButtonPressed()));
         viewModel.SetMainViewModel(mainViewModel);
         var pageHeld = mainViewModel.CurrentPage;
         viewModel.ButtonPressed();
