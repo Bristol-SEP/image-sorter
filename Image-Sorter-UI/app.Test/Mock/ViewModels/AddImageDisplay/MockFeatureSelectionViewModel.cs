@@ -6,5 +6,5 @@ namespace Image_Sorter_UI.Mock.ViewModels.AddImageDisplay;
 
 public class MockFeatureSelectionViewModel: IFeatureSelectionViewModel
 {
-    public ObservableCollection<FeatureGroup> FeatureList { get; set; }
+    public ObservableCollection<FeatureGroup>? FeatureList { get; set; }
 }

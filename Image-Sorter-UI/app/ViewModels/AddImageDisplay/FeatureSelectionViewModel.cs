@@ -9,7 +9,7 @@ namespace app.ViewModels.AddImageDisplay;
 public class FeatureSelectionViewModel: ViewModelBase, IFeatureSelectionViewModel
 {
     /// <inheritdoc/>
-    public ObservableCollection<FeatureGroup> FeatureList { get; set; }
+    public ObservableCollection<FeatureGroup>? FeatureList { get; set; }
     
     public FeatureSelectionViewModel()
     {

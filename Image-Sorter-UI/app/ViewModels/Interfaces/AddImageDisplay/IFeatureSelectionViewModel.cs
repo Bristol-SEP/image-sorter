@@ -14,5 +14,5 @@ public interface IFeatureSelectionViewModel
     /// A <see cref="ObservableCollection{T}">ObservableCollection</see> of type
     /// <see cref="FeatureGroup"/>
     /// </summary>
-    public ObservableCollection<FeatureGroup> FeatureList { get; set; }
+    public ObservableCollection<FeatureGroup>? FeatureList { get; set; }
 }

@@ -5,6 +5,14 @@
       <map>
         <entry key="../app/App.axaml" value="../app/app.csproj" />
         <entry key="../app/Styles/ObjectStyles.axaml" value="../app/app.csproj" />
+        <entry key="app/App.axaml" value="app/app.csproj" />
+        <entry key="app/Views/AddImageDisplay/AddImageDisplayView.axaml" value="app/app.csproj" />
+        <entry key="app/Views/AddImageDisplay/FeatureSelection.axaml" value="app/app.csproj" />
+        <entry key="app/Views/AddImageDisplay/FeatureSelectionView.axaml" value="app/app.csproj" />
+        <entry key="app/Views/AddImageDisplayView.axaml" value="app/app.csproj" />
+        <entry key="app/Views/FolderStructureDisplay/FolderStuctureDisplayView.axaml" value="app/app.csproj" />
+        <entry key="app/Views/FolderStuctureDisplayView.axaml" value="app/app.csproj" />
+        <entry key="app/Views/MainWindow.axaml" value="app/app.csproj" />
       </map>
     </option>
   </component>
