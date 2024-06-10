@@ -10,17 +10,15 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
     public AddImageDisplayViewModel()
     {
-        List<string> rowingFeatures = new List<string>
+        var rowingFeatures = new List<string>
         {
             "Boat Code",
             "Race Number"
         };
         var rowing = new FeatureGroup("Rowing", rowingFeatures);
-        var test = new FeatureGroup("Test", new List<string>());
         FeatureList = new List<FeatureGroup>
         {
-            rowing,
-            test
+            rowing
         };
     }
     /// <inheritdoc/>

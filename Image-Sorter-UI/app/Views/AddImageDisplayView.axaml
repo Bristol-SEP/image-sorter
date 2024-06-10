@@ -12,7 +12,7 @@
           RowDefinitions="*,5*,*, 10*, *, 40">
         <!-- select features -->
         <Grid Grid.Row="1" RowDefinitions="Auto, *">
-            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" >
                 <styles:StageText Grid.Column="0"
                                   Text="Select Features"
                                   Number="1"
@@ -54,7 +54,11 @@
                                   RectangleHeight="30"
                                   RectangleWidth="150" />
             </Grid>
-            <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+            <Panel Grid.Row="1" Background="{DynamicResource BackgroundWeak}"
+                   DragDrop.AllowDrop="True">
+                <Button Classes="baseButton" HorizontalAlignment="Center"
+                        Click="OpenFileButton_Clicked">Add Folder</Button>
+            </Panel>
         </Grid>
         <!-- start processing -->
         <Grid Grid.Row="5"

@@ -14,7 +14,7 @@
 
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel>
+                <Panel Margin="0,0,0,5">
                     <!-- background rectangle -->
                     <Rectangle Width="{TemplateBinding RectangleWidth}"
                                Height="{TemplateBinding RectangleHeight}"
