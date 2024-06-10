@@ -19,18 +19,22 @@
                                   RectangleHeight="30"
                                   RectangleWidth="150" />
             </Grid>
-            <ScrollViewer Grid.Row="1">
+            
+            <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
                 <ItemsControl ItemsSource="{Binding FeatureList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander>
+                            <Expander HorizontalAlignment="Stretch"
+                                      Background="{DynamicResource BackgroundWeak}">
                                 <Expander.Header>
                                     <Label Content="{Binding GroupName}" />
                                 </Expander.Header>
                                 <ItemsControl ItemsSource="{Binding Features}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <CheckBox Content="{Binding}"></CheckBox>
+                                            <CheckBox Foreground="{DynamicResource Text}"
+                                                      Classes="baseCheckBox"
+                                                      Content="{Binding}"/>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

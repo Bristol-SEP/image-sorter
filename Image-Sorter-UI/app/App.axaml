@@ -18,6 +18,17 @@
         <SolidColorBrush x:Key="BackgroundStrong">#ACACAC</SolidColorBrush>
         <SolidColorBrush x:Key="Menu">#D9D9D9</SolidColorBrush>
         <SolidColorBrush x:Key="Background">#ffffff</SolidColorBrush>
+        
+        <!-- Changing the Expander colours -->
+        <SolidColorBrush x:Key="ExpanderHeaderBackground">#ACACAC</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderHeaderForeground">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderChevronForeground">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderHeaderBackgroundPointerOver">#ACACAC</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderHeaderForegroundPointerOver">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderChevronForegroundPointerOver">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderHeaderBackgroundPressed">#ACACAC</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderHeaderForegroundPressed">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="ExpanderChevronForegroundPressed">#000000</SolidColorBrush>
     </Application.Resources>
     
     <!-- the styles and custom objects being used in the app -->
