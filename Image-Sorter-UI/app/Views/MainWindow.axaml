@@ -14,10 +14,10 @@
     <Grid ColumnDefinitions="5*, *, 20*, *"
           Background="{DynamicResource Background}">
         <!-- menu -->
-        <views:SideBar Name="SideBar" Grid.Column="0"/>
+        <views:SideBar Grid.Column="0"/>
         
         <!-- main display -->
-        <TransitioningContentControl Name="MainView" Grid.Column="2" 
+        <TransitioningContentControl Grid.Column="2" 
                                      Content="{Binding CurrentPage}" />
     </Grid>
 </Window>

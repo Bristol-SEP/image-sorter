@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using app.Model;
 using app.Views;
 
 namespace app.ViewModels.Interfaces;
@@ -18,4 +20,5 @@ public interface IAddImageDisplayViewModel
    /// python script to be processed and moves display to <see cref="FolderStructureDisplayView"/>
    /// </summary>
    public void ButtonPressed();
+   public List<FeatureGroup> FeatureList { get; }
 }

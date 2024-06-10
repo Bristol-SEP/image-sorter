@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
 
@@ -15,4 +17,6 @@ public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewMo
     {
         throw new System.NotImplementedException();
     }
+
+    public List<FeatureGroup> FeatureList => new();
 }

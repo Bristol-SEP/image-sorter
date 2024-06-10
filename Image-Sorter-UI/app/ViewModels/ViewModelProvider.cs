@@ -1,6 +1,4 @@
-using app.ViewModels.AddImageDisplay;
 using app.ViewModels.Interfaces;
-using app.ViewModels.Interfaces.AddImageDisplay;
 
 namespace app.ViewModels;
 
@@ -28,8 +26,4 @@ public sealed class ViewModelProvider : IViewModelProvider
 
     /// <inheritdoc/>
     public IFolderStructureDisplayViewModel GetFolderStructureViewModel() => new FolderStructureDisplayViewModel();
-    
-    /// <inheritdoc/>
-    public IFeatureSelectionViewModel GetFeatureSelectionViewModel() =>
-        new FeatureSelectionViewModel();
 }

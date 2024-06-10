@@ -1,6 +1,3 @@
-using app.ViewModels.AddImageDisplay;
-using app.ViewModels.Interfaces.AddImageDisplay;
-
 namespace app.ViewModels.Interfaces;
 
 public interface IViewModelProvider
@@ -23,9 +20,4 @@ public interface IViewModelProvider
     /// <returns>A new <see cref="FolderStructureDisplayViewModel" /> instance</returns>
     public IFolderStructureDisplayViewModel GetFolderStructureViewModel();
     
-    /// <summary>
-    /// Creates a new <see cref="FeatureSelectionViewModel" /> instance
-    /// </summary>
-    /// <returns>A new <see cref="FeatureSelectionViewModel" /> instance</returns>
-    public IFeatureSelectionViewModel GetFeatureSelectionViewModel();
 }

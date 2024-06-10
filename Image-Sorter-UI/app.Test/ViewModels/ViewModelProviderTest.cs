@@ -1,5 +1,4 @@
 using app.ViewModels;
-using app.ViewModels.AddImageDisplay;
 using NUnit.Framework;
 
 namespace Image_Sorter_UI.ViewModels;
@@ -36,12 +35,5 @@ public class ViewModelProviderTest
     {
         var folderStructureViewModel = ViewModelProvider.Instance.GetFolderStructureViewModel();
         Assert.That(folderStructureViewModel, Is.InstanceOf<FolderStructureDisplayViewModel>());
-    }
-    
-    [Test]
-    public void GetFeatureSelectionViewModelTest()
-    {
-        var featureSelectionViewModel= ViewModelProvider.Instance.GetFeatureSelectionViewModel();
-        Assert.That(featureSelectionViewModel, Is.InstanceOf<FeatureSelectionViewModel>());
     }
 }

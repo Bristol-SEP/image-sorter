@@ -1,19 +1,16 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace app.Model;
 
 public class FeatureGroup
 {
-    public ObservableCollection<string> FeatureList => new();
+    public List<string> Features { get; } 
     public string GroupName { get; set; }
-
-    public FeatureGroup(string groupName)
+    
+    public FeatureGroup(string groupName, List<string> featureList)
     {
         GroupName = groupName;
-    }
-
-    public void AddFeature(string feature)
-    {
-        FeatureList.Add(feature);
+        Features= featureList;
     }
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using app.Model;
 using app.ViewModels.Interfaces;
 
 namespace app.ViewModels;
@@ -6,6 +8,21 @@ namespace app.ViewModels;
 /// <inheritdoc cref="IAddImageDisplayViewModel"/>
 public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
+    public AddImageDisplayViewModel()
+    {
+        List<string> rowingFeatures = new List<string>
+        {
+            "Boat Code",
+            "Race Number"
+        };
+        var rowing = new FeatureGroup("Rowing", rowingFeatures);
+        var test = new FeatureGroup("Test", new List<string>());
+        FeatureList = new List<FeatureGroup>
+        {
+            rowing,
+            test
+        };
+    }
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
@@ -27,4 +44,6 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         if (!_mainModel.IsImagePage) throw new InvalidOperationException();
         _mainModel.ToggleView();
     }
+
+    public List<FeatureGroup> FeatureList { get; }
 }
