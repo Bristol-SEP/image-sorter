@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using app.ViewModels.Interfaces;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -18,30 +19,32 @@ public partial class AddImageDisplayView : UserControl
         AddHandler(DragDrop.DropEvent, Drop);
     }
 
+    /// <summary>
+    /// Triggers a Folder picker and passes the selected folders into
+    /// <see cref="IAddImageDisplayViewModel.AddFolders"/>
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    /// <exception cref="NullReferenceException">Occurs if cannot get top level</exception>
     private async void OpenFileButton_Clicked(object sender, RoutedEventArgs args)
     {
+        if (DataContext is not IAddImageDisplayViewModel viewModel) return;
+        
         // Get top level from the current control. Alternatively, you can use Window reference instead.
         var topLevel = TopLevel.GetTopLevel(this);
     
+        // TODO prevent crash on cancel
         // Start async operation to open the dialog.
         var folders = topLevel is not null
             ? await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
             {
-                Title = "Open Text File",
+                Title = "Open Folder",
                 AllowMultiple = true
             })
             : throw new NullReferenceException();
-
-        // if (folders.Count >= 1)
-        // {
-        //     // Open reading stream from the first file.
-        //     await using var stream = await folders[0];
-        //     using var streamReader = new StreamReader(stream);
-        //     // Reads all the content of file as a text.
-        //     var fileContent = await streamReader.ReadToEndAsync();
-        // }
-        var firstFolder = folders.First().Name;
-        Console.WriteLine(firstFolder);
+    
+        // Pass into viewModel
+        viewModel.AddFolders(folders);
     }
 
     /// <summary>

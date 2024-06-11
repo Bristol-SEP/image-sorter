@@ -4,22 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:styles="clr-namespace:app.Styles"
              xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
+             xmlns:converters="clr-namespace:app.Styles.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IAddImageDisplayViewModel"
              x:Class="app.Views.AddImageDisplayView">
+
+    <UserControl.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
 
     <Grid Background="{DynamicResource Background}"
           RowDefinitions="*,5*,*, 10*, *, 40">
         <!-- select features -->
         <Grid Grid.Row="1" RowDefinitions="Auto, *">
-            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" >
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
                 <styles:StageText Grid.Column="0"
                                   Text="Select Features"
                                   Number="1"
                                   RectangleHeight="30"
                                   RectangleWidth="150" />
             </Grid>
-            
+
             <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
                 <ItemsControl ItemsSource="{Binding FeatureList}">
                     <ItemsControl.ItemTemplate>
@@ -34,7 +39,7 @@
                                         <DataTemplate>
                                             <CheckBox Foreground="{DynamicResource Text}"
                                                       Classes="baseCheckBox"
-                                                      Content="{Binding}"/>
+                                                      Content="{Binding}" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -56,8 +61,28 @@
             </Grid>
             <Panel Grid.Row="1" Background="{DynamicResource BackgroundWeak}"
                    DragDrop.AllowDrop="True">
+                <!-- if no folders present -->
                 <Button Classes="baseButton" HorizontalAlignment="Center"
-                        Click="OpenFileButton_Clicked">Add Folder</Button>
+                        IsVisible="{Binding FoldersEmpty}"
+                        Click="OpenFileButton_Clicked">
+                    Add Folder
+                </Button>
+                <!-- if folders present -->
+                <ScrollViewer IsVisible="{Binding FoldersEmpty, Converter={StaticResource InverseBoolConverter}}">
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding  FolderList}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Name}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Button Classes="baseButton" HorizontalAlignment="Left"
+                                Click="OpenFileButton_Clicked">
+                            Add Folder
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
             </Panel>
         </Grid>
         <!-- start processing -->
