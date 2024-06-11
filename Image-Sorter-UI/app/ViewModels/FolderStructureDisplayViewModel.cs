@@ -11,15 +11,18 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
     /// to be called
     /// </summary>
-    private readonly IMainWindowViewModel _mainModel;
-    public FolderStructureDisplayViewModel(IMainWindowViewModel mainModel)
+    private IMainWindowViewModel? _mainModel;
+
+    /// <inheritdoc/>
+    public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        _mainModel = mainModel;
+        _mainModel = mainViewModel;
     }
-    
+
     /// <inheritdoc/>
     public void ButtonPressed()
     {
+        if (_mainModel is null) throw new NullReferenceException();
         if (_mainModel.IsImagePage) throw new InvalidOperationException();
         _mainModel.ToggleView();
     }

@@ -7,39 +7,62 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IAddImageDisplayViewModel"
              x:Class="app.Views.AddImageDisplayView">
-    
+
     <Grid Background="{DynamicResource Background}"
           RowDefinitions="*,5*,*, 10*, *, 40">
-            <!-- select features -->
-            <Grid Grid.Row="1" RowDefinitions="Auto, *">
-                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
-                    <styles:StageText Grid.Column="0"
-                                      Text="Select Features"
-                                      Number="1"
-                                      RectangleHeight="30"
-                                      RectangleWidth="150"/>
-                </Grid>
-                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+        <!-- select features -->
+        <Grid Grid.Row="1" RowDefinitions="Auto, *">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Height="30">
+                <styles:StageText Grid.Column="0"
+                                  Text="Select Features"
+                                  Number="1"
+                                  RectangleHeight="30"
+                                  RectangleWidth="150" />
             </Grid>
-            <!-- add images -->
-            <Grid Grid.Row="3"
-                  RowDefinitions="Auto, *">
-                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
-                    <styles:StageText Grid.Column="0"
-                                      Text="Add Images"
-                                      Number="2"
-                                      RectangleHeight="30"
-                                      RectangleWidth="150"/>
-                </Grid>
-                <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+            
+            <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
+                <ItemsControl ItemsSource="{Binding FeatureList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Expander HorizontalAlignment="Stretch"
+                                      Background="{DynamicResource BackgroundWeak}">
+                                <Expander.Header>
+                                    <Label Content="{Binding GroupName}" />
+                                </Expander.Header>
+                                <ItemsControl ItemsSource="{Binding Features}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox Foreground="{DynamicResource Text}"
+                                                      Classes="baseCheckBox"
+                                                      Content="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+        <!-- add images -->
+        <Grid Grid.Row="3"
+              RowDefinitions="Auto, *">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                <styles:StageText Grid.Column="0"
+                                  Text="Add Images"
+                                  Number="2"
+                                  RectangleHeight="30"
+                                  RectangleWidth="150" />
             </Grid>
-            <!-- start processing -->
-            <Grid Grid.Row="5"
-                  ColumnDefinitions="*, Auto, *">
-                <Button Grid.Column="1" Classes="baseButton"
-                        Command="{Binding ButtonPressed}">
-                    Start Processing
-                </Button>
-            </Grid>
-            </Grid>
+            <Rectangle Grid.Row="1" Fill="Chocolate"></Rectangle>
+        </Grid>
+        <!-- start processing -->
+        <Grid Grid.Row="5"
+              ColumnDefinitions="*, Auto, *">
+            <Button Grid.Column="1" Classes="baseButton"
+                    Command="{Binding ButtonPressed}">
+                Start Processing
+            </Button>
+        </Grid>
+    </Grid>
 </UserControl>
