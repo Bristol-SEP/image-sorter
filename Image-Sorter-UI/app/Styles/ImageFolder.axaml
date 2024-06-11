@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:app.Styles">
+    <Design.PreviewWith>
+        <controls:ImageFolder Text="Hello there"
+                              Height="40" Width="300" />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|ImageFolder">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border CornerRadius="5" Margin="5,2,5,2"
+                        Background="{DynamicResource BackgroundStrong}">
+                    <Grid ColumnDefinitions="Auto, Auto, *, Auto">
+                        <PathIcon Grid.Column="0" Data="{StaticResource FolderRegular}"
+                                  Foreground="{DynamicResource Text}"
+                                  Margin="5,0,5,0" />
+                        <TextBlock Grid.Column="1" Foreground="{DynamicResource Text}"
+                                   Text="{TemplateBinding Text}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <Button Grid.Column="3" Background="{DynamicResource BackgroundStrong}">
+                            <PathIcon Data="{StaticResource DeleteRegular}"
+                                      Foreground="{DynamicResource Text}" />
+                        </Button>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

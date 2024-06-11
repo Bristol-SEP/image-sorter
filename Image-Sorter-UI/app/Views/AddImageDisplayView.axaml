@@ -73,7 +73,7 @@
                         <ItemsControl ItemsSource="{Binding  FolderList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Name}" />
+                                    <styles:ImageFolder Text="{Binding Name}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
