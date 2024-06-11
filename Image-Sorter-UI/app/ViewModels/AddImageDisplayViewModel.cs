@@ -14,10 +14,21 @@ namespace app.ViewModels;
 public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
     /// <summary>
-    /// A backing field for <see cref="FolderList"/>
+    /// A reference to <see cref="MainWindowViewModel"/>
+    /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
+    /// to be called
     /// </summary>
-    private ObservableCollection<SelectFolders> _foldersList = new();
-    
+    private  IMainWindowViewModel? _mainModel;
+
+    /// <summary>
+    /// Checks if file is already in <see cref="FolderList"/>
+    /// </summary>
+    /// <param name="folder">The folders being searched for</param>
+    /// <returns>True if folder is not already present in <see cref="FolderList"/></returns>
+    private bool IsNotPresent(SelectFolders folder)
+    {
+        return FolderList.All(presentFolder => !presentFolder.Path.Equals(folder.Path));
+    }
     public AddImageDisplayViewModel()
     {
         var rowingFeatures = new List<string>
@@ -36,13 +47,6 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     {
         _mainModel = mainViewModel;
     }
-
-    /// <summary>
-    /// A reference to <see cref="MainWindowViewModel"/>
-    /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
-    /// to be called
-    /// </summary>
-    private  IMainWindowViewModel? _mainModel;
     
     /// <inheritdoc/>
     /// TODO pass data into python script
@@ -57,11 +61,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     public List<FeatureGroup> FeatureList { get; }
 
     /// <inheritdoc/>
-    public ObservableCollection<SelectFolders> FolderList
-    {
-        get => _foldersList;
-        private set => this.RaiseAndSetIfChanged(ref _foldersList, value);
-    }
+    public ObservableCollection<SelectFolders> FolderList { get; } = new();
 
     /// <inheritdoc/>
     public bool FoldersEmpty => FolderList.Count == 0; 
@@ -73,9 +73,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         foreach (var folder in folders)
         {
             var folderModel = new SelectFolders(folder.Name, folder.Path);
-            Console.WriteLine(folderModel.Name);
-            FolderList.Add(folderModel);
-            Console.WriteLine(FoldersEmpty);
+            if(IsNotPresent(folderModel)) FolderList.Add(folderModel);
         }
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
@@ -84,6 +82,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     public void RemoveFolders()
     {
         throw new NotImplementedException();
+        this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
     
 }
