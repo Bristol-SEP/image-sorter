@@ -75,7 +75,7 @@
                                 <DataTemplate>
                                     <Panel>
                                         <styles:ImageFolder Text="{Binding Name}" />
-                                        <!-- FallBack not correct -->
+                                        <!-- TODO FallBack not correct -->
                                         <Button
                                             Command="{Binding $parent[ItemsControl].((vm:IAddImageDisplayViewModel)DataContext).RemoveFolders, FallbackValue={Binding}}"
                                             CommandParameter="{Binding}"

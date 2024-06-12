@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace Image_Sorter_UI.Views;
 
-[TestFixture]
-public class MainWindowTest
-{
+// [TestFixture]
+// public class MainWindowTest
+// {
     // [AvaloniaTest]
     // public void ViewModelTest()
     // {
@@ -23,4 +23,4 @@ public class MainWindowTest
     //         Assert.That(mainWindow.SideBar, Is.TypeOf<SideBar>());
     //     });
     // }
-}
+// }
