@@ -81,7 +81,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <inheritdoc/>
     public void RemoveFolders(SelectFolders folder)
     {
-        Console.WriteLine(folder.Name);
+        FolderList.Remove(folder);
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
     
