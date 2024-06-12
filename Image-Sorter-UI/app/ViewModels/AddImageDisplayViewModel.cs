@@ -66,6 +66,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <inheritdoc/>
     public bool FoldersEmpty => FolderList.Count == 0; 
 
+    // TODO implement protection so child folders cannot be added if parent is present
     /// <inheritdoc/>
     public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
     {

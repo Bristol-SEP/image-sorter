@@ -33,7 +33,6 @@ public partial class AddImageDisplayView : UserControl
         // Get top level from the current control. Alternatively, you can use Window reference instead.
         var topLevel = TopLevel.GetTopLevel(this);
     
-        // TODO prevent crash on cancel
         // Start async operation to open the dialog.
         var folders = topLevel is not null
             ? await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
