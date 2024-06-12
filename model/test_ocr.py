@@ -206,6 +206,8 @@ def main():
             if modelRecognition:
                 cropped = fourPointsTransform(frame, vertices)
                 cropped = cv.cvtColor(cropped, cv.COLOR_BGR2GRAY)
+                cv.imshow("Cropped", cropped)
+                cv.waitKey()
 
                 # Create a 4D blob from cropped image
                 blob = cv.dnn.blobFromImage(cropped, size=(100, 32), mean=127.5, scalefactor=1 / 127.5)
