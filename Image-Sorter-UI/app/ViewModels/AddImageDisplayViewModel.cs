@@ -20,14 +20,42 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// </summary>
     private  IMainWindowViewModel? _mainModel;
 
+    // TODO This is a little bit of a hack maybe refactor at a later date
     /// <summary>
-    /// Checks if file is already in <see cref="FolderList"/>
+    /// Checks if file is already in <see cref="FolderList"/>,
+    /// also checks that folder is not a child of any folders already
+    /// present in <see cref="FolderList"/>, removes child folders from
+    /// <see cref="FolderList"/> if folder being added is a parent
     /// </summary>
-    /// <param name="folder">The folders being searched for</param>
-    /// <returns>True if folder is not already present in <see cref="FolderList"/></returns>
+    /// <param name="folder">The folder being searched for</param>
+    /// <returns>True if folder is not already present in <see cref="FolderList"/> and is not a child</returns>
     private bool IsNotPresent(SelectFolders folder)
     {
-        return FolderList.All(presentFolder => !presentFolder.Path.Equals(folder.Path));
+        var children = new List<SelectFolders>();
+        var folderPath = EndsWithSeparator(folder.Path.AbsolutePath);
+        foreach (var presentFolder in FolderList)
+        {
+            var presentPath = EndsWithSeparator(presentFolder.Path.AbsolutePath);
+            if (presentPath.StartsWith(folderPath, StringComparison.OrdinalIgnoreCase)) children.Add(presentFolder);
+            else if (folderPath.StartsWith(presentPath, StringComparison.OrdinalIgnoreCase)) return false;
+        }
+
+        foreach (var child in children)
+        {
+            FolderList.Remove(child);
+        }
+
+        return true;
+    }
+    
+    /// <summary>
+    /// Removes separators from the end of file paths
+    /// </summary>
+    /// <param name="absolutePath">A <see cref="string"/> of the absolute path of a <see cref="Uri"/></param>
+    /// <returns></returns>
+    private static string EndsWithSeparator(string absolutePath)
+    {
+        return absolutePath?.TrimEnd('/','\\') + "/";
     }
     public AddImageDisplayViewModel()
     {
