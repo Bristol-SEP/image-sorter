@@ -50,5 +50,5 @@ public interface IAddImageDisplayViewModel
    /// <summary>
    /// Remove folders from the <see cref="FolderList"/>
    /// </summary>
-   public void RemoveFolders();
+   public void RemoveFolders(SelectFolders folder);
 }

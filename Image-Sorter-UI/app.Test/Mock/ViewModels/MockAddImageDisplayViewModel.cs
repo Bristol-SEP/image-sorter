@@ -28,7 +28,7 @@ public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewMo
         throw new System.NotImplementedException();
     }
 
-    public void RemoveFolders()
+    public void RemoveFolders(SelectFolders folder)
     {
         throw new System.NotImplementedException();
     }

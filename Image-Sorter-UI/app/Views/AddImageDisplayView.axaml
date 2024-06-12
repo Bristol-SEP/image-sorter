@@ -73,7 +73,19 @@
                         <ItemsControl ItemsSource="{Binding  FolderList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <styles:ImageFolder Text="{Binding Name}"/>
+                                    <Panel>
+                                        <styles:ImageFolder Text="{Binding Name}" />
+                                        <!-- FallBack not correct -->
+                                        <Button
+                                            Command="{Binding $parent[ItemsControl].((vm:IAddImageDisplayViewModel)DataContext).RemoveFolders, FallbackValue={Binding}}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Right"
+                                            Margin="0,2,5,2"
+                                            Foreground="{StaticResource Text}"
+                                            Background="{StaticResource BackgroundStrong}">
+                                            <PathIcon Data="{StaticResource DeleteRegular}"/>
+                                        </Button>
+                                    </Panel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

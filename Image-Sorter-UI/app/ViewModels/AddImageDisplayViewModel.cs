@@ -79,9 +79,9 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     }
 
     /// <inheritdoc/>
-    public void RemoveFolders()
+    public void RemoveFolders(SelectFolders folder)
     {
-        throw new NotImplementedException();
+        Console.WriteLine(folder.Name);
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
     
