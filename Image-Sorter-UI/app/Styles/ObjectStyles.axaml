@@ -17,7 +17,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Background" Value="{DynamicResource Buttons}"/>
     </Style>
-    <Style Selector="Button.baseButton:pointerover /template/ ContentPresenter">
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="{DynamicResource ButtonSelected}"/>
         <Setter Property="Foreground" Value="{DynamicResource Text}"/>
     </Style>
