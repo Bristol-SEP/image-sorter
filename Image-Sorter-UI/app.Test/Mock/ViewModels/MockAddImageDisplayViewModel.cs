@@ -21,7 +21,7 @@ public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewMo
     }
 
     public List<FeatureGroup> FeatureList => new();
-    public ObservableCollection<SelectFolders> FolderList => new();
+    public ObservableCollection<SelectFolders> FolderList { get; } = new();
     public bool FoldersEmpty => true;
     public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
     {

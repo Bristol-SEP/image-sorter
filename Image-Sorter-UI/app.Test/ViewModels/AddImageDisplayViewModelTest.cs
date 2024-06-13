@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
@@ -22,33 +24,23 @@ public class AddImageDisplayViewModelTest
         viewModel.SetMainViewModel(mainViewModel);
         var pageHeld = mainViewModel.CurrentPage;
         viewModel.ButtonPressed();
-        Assert.Multiple((() =>
+        Assert.Multiple(() =>
         {
             Assert.That(mainViewModel.CurrentPage, Is.Not.EqualTo(pageHeld));
             Assert.That(mainViewModel.IsImagePage, Is.False);
             Assert.Throws<InvalidOperationException>(() => viewModel.ButtonPressed());
-        }));
+        });
     }
 
-    private IAddImageDisplayViewModel ViewModel
-    {
-        get
-        {
-            var mainViewModel = _vmProvider.GetMainViewModel();
-            var viewModel = new AddImageDisplayViewModel();           
-            viewModel.SetMainViewModel(mainViewModel);
-            return viewModel;
-        }
-    }
-    
     [Test]
     public void FeatureListTest()
     {
-        var features = ViewModel.FeatureList;
+        var viewModel = new AddImageDisplayViewModel();
+        var features = viewModel.FeatureList;
         Assert.That(features[0].GroupName, Is.EqualTo("Rowing"));
         foreach (var group in features)
         {
-           Assert.That(group.Features.Count, Is.Not.EqualTo(0)); 
+            Assert.That(group.Features.Count, Is.Not.EqualTo(0)); 
         }
     }
 
@@ -56,17 +48,18 @@ public class AddImageDisplayViewModelTest
     [Test]
     public void AddFoldersTest()
     {
-        Assert.Multiple((() =>
+        var viewModel = new AddImageDisplayViewModel();
+        Assert.Multiple(() =>
         {
-            Assert.That(ViewModel.FolderList.Count, Is.EqualTo(0));
-            Assert.That(ViewModel.FoldersEmpty, Is.True);
-        }));
-        ViewModel.AddFolders(new List<IStorageFolder>());
-        Assert.Multiple((() =>
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(viewModel.FoldersEmpty, Is.True);
+        });
+        viewModel.AddFolders(new List<IStorageFolder>());
+        Assert.Multiple(() =>
         {
-            Assert.That(ViewModel.FolderList.Count, Is.EqualTo(0));
-            Assert.That(ViewModel.FoldersEmpty, Is.True);
-        }));
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(viewModel.FoldersEmpty, Is.True);
+        });
         
     }
 
@@ -75,6 +68,37 @@ public class AddImageDisplayViewModelTest
     [Test]
     public void RemoveFoldersTest()
     {
+        var viewModel = new AddImageDisplayViewModel();
+        var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
+        var mock = new SelectFolders("Mock",  new Uri(path + "/Mock"));
+        var view = new SelectFolders("Views", new Uri(path + "/Views"));
         
+        viewModel.FolderList.Add(mock);
+        viewModel.FolderList.Add(view);
+        
+        Assert.That(viewModel.FolderList.Count, Is.EqualTo(2));
+        
+        viewModel.RemoveFolders(mock);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(viewModel.FolderList.Contains(mock), Is.False);
+        });
+
+        viewModel.RemoveFolders(view);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(viewModel.FolderList.Contains(view), Is.False);
+            Assert.That(viewModel.FoldersEmpty, Is.True);
+        });
+        
+        viewModel.RemoveFolders(mock);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(viewModel.FolderList.Contains(mock), Is.False);
+            Assert.That(viewModel.FoldersEmpty, Is.True);
+        });
     }
 }

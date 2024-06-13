@@ -57,6 +57,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     {
         return absolutePath?.TrimEnd('/','\\') + "/";
     }
+    
     public AddImageDisplayViewModel()
     {
         var rowingFeatures = new List<string>
@@ -70,6 +71,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
             rowing
         };
     }
+    
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
