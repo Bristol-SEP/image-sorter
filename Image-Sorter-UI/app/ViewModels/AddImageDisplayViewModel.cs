@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
 using app.ViewModels.Interfaces;
-using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
 
@@ -55,14 +54,25 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <returns></returns>
     private static string EndsWithSeparator(string absolutePath)
     {
-        return absolutePath?.TrimEnd('/','\\') + "/";
+        return absolutePath.TrimEnd('/','\\') + "/";
     }
+
+    /// <summary>
+    /// Checks if a featureGroup has any items selected
+    /// </summary>
+    /// <param name="featureGroup">an <see cref="IEnumerable{T}"/> of <see cref="Feature"/></param>
+    /// <returns>True if featureGroup has a selected item, false otherwise</returns>
+    private static bool FeatureSelected(IEnumerable<Feature> featureGroup)
+    {
+        return featureGroup.Any(feature => feature.Selected);
+    }
+    
     public AddImageDisplayViewModel()
     {
-        var rowingFeatures = new List<string>
+        var rowingFeatures = new List<Feature>
         {
-            "Boat Code",
-            "Race Number"
+            new("Boat Code"),
+            new("Race Number")
         };
         var rowing = new FeatureGroup("Rowing", rowingFeatures);
         FeatureList = new List<FeatureGroup>
@@ -77,12 +87,20 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     }
     
     /// <inheritdoc/>
-    /// TODO pass data into python script
     public void ButtonPressed()
     {
         if (_mainModel is null) throw new NullReferenceException();
         if (!_mainModel.IsImagePage) throw new InvalidOperationException();
-        _mainModel.ToggleView();
+        var featureSelected = false;
+        FeatureList.ForEach(featureGroup => 
+            featureSelected = FeatureSelected(featureGroup.Features) && featureSelected == false);
+        // TODO fix featureSelectedToggle
+        if (FolderList.Count != 0 && featureSelected)
+        {
+            // TODO pass data into python script
+            _mainModel.ToggleView();
+        }
+        // TODO write else to prompt changes 
     }
 
     /// <inheritdoc/>
@@ -94,7 +112,6 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <inheritdoc/>
     public bool FoldersEmpty => FolderList.Count == 0; 
 
-    // TODO implement protection so child folders cannot be added if parent is present
     /// <inheritdoc/>
     public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
     {

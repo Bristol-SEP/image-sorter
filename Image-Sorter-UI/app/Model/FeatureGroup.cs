@@ -1,14 +1,14 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace app.Model;
 
-public class FeatureGroup
+public class FeatureGroup 
 {
     /// <summary>
-    /// The features related to the group
+    /// A collection of <see cref="Features"/> related to the group
     /// </summary>
-    public List<string> Features { get; } 
+    public List<Feature> Features { get; } 
     
     /// <summary>
     /// The name of the group
@@ -20,9 +20,14 @@ public class FeatureGroup
     /// </summary>
     /// <param name="groupName">Name of group</param>
     /// <param name="featureList">A <see cref="List{T}">list</see> of the features related to that group</param>
-    public FeatureGroup(string groupName, List<string> featureList)
+    public FeatureGroup(string groupName, List<Feature> featureList)
     {
         GroupName = groupName;
-        Features= featureList;
+        Features = featureList;
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -39,7 +39,9 @@
                                         <DataTemplate>
                                             <CheckBox Foreground="{DynamicResource Text}"
                                                       Classes="baseCheckBox"
-                                                      Content="{Binding}" />
+                                                      Content="{Binding Name}" 
+                                                      IsChecked="{Binding Selected}"
+                                                      Command="{Binding ToggleSelected}"/>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
