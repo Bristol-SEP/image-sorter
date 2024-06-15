@@ -93,8 +93,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         if (!_mainModel.IsImagePage) throw new InvalidOperationException();
         var featureSelected = false;
         FeatureList.ForEach(featureGroup => 
-            featureSelected = FeatureSelected(featureGroup.Features) && featureSelected == false);
-        // TODO fix featureSelectedToggle
+            featureSelected = FeatureSelected(featureGroup.Features) || featureSelected);
         if (FolderList.Count != 0 && featureSelected)
         {
             // TODO pass data into python script
