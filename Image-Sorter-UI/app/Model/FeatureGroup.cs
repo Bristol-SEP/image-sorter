@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace app.Model;
 
@@ -14,6 +15,12 @@ public class FeatureGroup
     /// The name of the group
     /// </summary>
     public string GroupName { get; set; }
+
+    /// <summary>
+    /// Checks if feature group has any elements selected to decide
+    /// where expander should expand
+    /// </summary>
+    public bool ShouldExpand => Features.Any(feature => feature.Selected);
     
     /// <summary>
     /// Creates an instance of FeatureGroup

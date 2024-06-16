@@ -12,12 +12,24 @@ namespace app.ViewModels;
 /// <inheritdoc cref="IAddImageDisplayViewModel"/>
 public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
+    #region Private Attributes 
+
     /// <summary>
     /// A reference to <see cref="MainWindowViewModel"/>
     /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
     /// to be called
     /// </summary>
     private  IMainWindowViewModel? _mainModel;
+
+    /// <summary>
+    /// A backing field for <see cref="FeaturePrompt"/>
+    /// </summary>
+    private bool _featurePrompt;
+    
+    /// <summary>
+    /// A backing field for <see cref="FolderPrompt"/>
+    /// </summary>
+    private bool _folderPrompt;
 
     // TODO This is a little bit of a hack maybe refactor at a later date
     /// <summary>
@@ -67,6 +79,35 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         return featureGroup.Any(feature => feature.Selected);
     }
     
+    #endregion
+
+    #region Public Variables
+
+    /// <inheritdoc/>
+    public bool FolderPrompt 
+    {
+        get => _folderPrompt;
+        private set => this.RaiseAndSetIfChanged(ref _folderPrompt, value);
+    }
+
+    /// <inheritdoc/>
+    public bool FeaturePrompt
+    {
+        get => _featurePrompt;
+        private set => this.RaiseAndSetIfChanged(ref _featurePrompt, value);
+    }
+    
+    /// <inheritdoc/>
+    public List<FeatureGroup> FeatureList { get; }
+
+    /// <inheritdoc/>
+    public ObservableCollection<SelectFolders> FolderList { get; } = new();
+
+    /// <inheritdoc/>
+    public bool FoldersEmpty => FolderList.Count == 0;
+    
+    #endregion
+    
     public AddImageDisplayViewModel()
     {
         var rowingFeatures = new List<Feature>
@@ -80,6 +121,9 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
             rowing
         };
     }
+
+    #region Public Methods
+
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
@@ -91,25 +135,32 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     {
         if (_mainModel is null) throw new NullReferenceException();
         if (!_mainModel.IsImagePage) throw new InvalidOperationException();
+        FolderPrompt = false;
+        FeaturePrompt = false;
         var featureSelected = false;
         FeatureList.ForEach(featureGroup => 
             featureSelected = FeatureSelected(featureGroup.Features) || featureSelected);
-        if (FolderList.Count != 0 && featureSelected)
+        // Runs the python script and moves to next page
+        if (!FoldersEmpty && featureSelected)
         {
             // TODO pass data into python script
             _mainModel.ToggleView();
         }
-        // TODO write else to prompt changes 
+        else
+        {
+            // Prompt to select a feature
+            if (!featureSelected)
+            {
+                FeaturePrompt = true;
+            }
+            // Prompt to select a folder 
+            if (FoldersEmpty)
+            {
+                FolderPrompt = true;
+            }
+        }
     }
 
-    /// <inheritdoc/>
-    public List<FeatureGroup> FeatureList { get; }
-
-    /// <inheritdoc/>
-    public ObservableCollection<SelectFolders> FolderList { get; } = new();
-
-    /// <inheritdoc/>
-    public bool FoldersEmpty => FolderList.Count == 0; 
 
     /// <inheritdoc/>
     public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
@@ -130,4 +181,5 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
     
+    #endregion
 }

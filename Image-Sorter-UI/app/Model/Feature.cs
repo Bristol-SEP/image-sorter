@@ -16,6 +16,5 @@ public class Feature
     public void ToggleSelected()
     {
         Selected = !Selected;
-        Console.WriteLine(Selected);
     }
 }
