@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
@@ -16,18 +17,55 @@ public class AddImageDisplayViewModelTest
     [Test]
     public void ButtonPressedTest()
     {
+        // setup
         var mainViewModel = _vmProvider.GetMainViewModel();
         IAddImageDisplayViewModel viewModel = new AddImageDisplayViewModel();
         Assert.Throws<NullReferenceException>((() => viewModel.ButtonPressed()));
         viewModel.SetMainViewModel(mainViewModel);
         var pageHeld = mainViewModel.CurrentPage;
+        // empty test
         viewModel.ButtonPressed();
-        Assert.Multiple((() =>
+        Assert.Multiple(() =>
+        {
+            Assert.That(mainViewModel.CurrentPage, Is.EqualTo(pageHeld));
+            Assert.That(mainViewModel.IsImagePage, Is.True);
+            Assert.That(viewModel.FeaturePrompt, Is.True);
+            Assert.That(viewModel.FolderPrompt, Is.True);
+        });
+        // feature not selected test
+        var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
+        var mock = new SelectFolders("Mock",  new Uri(path + "/Mock"));
+        viewModel.FolderList.Add(mock);
+        viewModel.ButtonPressed();
+        Assert.Multiple(() =>
+        {
+            Assert.That(mainViewModel.CurrentPage, Is.EqualTo(pageHeld));
+            Assert.That(mainViewModel.IsImagePage, Is.True);
+            Assert.That(viewModel.FeaturePrompt, Is.True);
+            Assert.That(viewModel.FolderPrompt, Is.False);
+        });
+        // folder not selected test
+        viewModel.FolderList.Remove(mock);
+        viewModel.FeatureList[0].Features[0].ToggleSelected();
+        viewModel.ButtonPressed();
+        Assert.Multiple(() =>
+        {
+            Assert.That(mainViewModel.CurrentPage, Is.EqualTo(pageHeld));
+            Assert.That(mainViewModel.IsImagePage, Is.True);
+            Assert.That(viewModel.FeaturePrompt, Is.False);
+            Assert.That(viewModel.FolderPrompt, Is.True);
+        });
+        // all selected
+        viewModel.FolderList.Add(mock);
+        viewModel.ButtonPressed();
+        Assert.Multiple(() =>
         {
             Assert.That(mainViewModel.CurrentPage, Is.Not.EqualTo(pageHeld));
             Assert.That(mainViewModel.IsImagePage, Is.False);
+            Assert.That(viewModel.FeaturePrompt, Is.False);
+            Assert.That(viewModel.FolderPrompt, Is.False);
             Assert.Throws<InvalidOperationException>(() => viewModel.ButtonPressed());
-        }));
+        });
     }
 
     private IAddImageDisplayViewModel ViewModel

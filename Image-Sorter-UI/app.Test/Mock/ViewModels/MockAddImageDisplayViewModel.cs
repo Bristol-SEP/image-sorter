@@ -10,6 +10,12 @@ namespace Image_Sorter_UI.Mock.ViewModels;
 public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
     private IMainWindowViewModel? _mainView;
+    public bool FolderPrompt => true; 
+    public bool FeaturePrompt => true;
+    public List<FeatureGroup> FeatureList => new();
+    public ObservableCollection<SelectFolders> FolderList => new();
+    public bool FoldersEmpty => true;
+
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
         _mainView = mainViewModel;
@@ -20,9 +26,6 @@ public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewMo
         throw new System.NotImplementedException();
     }
 
-    public List<FeatureGroup> FeatureList => new();
-    public ObservableCollection<SelectFolders> FolderList => new();
-    public bool FoldersEmpty => true;
     public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
     {
         throw new System.NotImplementedException();
