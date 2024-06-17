@@ -33,4 +33,12 @@
     <Style Selector="CheckBox.baseCheckBox:pointerover /template/ ContentPresenter">
         <Setter Property="Foreground" Value="{DynamicResource Text}"/>
     </Style>
+    
+    <!-- Alert style -->
+    <Style Selector="TextBlock.alert">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource Alert}"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+    </Style>
 </Styles>

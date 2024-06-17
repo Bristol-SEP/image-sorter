@@ -23,6 +23,10 @@
                                   Number="1"
                                   RectangleHeight="30"
                                   RectangleWidth="150" />
+                <TextBlock Grid.Column="1"
+                           Classes="alert"
+                           IsVisible="{Binding FeaturePrompt}"
+                           Text="Select a feature"/>
             </Grid>
 
             <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
@@ -30,7 +34,8 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Expander HorizontalAlignment="Stretch"
-                                      Background="{DynamicResource BackgroundWeak}">
+                                      Background="{DynamicResource BackgroundWeak}"
+                                      IsExpanded="{Binding ShouldExpand}">
                                 <Expander.Header>
                                     <Label Content="{Binding GroupName}" />
                                 </Expander.Header>
@@ -39,7 +44,9 @@
                                         <DataTemplate>
                                             <CheckBox Foreground="{DynamicResource Text}"
                                                       Classes="baseCheckBox"
-                                                      Content="{Binding}" />
+                                                      Content="{Binding Name}" 
+                                                      IsChecked="{Binding Selected}"
+                                                      Command="{Binding ToggleSelected}"/>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -58,6 +65,11 @@
                                   Number="2"
                                   RectangleHeight="30"
                                   RectangleWidth="150" />
+                
+                <TextBlock Grid.Column="1"
+                           Classes="alert"
+                           IsVisible="{Binding FolderPrompt}"
+                           Text="Select a folder"/>
             </Grid>
             <Panel Grid.Row="1" Background="{DynamicResource BackgroundWeak}"
                    DragDrop.AllowDrop="True">
