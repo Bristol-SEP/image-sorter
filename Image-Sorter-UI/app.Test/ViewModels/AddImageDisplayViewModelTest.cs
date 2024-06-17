@@ -6,6 +6,8 @@ using System.IO;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
+using app.Views;
+using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using Image_Sorter_UI.Mock.ViewModels;
 using NUnit.Framework;
@@ -67,18 +69,7 @@ public class AddImageDisplayViewModelTest
             Assert.That(viewModel.FeaturePrompt, Is.False);
             Assert.That(viewModel.FolderPrompt, Is.False);
             Assert.Throws<InvalidOperationException>(() => viewModel.ButtonPressed());
-        }));
-    }
-
-    private IAddImageDisplayViewModel ViewModel
-    {
-        get
-        {
-            var mainViewModel = _vmProvider.GetMainViewModel();
-            var viewModel = new AddImageDisplayViewModel();           
-            viewModel.SetMainViewModel(mainViewModel);
-            return viewModel;
-        }
+        });
     }
 
     [Test]
@@ -103,17 +94,27 @@ public class AddImageDisplayViewModelTest
             Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
             Assert.That(viewModel.FoldersEmpty, Is.True);
         });
-        viewModel.AddFolders(new List<IStorageFolder>());
+        var topLevel = TopLevel.GetTopLevel(new AddImageDisplayView());
+        var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
+        var mockUri = new Uri(path + "/Mock");
+        var mock = topLevel?.StorageProvider.TryGetFolderFromPathAsync(mockUri);
+        if (mock?.Result != null)
+        {
+            var list = new ReadOnlyCollection<IStorageFolder>(new List<IStorageFolder>
+            {
+                mock.Result
+            });
+            viewModel.AddFolders(list);
+        }
+
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
-            Assert.That(viewModel.FoldersEmpty, Is.True);
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(viewModel.FoldersEmpty, Is.False);
         });
         
     }
 
-    // TODO update this test when IStorageFolder example is implemented
-    // TODO make mock URI to be used
     [Test]
     public void RemoveFoldersTest()
     {
