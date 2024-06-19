@@ -32,9 +32,4 @@ public class FeatureGroup
         GroupName = groupName;
         Features = featureList;
     }
-
-    public IEnumerator GetEnumerator()
-    {
-        throw new System.NotImplementedException();
-    }
 }
