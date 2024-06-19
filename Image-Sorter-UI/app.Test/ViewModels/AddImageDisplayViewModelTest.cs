@@ -1,14 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.IO;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
-using app.Views;
-using Avalonia.Controls;
-using Avalonia.Platform.Storage;
 using Image_Sorter_UI.Mock.ViewModels;
 using NUnit.Framework;
 
@@ -84,7 +79,6 @@ public class AddImageDisplayViewModelTest
         }
     }
 
-    //TODO create a IStorageFolder example to test
     [Test]
     public void AddFoldersTest()
     {
@@ -94,25 +88,52 @@ public class AddImageDisplayViewModelTest
             Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
             Assert.That(viewModel.FoldersEmpty, Is.True);
         });
-        var topLevel = TopLevel.GetTopLevel(new AddImageDisplayView());
+        
         var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
-        var mockUri = new Uri(path + "/Mock");
-        var mock = topLevel?.StorageProvider.TryGetFolderFromPathAsync(mockUri);
-        if (mock?.Result != null)
-        {
-            var list = new ReadOnlyCollection<IStorageFolder>(new List<IStorageFolder>
-            {
-                mock.Result
-            });
-            viewModel.AddFolders(list);
-        }
-
+        var mock = new SelectFolders("Mock",  new Uri(path + "/Mock"));
+        var view = new SelectFolders("Views", new Uri(path + "/Views"));
+        // add single element
+        var folderList = new List<SelectFolders> { mock };
+        viewModel.AddFolders(folderList);
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
             Assert.That(viewModel.FoldersEmpty, Is.False);
+            Assert.That(viewModel.FolderList.Contains(mock));
         });
-        
+        // add multiple elements
+        viewModel = new AddImageDisplayViewModel();
+        folderList.Add(view);
+        viewModel.AddFolders(folderList);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(2));
+            Assert.That(viewModel.FoldersEmpty, Is.False);
+            Assert.That(viewModel.FolderList.Contains(mock));
+            Assert.That(viewModel.FolderList.Contains(view));
+        });
+        // parent priority
+        var parent = new SelectFolders("Parent", new Uri(path!));
+        folderList = new List<SelectFolders> { parent };
+        viewModel.AddFolders(folderList);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(viewModel.FoldersEmpty, Is.False);
+            Assert.That(viewModel.FolderList.Contains(parent));
+            Assert.That(!viewModel.FolderList.Contains(view));
+            Assert.That(!viewModel.FolderList.Contains(mock));
+        });
+        folderList = new List<SelectFolders> { mock, view };
+        viewModel.AddFolders(folderList);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(viewModel.FoldersEmpty, Is.False);
+            Assert.That(viewModel.FolderList.Contains(parent));
+            Assert.That(!viewModel.FolderList.Contains(view));
+            Assert.That(!viewModel.FolderList.Contains(mock));
+        });
     }
 
     [Test]

@@ -57,7 +57,7 @@ public interface IAddImageDisplayViewModel
    /// </summary>
    /// <param name="folders"><see cref="IReadOnlyList{T}">ReadOnlyList</see>
    /// of <see cref="IStorageFolder">Folders</see></param>
-   public void AddFolders(IReadOnlyList<IStorageFolder>? folders);
+   public void AddFolders(List<SelectFolders> folders);
 
    /// <summary>
    /// Remove folders from the <see cref="FolderList"/>
