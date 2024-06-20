@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:app.Styles">
+    <Design.PreviewWith>
+        <controls:FolderOrdering />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|FolderOrdering">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+            <Grid RowDefinitions="3*, 2*" 
+                  HorizontalAlignment="Stretch" 
+                  Background="{DynamicResource BackgroundStrong}"
+                  Margin="2">
+                    <TextBlock Grid.Row="0" Foreground="{DynamicResource Text}" Text="{TemplateBinding Text}"/>
+                    <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                            Foreground="{DynamicResource Text}" 
+                            Background="{DynamicResource Buttons}"
+                            Content=""/>
+            </Grid>        
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

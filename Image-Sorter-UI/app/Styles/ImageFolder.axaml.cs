@@ -10,7 +10,7 @@ namespace app.Styles;
 public class ImageFolder : TemplatedControl
 {
     /// <summary>
-    /// A <see cref="StyledProperty{TValue}">StyledProperty</see> that defines the <see cref="MediaTypeNames.Text"/>
+    /// A <see cref="StyledProperty{TValue}">StyledProperty</see> that defines the <see cref="Text"/>
     /// </summary>
     public static readonly StyledProperty<string> TextProperty =
         AvaloniaProperty.Register<StageText, string>(nameof(Text), defaultValue:"Text");
