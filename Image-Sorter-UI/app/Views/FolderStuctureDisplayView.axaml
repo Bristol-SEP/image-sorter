@@ -49,7 +49,7 @@
                                   RectangleHeight="30"
                                   RectangleWidth="230" />
             </Grid>
-            <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
+            <ScrollViewer Grid.Row="1">
                 <StackPanel>
                     <styles:FolderOrdering Text="Test1" Height="40"/>
                     <styles:FolderOrdering Text="Subtest1" Margin="10,0, 0,0" Height="40"/>

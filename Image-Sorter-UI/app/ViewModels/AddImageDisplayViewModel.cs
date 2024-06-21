@@ -144,6 +144,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         if (!FoldersEmpty && featureSelected)
         {
             // TODO pass data into python script
+            
             _mainModel.ToggleView();
         }
         else

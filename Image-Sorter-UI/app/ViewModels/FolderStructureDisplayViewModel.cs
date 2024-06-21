@@ -1,4 +1,6 @@
 using System;
+using System.Collections.ObjectModel;
+using app.Model;
 using app.ViewModels.Interfaces;
 
 namespace app.ViewModels;
@@ -13,10 +15,20 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// </summary>
     private IMainWindowViewModel? _mainModel;
 
+    public ObservableCollection<SelectFolders> FolderList { get; private set; } = new();
+
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
         _mainModel = mainViewModel;
+    }
+
+    public void AddFolders(ObservableCollection<SelectFolders> folders)
+    {
+        foreach (var folder in folders)
+        {
+           if (!FolderList.Contains(folder)) FolderList.Add(folder);
+        }
     }
 
     /// <inheritdoc/>
