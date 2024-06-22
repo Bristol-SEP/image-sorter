@@ -1,9 +1,15 @@
+using System.Collections.ObjectModel;
+using app.Model;
 using app.Views;
 
 namespace app.ViewModels.Interfaces;
 
 public interface IMainWindowViewModel
 {
+   /// <summary>
+   /// A list of <see cref="SelectFolders"/> 
+   /// </summary>
+   public ObservableCollection<SelectFolders> FolderList { get; }
     
     /// <summary>
     /// Holds the current display, when changed page shown will change
@@ -19,4 +25,19 @@ public interface IMainWindowViewModel
     /// Toggles the view in the main window
     /// </summary>
     public void ToggleView();
+    
+    /// <summary>
+    /// Adds folders to <see cref="FolderList"/>
+    /// </summary>
+    /// <param name="folders">the folders being passed by the start processing button</param>
+    public void AddFolders(ObservableCollection<SelectFolders> folders);
+
+    /// <summary>
+    /// Remove folders from the <see cref="FolderList"/>
+    /// </summary>
+    /// <param name="folder">The Folder to be removed</param>
+    public void RemoveFolders(SelectFolders folder)
+    {
+        FolderList.Remove(folder);
+    }
 }

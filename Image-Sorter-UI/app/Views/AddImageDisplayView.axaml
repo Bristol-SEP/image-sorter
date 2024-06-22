@@ -82,7 +82,7 @@
                 <!-- if folders present -->
                 <ScrollViewer IsVisible="{Binding FoldersEmpty, Converter={StaticResource InverseBoolConverter}}">
                     <StackPanel>
-                        <ItemsControl ItemsSource="{Binding  FolderList}">
+                        <ItemsControl ItemsSource="{Binding  $parent[vm:IMainWindowViewModel].FolderList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Panel>

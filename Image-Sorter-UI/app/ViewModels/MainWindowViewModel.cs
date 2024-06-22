@@ -1,4 +1,6 @@
-﻿using app.ViewModels.Interfaces;
+﻿using System.Collections.ObjectModel;
+using app.Model;
+using app.ViewModels.Interfaces;
 using ReactiveUI;
 
 namespace app.ViewModels;
@@ -20,6 +22,9 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     /// </summary>
     private IAddImageDisplayViewModel AddImageDisplayViewModel { get; }
     
+    /// <inheritdoc/>
+    public ObservableCollection<SelectFolders> FolderList { get; } = new();
+
     /// <inheritdoc/>
     public ViewModelBase CurrentPage
     {
@@ -48,5 +53,13 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
             return;
         }
         CurrentPage = (ViewModelBase)AddImageDisplayViewModel;
+    }
+
+    public void AddFolders(ObservableCollection<SelectFolders> folders)
+    {
+        foreach (var folder in folders)
+        {
+           if(!FolderList.Contains(folder)) FolderList.Add(folder);
+        }
     }
 }

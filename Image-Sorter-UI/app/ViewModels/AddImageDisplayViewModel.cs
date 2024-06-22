@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
 using app.ViewModels.Interfaces;
-using Avalonia.Platform.Storage;
 using ReactiveUI;
 
 namespace app.ViewModels;
@@ -33,18 +31,18 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 
     // TODO This is a little bit of a hack maybe refactor at a later date
     /// <summary>
-    /// Checks if file is already in <see cref="FolderList"/>,
+    /// Checks if file is already in <see cref="MainWindowViewModel.FolderList"/>,
     /// also checks that folder is not a child of any folders already
-    /// present in <see cref="FolderList"/>, removes child folders from
-    /// <see cref="FolderList"/> if folder being added is a parent
+    /// present in <see cref="MainWindowViewModel.FolderList"/>, removes child folders from
+    /// <see cref="MainWindowViewModel.FolderList"/> if folder being added is a parent
     /// </summary>
     /// <param name="folder">The folder being searched for</param>
-    /// <returns>True if folder is not already present in <see cref="FolderList"/> and is not a child</returns>
+    /// <returns>True if folder is not already present in <see cref="MainWindowViewModel.FolderList"/> and is not a child</returns>
     private bool IsNotPresent(SelectFolders folder)
     {
         var children = new List<SelectFolders>();
         var folderPath = EndsWithSeparator(folder.Path.AbsolutePath);
-        foreach (var presentFolder in FolderList)
+        foreach (var presentFolder in _mainModel!.FolderList)
         {
             var presentPath = EndsWithSeparator(presentFolder.Path.AbsolutePath);
             if (presentPath.StartsWith(folderPath, StringComparison.OrdinalIgnoreCase)) children.Add(presentFolder);
@@ -53,7 +51,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 
         foreach (var child in children)
         {
-            FolderList.Remove(child);
+            _mainModel!.RemoveFolders(child);
         }
 
         return true;
@@ -101,10 +99,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     public List<FeatureGroup> FeatureList { get; }
 
     /// <inheritdoc/>
-    public ObservableCollection<SelectFolders> FolderList { get; } = new();
-
-    /// <inheritdoc/>
-    public bool FoldersEmpty => FolderList.Count == 0;
+    public bool FoldersEmpty => _mainModel is { FolderList.Count: 0 };
     
     #endregion
     
@@ -166,17 +161,18 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <inheritdoc/>
     public void AddFolders(List<SelectFolders> folders)
     {
-        foreach (var folder in folders)
+        foreach (var folder in folders.Where(IsNotPresent))
         {
-            if(IsNotPresent(folder)) FolderList.Add(folder);
+            _mainModel?.FolderList.Add(folder);
         }
+
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
 
     /// <inheritdoc/>
     public void RemoveFolders(SelectFolders folder)
     {
-        FolderList.Remove(folder);
+        _mainModel!.RemoveFolders(folder);
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
     

@@ -13,29 +13,30 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
     /// to be called
     /// </summary>
-    private IMainWindowViewModel? _mainModel;
+    private IMainWindowViewModel? MainModel
+    {
+        get => null;
+        set
+        {
+            if (value is not null) FoldersList = value.FolderList;
+        }
+    }
 
-    public ObservableCollection<SelectFolders> FolderList { get; private set; } = new();
+    // TODO make into a adjacency list
+    /// <inheritdoc/>
+    public ObservableCollection<SelectFolders> FoldersList { get; private set; } = new();
 
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        _mainModel = mainViewModel;
-    }
-
-    public void AddFolders(ObservableCollection<SelectFolders> folders)
-    {
-        foreach (var folder in folders)
-        {
-           if (!FolderList.Contains(folder)) FolderList.Add(folder);
-        }
+        MainModel = mainViewModel;
     }
 
     /// <inheritdoc/>
     public void ButtonPressed()
     {
-        if (_mainModel is null) throw new NullReferenceException();
-        if (_mainModel.IsImagePage) throw new InvalidOperationException();
-        _mainModel.ToggleView();
+        if (MainModel is null) throw new NullReferenceException();
+        if (MainModel.IsImagePage) throw new InvalidOperationException();
+        MainModel.ToggleView();
     }
 }
