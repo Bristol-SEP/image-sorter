@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using app.Model;
 using app.ViewModels.Interfaces;
 
@@ -18,13 +18,24 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         get => null;
         set
         {
-            if (value is not null) FoldersList = value.FolderList;
+            if (value is not null) DirectoryPriorityList = new DirectoryPriorityList(value.FolderList);
         }
     }
 
-    // TODO make into a adjacency list
     /// <inheritdoc/>
-    public ObservableCollection<SelectFolders> FoldersList { get; private set; } = new();
+    public Dictionary<SelectFolders, int> Directories { get; private set; } = new();
+
+    private DirectoryPriorityList? DirectoryPriorityList
+    {
+        set
+        {
+            if (value is not null)
+            {
+                Directories = value.FolderDictionary;
+            }
+        }
+    }
+
 
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)

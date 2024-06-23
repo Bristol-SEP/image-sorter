@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using app.Model;
@@ -11,9 +12,9 @@ namespace app.ViewModels.Interfaces;
 public interface IFolderStructureDisplayViewModel
 {
     /// <summary>
-    /// A List of folders
+    /// A List of directories
     /// </summary>
-    public ObservableCollection<SelectFolders> FoldersList { get; }
+    public Dictionary<SelectFolders, int> Directories { get; }
     
     /// <summary>
     /// Sets the <see cref="IMainWindowViewModel"/> context
