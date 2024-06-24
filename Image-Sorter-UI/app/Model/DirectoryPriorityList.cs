@@ -12,12 +12,13 @@ public class DirectoryPriorityList
 
     private void AddChildren(SelectFolders folder)
     {
-        var rootPath = folder.Path.ToString();
+        var rootPath = folder.Path;
         var directories = Directory.GetDirectories(rootPath, "*", SearchOption.TopDirectoryOnly);
         foreach (var directory in directories)
         {
-            var folderName = Path.GetDirectoryName(directory) ?? "error";
-            var newFolder = new SelectFolders(folderName, new Uri(directory));
+            var folderName = directory.Substring(directory.LastIndexOf('/')+1);
+            if (folderName[0] == '.' || folderName == "error") return;
+            var newFolder = new SelectFolders(folderName, directory);
             var priorityLevel = FolderDictionary[folder];
             FolderDictionary.Add(newFolder, priorityLevel+1);
             AddChildren(newFolder);

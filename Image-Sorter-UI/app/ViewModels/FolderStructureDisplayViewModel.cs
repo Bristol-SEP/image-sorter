@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using app.Model;
 using app.ViewModels.Interfaces;
+using ReactiveUI;
 
 namespace app.ViewModels;
 
@@ -9,33 +10,23 @@ namespace app.ViewModels;
 public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDisplayViewModel
 {
     /// <summary>
+    /// Backing field for <see cref="Directories"/>
+    /// </summary>
+    private Dictionary<SelectFolders, int> _directories = new(); 
+    
+    /// <summary>
     /// A reference to <see cref="MainWindowViewModel"/>
     /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
     /// to be called
     /// </summary>
-    private IMainWindowViewModel? MainModel
-    {
-        get => null;
-        set
-        {
-            if (value is not null) DirectoryPriorityList = new DirectoryPriorityList(value.FolderList);
-        }
-    }
+    private IMainWindowViewModel? MainModel { get; set; }
 
     /// <inheritdoc/>
-    public Dictionary<SelectFolders, int> Directories { get; private set; } = new();
-
-    private DirectoryPriorityList? DirectoryPriorityList
+    public Dictionary<SelectFolders, int> Directories
     {
-        set
-        {
-            if (value is not null)
-            {
-                Directories = value.FolderDictionary;
-            }
-        }
+        get => _directories;
+        set => this.RaiseAndSetIfChanged(ref _directories, value);
     }
-
 
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)

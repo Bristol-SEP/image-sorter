@@ -14,7 +14,7 @@ public interface IFolderStructureDisplayViewModel
     /// <summary>
     /// A List of directories
     /// </summary>
-    public Dictionary<SelectFolders, int> Directories { get; }
+    public Dictionary<SelectFolders, int> Directories { get; set; }
     
     /// <summary>
     /// Sets the <see cref="IMainWindowViewModel"/> context

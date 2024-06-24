@@ -11,6 +11,13 @@ namespace app.ViewModels.Interfaces;
 /// </summary>
 public interface IAddImageDisplayViewModel
 {
+    /// <summary>
+    /// A reference to <see cref="MainWindowViewModel"/>
+    /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
+    /// to be called
+    /// </summary>
+    public IMainWindowViewModel? MainModel { get; }
+    
    /// <summary>
    /// A list of <see cref="FeatureGroup"/> used in feature selection
    /// within the <see cref="AddImageDisplayView"/>

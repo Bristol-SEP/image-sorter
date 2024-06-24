@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels.Interfaces;
 using ReactiveUI;
@@ -50,6 +51,8 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
         if (IsImagePage)
         {
             CurrentPage = (ViewModelBase)FolderStructureDisplayViewModel;
+            var directoryPriorityList = new DirectoryPriorityList(FolderList);
+            FolderStructureDisplayViewModel.Directories = directoryPriorityList.FolderDictionary;
             return;
         }
         CurrentPage = (ViewModelBase)AddImageDisplayViewModel;

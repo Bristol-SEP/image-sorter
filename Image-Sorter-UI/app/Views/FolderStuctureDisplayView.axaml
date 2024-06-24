@@ -53,7 +53,7 @@
                 <ItemsControl ItemsSource="{Binding Directories}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <styles:FolderOrdering Text="{Binding Key.Name}" Height="40"/>
+                            <styles:FolderOrdering Text="{Binding Key}" Height="40"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

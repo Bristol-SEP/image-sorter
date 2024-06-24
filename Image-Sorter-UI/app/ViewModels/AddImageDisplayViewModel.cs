@@ -12,12 +12,6 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
     #region Private Attributes 
 
-    /// <summary>
-    /// A reference to <see cref="MainWindowViewModel"/>
-    /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
-    /// to be called
-    /// </summary>
-    private  IMainWindowViewModel? _mainModel;
 
     /// <summary>
     /// A backing field for <see cref="FeaturePrompt"/>
@@ -41,17 +35,17 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     private bool IsNotPresent(SelectFolders folder)
     {
         var children = new List<SelectFolders>();
-        var folderPath = EndsWithSeparator(folder.Path.AbsolutePath);
-        foreach (var presentFolder in _mainModel!.FolderList)
+        var folderPath = EndsWithSeparator(folder.Path);
+        foreach (var presentFolder in MainModel!.FolderList)
         {
-            var presentPath = EndsWithSeparator(presentFolder.Path.AbsolutePath);
+            var presentPath = EndsWithSeparator(presentFolder.Path);
             if (presentPath.StartsWith(folderPath, StringComparison.OrdinalIgnoreCase)) children.Add(presentFolder);
             else if (folderPath.StartsWith(presentPath, StringComparison.OrdinalIgnoreCase)) return false;
         }
 
         foreach (var child in children)
         {
-            _mainModel!.RemoveFolders(child);
+            MainModel!.RemoveFolders(child);
         }
 
         return true;
@@ -81,6 +75,14 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 
     #region Public Variables
 
+    // TODO this is a bit of a hack implement a non nullable version
+    /// <summary>
+    /// A reference to <see cref="MainWindowViewModel"/>
+    /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
+    /// to be called
+    /// </summary>
+    public IMainWindowViewModel? MainModel { get; private set; }
+    
     /// <inheritdoc/>
     public bool FolderPrompt 
     {
@@ -99,7 +101,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     public List<FeatureGroup> FeatureList { get; }
 
     /// <inheritdoc/>
-    public bool FoldersEmpty => _mainModel is { FolderList.Count: 0 };
+    public bool FoldersEmpty => MainModel is { FolderList.Count: 0 };
     
     #endregion
     
@@ -122,14 +124,14 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        _mainModel = mainViewModel;
+        MainModel = mainViewModel;
     }
     
     /// <inheritdoc/>
     public void ButtonPressed()
     {
-        if (_mainModel is null) throw new NullReferenceException();
-        if (!_mainModel.IsImagePage) throw new InvalidOperationException();
+        if (MainModel is null) throw new NullReferenceException();
+        if (!MainModel.IsImagePage) throw new InvalidOperationException();
         FolderPrompt = false;
         FeaturePrompt = false;
         var featureSelected = false;
@@ -140,7 +142,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         {
             // TODO pass data into python script
             
-            _mainModel.ToggleView();
+            MainModel.ToggleView();
         }
         else
         {
@@ -163,7 +165,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     {
         foreach (var folder in folders.Where(IsNotPresent))
         {
-            _mainModel?.FolderList.Add(folder);
+            MainModel?.FolderList.Add(folder);
         }
 
         this.RaisePropertyChanged(nameof(FoldersEmpty));
@@ -172,7 +174,7 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
     /// <inheritdoc/>
     public void RemoveFolders(SelectFolders folder)
     {
-        _mainModel!.RemoveFolders(folder);
+        MainModel!.RemoveFolders(folder);
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }
     
