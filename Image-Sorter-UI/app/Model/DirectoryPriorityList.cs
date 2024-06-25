@@ -8,7 +8,7 @@ namespace app.Model;
 
 public class DirectoryPriorityList
 {
-    public readonly Dictionary<SelectFolders, int> FolderDictionary = new Dictionary<SelectFolders, int>();
+    public readonly Dictionary<SelectFolders, int> FolderDictionary = new();
 
     private void AddChildren(SelectFolders folder)
     {
@@ -16,7 +16,7 @@ public class DirectoryPriorityList
         var directories = Directory.GetDirectories(rootPath, "*", SearchOption.TopDirectoryOnly);
         foreach (var directory in directories)
         {
-            var folderName = directory.Substring(directory.LastIndexOf('/')+1);
+            var folderName = directory[(directory.LastIndexOf('/')+1)..];
             if (folderName[0] == '.' || folderName == "error") return;
             var newFolder = new SelectFolders(folderName, directory);
             var priorityLevel = FolderDictionary[folder];

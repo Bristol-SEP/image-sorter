@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels.Interfaces;
 using ReactiveUI;
