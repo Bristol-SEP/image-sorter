@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Reactive.Linq;
 using app.Model;
 using app.Views;
 

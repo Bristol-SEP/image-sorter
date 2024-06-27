@@ -1,7 +1,9 @@
-using System;
-
 namespace app.Model;
 
+/// <summary>
+/// A model for a folder, holds both the <see cref="Name"/> of the folder and the
+/// <see cref="Path"/>
+/// </summary>
 public class SelectFolders
 {
     /// <summary>

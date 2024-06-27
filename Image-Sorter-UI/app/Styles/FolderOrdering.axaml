@@ -6,21 +6,22 @@
     </Design.PreviewWith>
 
     <Style Selector="controls|FolderOrdering">
-        <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
-            <Grid RowDefinitions="*, Auto" 
-                  HorizontalAlignment="Stretch" 
-                  Background="{DynamicResource BackgroundWeak}"
-                  Margin="2">
-                    <TextBlock Grid.Row="0" 
-                               Foreground="{DynamicResource Text}" Text="{TemplateBinding Text}"/>
+                <Grid RowDefinitions="*, Auto"
+                      HorizontalAlignment="Stretch"
+                      Background="{DynamicResource BackgroundWeak}"
+                      Margin="2">
+                    <!-- Folder Name -->
+                    <TextBlock Grid.Row="0"
+                               Foreground="{DynamicResource Text}" Text="{TemplateBinding Text}" />
+                    <!-- Button to add features -->
                     <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
-                            Foreground="{DynamicResource Text}" 
+                            Foreground="{DynamicResource Text}"
                             Background="{DynamicResource Buttons}"
                             Padding="0"
-                            Content="+"/>
-            </Grid>        
+                            Content="+" />
+                </Grid>
             </ControlTemplate>
         </Setter>
     </Style>

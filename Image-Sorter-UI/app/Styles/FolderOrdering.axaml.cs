@@ -1,9 +1,13 @@
+using app.Views;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
 namespace app.Styles;
 
+/// <summary>
+/// A style which displays a folder and an add feature so subfolders of features
+/// can be implemented. To be used in <see cref="FolderStructureDisplayView"/>
+/// </summary>
 public class FolderOrdering : TemplatedControl
 {
     /// <summary>
