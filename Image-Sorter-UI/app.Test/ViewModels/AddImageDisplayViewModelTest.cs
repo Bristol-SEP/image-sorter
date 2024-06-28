@@ -33,8 +33,8 @@ public class AddImageDisplayViewModelTest
         });
         // feature not selected test
         var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
-        var mock = new SelectFolders("Mock",  new Uri(path + "/Mock"));
-        viewModel.FolderList.Add(mock);
+        var mock = new SelectFolders("Mock",  path + "/Mock");
+        mainViewModel.FolderList.Add(mock);
         viewModel.ButtonPressed();
         Assert.Multiple(() =>
         {
@@ -44,7 +44,7 @@ public class AddImageDisplayViewModelTest
             Assert.That(viewModel.FolderPrompt, Is.False);
         });
         // folder not selected test
-        viewModel.FolderList.Remove(mock);
+        mainViewModel.FolderList.Remove(mock);
         viewModel.FeatureList[0].Features[0].ToggleSelected();
         viewModel.ButtonPressed();
         Assert.Multiple(() =>
@@ -55,7 +55,7 @@ public class AddImageDisplayViewModelTest
             Assert.That(viewModel.FolderPrompt, Is.True);
         });
         // all selected
-        viewModel.FolderList.Add(mock);
+        mainViewModel.FolderList.Add(mock);
         viewModel.ButtonPressed();
         Assert.Multiple(() =>
         {
@@ -82,24 +82,26 @@ public class AddImageDisplayViewModelTest
     [Test]
     public void AddFoldersTest()
     {
+        var mainModel = _vmProvider.GetMainViewModel();
         var viewModel = new AddImageDisplayViewModel();
+        viewModel.SetMainViewModel(mainModel);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(0));
             Assert.That(viewModel.FoldersEmpty, Is.True);
         });
         
         var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
-        var mock = new SelectFolders("Mock",  new Uri(path + "/Mock"));
-        var view = new SelectFolders("Views", new Uri(path + "/Views"));
+        var mock = new SelectFolders("Mock",  path + "/Mock");
+        var view = new SelectFolders("Views", path + "/Views");
         // add single element
         var folderList = new List<SelectFolders> { mock };
         viewModel.AddFolders(folderList);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(1));
             Assert.That(viewModel.FoldersEmpty, Is.False);
-            Assert.That(viewModel.FolderList.Contains(mock));
+            Assert.That(mainModel.FolderList.Contains(mock));
         });
         // add multiple elements
         viewModel = new AddImageDisplayViewModel();
@@ -107,68 +109,71 @@ public class AddImageDisplayViewModelTest
         viewModel.AddFolders(folderList);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(2));
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(2));
             Assert.That(viewModel.FoldersEmpty, Is.False);
-            Assert.That(viewModel.FolderList.Contains(mock));
-            Assert.That(viewModel.FolderList.Contains(view));
+            Assert.That(mainModel.FolderList.Contains(mock));
+            Assert.That(mainModel.FolderList.Contains(view));
         });
         // parent priority
-        var parent = new SelectFolders("Parent", new Uri(path!));
+        if (path == null) return;
+        var parent = new SelectFolders("Parent", path);
         folderList = new List<SelectFolders> { parent };
         viewModel.AddFolders(folderList);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(1));
             Assert.That(viewModel.FoldersEmpty, Is.False);
-            Assert.That(viewModel.FolderList.Contains(parent));
-            Assert.That(!viewModel.FolderList.Contains(view));
-            Assert.That(!viewModel.FolderList.Contains(mock));
+            Assert.That(mainModel.FolderList.Contains(parent));
+            Assert.That(!mainModel.FolderList.Contains(view));
+            Assert.That(!mainModel.FolderList.Contains(mock));
         });
         folderList = new List<SelectFolders> { mock, view };
         viewModel.AddFolders(folderList);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(1));
             Assert.That(viewModel.FoldersEmpty, Is.False);
-            Assert.That(viewModel.FolderList.Contains(parent));
-            Assert.That(!viewModel.FolderList.Contains(view));
-            Assert.That(!viewModel.FolderList.Contains(mock));
+            Assert.That(mainModel.FolderList.Contains(parent));
+            Assert.That(!mainModel.FolderList.Contains(view));
+            Assert.That(!mainModel.FolderList.Contains(mock));
         });
     }
 
     [Test]
     public void RemoveFoldersTest()
     {
+        var mainModel = _vmProvider.GetMainViewModel();
         var viewModel = new AddImageDisplayViewModel();
+        viewModel.SetMainViewModel(mainModel);
         var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
-        var mock = new SelectFolders("Mock",  new Uri(path + "/Mock"));
-        var view = new SelectFolders("Views", new Uri(path + "/Views"));
+        var mock = new SelectFolders("Mock",  path + "/Mock");
+        var view = new SelectFolders("Views", path + "/Views");
         
-        viewModel.FolderList.Add(mock);
-        viewModel.FolderList.Add(view);
+        mainModel.FolderList.Add(mock);
+        mainModel.FolderList.Add(view);
         
-        Assert.That(viewModel.FolderList.Count, Is.EqualTo(2));
+        Assert.That(mainModel.FolderList.Count, Is.EqualTo(2));
         
         viewModel.RemoveFolders(mock);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(1));
-            Assert.That(viewModel.FolderList.Contains(mock), Is.False);
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(1));
+            Assert.That(mainModel.FolderList.Contains(mock), Is.False);
         });
 
         viewModel.RemoveFolders(view);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
-            Assert.That(viewModel.FolderList.Contains(view), Is.False);
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(mainModel.FolderList.Contains(view), Is.False);
             Assert.That(viewModel.FoldersEmpty, Is.True);
         });
         
         viewModel.RemoveFolders(mock);
         Assert.Multiple(() =>
         {
-            Assert.That(viewModel.FolderList.Count, Is.EqualTo(0));
-            Assert.That(viewModel.FolderList.Contains(mock), Is.False);
+            Assert.That(mainModel.FolderList.Count, Is.EqualTo(0));
+            Assert.That(mainModel.FolderList.Contains(mock), Is.False);
             Assert.That(viewModel.FoldersEmpty, Is.True);
         });
     }

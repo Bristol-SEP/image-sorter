@@ -11,7 +11,7 @@ public class MainWindowViewModelTest
     [Test]
     public void ConstructorTest()
     {
-        MainWindowViewModel viewModel = new MainWindowViewModel(_vmProvider);
+        var viewModel = new MainWindowViewModel(_vmProvider);
         Assert.That(viewModel.CurrentPage, Is.Not.Null);
     }
 
