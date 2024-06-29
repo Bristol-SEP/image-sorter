@@ -3,7 +3,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
-             xmlns:m="clr-namespace:app.Model"
              xmlns:styles="clr-namespace:app.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IFolderStructureDisplayViewModel"
@@ -51,7 +50,7 @@
                                   RectangleWidth="230" />
             </Grid>
             <ScrollViewer Grid.Row="1">
-                <ItemsControl  ItemsSource="{Binding Directories}">
+                <ItemsControl  ItemsSource="{Binding FolderDirectories}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <styles:FolderOrdering Text="{Binding }" Height="40"/>

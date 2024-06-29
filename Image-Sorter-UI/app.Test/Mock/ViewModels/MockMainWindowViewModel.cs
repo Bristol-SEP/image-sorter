@@ -7,14 +7,24 @@ using ReactiveUI;
 
 namespace Image_Sorter_UI.Mock.ViewModels;
 
-public class MockMainWindowViewModel: ViewModelBase, IMainWindowViewModel
+public class MockMainWindowViewModel : ViewModelBase, IMainWindowViewModel
 {
+    private readonly ViewModelBase _imagePage;
+    private readonly ViewModelBase _folderPage;
     public ObservableCollection<SelectFolders> FolderList => new();
-    public ViewModelBase CurrentPage { get; } = new();
-    public bool IsImagePage => false;
+    public ViewModelBase CurrentPage { get; private set; }
+    public bool IsImagePage { get; private set; } = true;
+
+    public MockMainWindowViewModel()
+    {
+        _imagePage = new MockAddImageDisplayViewModel();
+        _folderPage = new MockFolderStructureDisplayViewModel();
+        CurrentPage = _imagePage;
+    }
     public void ToggleView()
     {
-        throw new System.NotImplementedException();
+        CurrentPage = IsImagePage ? _folderPage : _imagePage;
+        IsImagePage = !IsImagePage;
     }
 
     public void AddFolders(IEnumerable<SelectFolders> folders)

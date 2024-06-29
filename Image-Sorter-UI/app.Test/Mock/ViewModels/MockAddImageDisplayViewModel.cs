@@ -7,14 +7,14 @@ namespace Image_Sorter_UI.Mock.ViewModels;
 
 public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
-    public IMainWindowViewModel? MainModel => new MockMainWindowViewModel();
+    public IMainWindowViewModel? MainModel { get; private set; }
     public List<FeatureGroup> FeatureList => new();
     public bool FoldersEmpty => true;
     public bool FeaturePrompt => true;
     public bool FolderPrompt => true;
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        throw new System.NotImplementedException();
+        MainModel = mainViewModel;
     }
 
     public void ButtonPressed()

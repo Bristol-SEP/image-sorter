@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using app.Model;
 using app.Views;
+using Avalonia.Collections;
 
 namespace app.ViewModels.Interfaces;
 
@@ -12,7 +12,7 @@ public interface IFolderStructureDisplayViewModel
     /// <summary>
     /// A List of directories
     /// </summary>
-    public Dictionary<SelectFolders, int> Directories { get; set; }
+    public AvaloniaDictionary<string, int> FolderDirectories { get; set; }
     
     /// <summary>
     /// Sets the <see cref="IMainWindowViewModel"/> context

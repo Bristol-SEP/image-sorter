@@ -93,7 +93,7 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
         {
             CurrentPage = (ViewModelBase)FolderStructureDisplayViewModel;
             var directoryPriorityList = new DirectoryPriorityList(FolderList);
-            FolderStructureDisplayViewModel.Directories = directoryPriorityList.FolderDictionary;
+            // FolderStructureDisplayViewModel.Directories = directoryPriorityList.FolderDictionary;
             return;
         }
         CurrentPage = (ViewModelBase)AddImageDisplayViewModel;

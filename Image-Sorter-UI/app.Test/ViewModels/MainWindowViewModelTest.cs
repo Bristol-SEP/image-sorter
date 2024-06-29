@@ -1,3 +1,4 @@
+using System;
 using app.ViewModels;
 using Image_Sorter_UI.Mock.ViewModels;
 using NUnit.Framework;
@@ -12,6 +13,7 @@ public class MainWindowViewModelTest
     public void ConstructorTest()
     {
         var viewModel = new MainWindowViewModel(_vmProvider);
+        Console.WriteLine(viewModel.CurrentPage);
         Assert.That(viewModel.CurrentPage, Is.Not.Null);
     }
 

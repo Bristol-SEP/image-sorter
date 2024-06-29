@@ -13,7 +13,7 @@ public class FolderStructureDisplayViewModelTest
    [Test] 
    public void ButtonPressedTest()
    {
-      IMainWindowViewModel mainViewModel = _vmProvider.GetMainViewModel();
+      var mainViewModel = _vmProvider.GetMainViewModel();
       IFolderStructureDisplayViewModel viewModel = new FolderStructureDisplayViewModel();
       Assert.Throws<NullReferenceException>((() => viewModel.ButtonPressed()));
       viewModel.SetMainViewModel(mainViewModel);

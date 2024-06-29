@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using Avalonia.Collections;
 
 namespace app.Model;
 
@@ -16,7 +17,7 @@ public class DirectoryPriorityList
     /// (<see cref="SelectFolders">Folder</see>, <see cref="int">priorityLevel</see>)
     /// Where priority level is the level of subfolder
     /// </summary>
-    public readonly Dictionary<SelectFolders, int> FolderDictionary = new();
+    public readonly AvaloniaDictionary<SelectFolders, int> FolderDictionary = new();
 
     /// <summary>
     /// Looks at the folder and adds its children (recursively in order with priority levels)
