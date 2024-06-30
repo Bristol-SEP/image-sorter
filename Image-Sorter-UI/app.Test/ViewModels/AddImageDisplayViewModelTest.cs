@@ -79,6 +79,8 @@ public class AddImageDisplayViewModelTest
         }
     }
 
+    // TODO due to the bad intertwining of the two views this is also testing the MainViewModel code 
+    // stop doing that
     [Test]
     public void AddFoldersTest()
     {
@@ -105,6 +107,7 @@ public class AddImageDisplayViewModelTest
         });
         // add multiple elements
         viewModel = new AddImageDisplayViewModel();
+        viewModel.SetMainViewModel(mainModel);
         folderList.Add(view);
         viewModel.AddFolders(folderList);
         Assert.Multiple(() =>
