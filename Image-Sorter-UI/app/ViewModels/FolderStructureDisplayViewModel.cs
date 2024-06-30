@@ -44,6 +44,6 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
 
     public void AddFeature(DirectoryItem item)
     {
-        Console.WriteLine(item.Folder.Name);
+        FolderDirectories.AddFeature(item);
     }
 }

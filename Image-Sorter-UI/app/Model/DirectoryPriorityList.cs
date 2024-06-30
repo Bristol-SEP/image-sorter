@@ -47,9 +47,9 @@ public class DirectoryPriorityList: ViewModelBase
         }
     }
 
-    public void AddFeature()
+    public void AddFeature(DirectoryItem item)
     {
-        Console.WriteLine("clicked");
+        Console.WriteLine(item.Folder.Name);
     }
     
     /// <summary>
