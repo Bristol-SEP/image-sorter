@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -44,6 +45,11 @@ public class DirectoryPriorityList: ViewModelBase
             FolderDictionary.Add(newItem);
             AddChildren(newItem);
         }
+    }
+
+    public void AddFeature()
+    {
+        Console.WriteLine("clicked");
     }
     
     /// <summary>

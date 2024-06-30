@@ -41,4 +41,9 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         if (MainModel.IsImagePage) throw new InvalidOperationException();
         MainModel.ToggleView();
     }
+
+    public void AddFeature(DirectoryItem item)
+    {
+        Console.WriteLine(item.Folder.Name);
+    }
 }

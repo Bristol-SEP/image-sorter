@@ -20,4 +20,9 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
     {
         throw new System.NotImplementedException();
     }
+
+    public void AddFeature(DirectoryItem item)
+    {
+        throw new System.NotImplementedException();
+    }
 }

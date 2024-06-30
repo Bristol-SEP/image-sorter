@@ -27,4 +27,6 @@ public interface IFolderStructureDisplayViewModel
    /// <see cref="AddImageDisplayView"/>
    /// </summary>
    public void ButtonPressed();
+
+   public void AddFeature(DirectoryItem item);
 }

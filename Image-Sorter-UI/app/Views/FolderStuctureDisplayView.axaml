@@ -9,7 +9,7 @@
              x:DataType="vm:IFolderStructureDisplayViewModel"
              x:Class="app.Views.FolderStructureDisplayView">
     <UserControl.Resources>
-        <converters:IndentConverter x:Key="IndentConverter"/>
+        <converters:IndentConverter x:Key="IndentConverter" />
     </UserControl.Resources>
     <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
         <!-- add images button -->
@@ -18,7 +18,7 @@
                     Width="200"
                     Command="{Binding ButtonPressed}">
                 <Grid RowDefinitions="*,*">
-                    <PathIcon Grid.Row="0" Width="15" Height="15" Data="{StaticResource ChevronUpRegular}"/>
+                    <PathIcon Grid.Row="0" Width="15" Height="15" Data="{StaticResource ChevronUpRegular}" />
                     <TextBlock Grid.Row="1" Foreground="{DynamicResource Text}" Text="Add Images" />
                 </Grid>
             </Button>
@@ -54,11 +54,21 @@
                                   RectangleWidth="230" />
             </Grid>
             <ScrollViewer Grid.Row="1">
-                <ItemsControl  ItemsSource="{Binding FolderDirectories.FolderDictionary}">
+                <ItemsControl ItemsSource="{Binding FolderDirectories.FolderDictionary}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <styles:FolderOrdering Text="{Binding Folder.Name}" Height="50"
-                                                   Margin="{Binding Level, Converter={StaticResource IndentConverter}}"/>
+                            <Grid RowDefinitions="*, Auto" Height="50"
+                                  Margin="{Binding Level, Converter={StaticResource IndentConverter}}">
+                                <styles:FolderOrdering Grid.Row="0" Text="{Binding Folder.Name}" />
+                                <Button Grid.Row="1" Content="+" HorizontalAlignment="Stretch"
+                                        Padding="0" Margin="0"
+                                        CornerRadius="5"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding $parent[ItemsControl].((vm:IFolderStructureDisplayViewModel)DataContext).AddFeature, FallbackValue={Binding}}"
+                                        CommandParameter="{Binding}"
+                                        Foreground="{DynamicResource Text}"
+                                        Background="{DynamicResource BackgroundStrong}" />
+                            </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

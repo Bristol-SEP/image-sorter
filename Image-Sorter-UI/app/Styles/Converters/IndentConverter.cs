@@ -21,8 +21,8 @@ public class IndentConverter: IValueConverter
     /// <returns>A padding</returns>
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is int priorityLevel) return new Thickness(priorityLevel * 20, 0, 0, 0);
-        return new Thickness(100,0,0,0);
+        if (value is int priorityLevel) return new Thickness(priorityLevel * 20, 3, 0, 3);
+        return new Thickness(100,3,0,3);
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

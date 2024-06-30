@@ -1,5 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
         xmlns:controls="using:app.Styles">
     <Design.PreviewWith>
         <controls:FolderOrdering />
@@ -10,13 +11,10 @@
             <ControlTemplate>
                 <Border CornerRadius="5"
                           Background="{DynamicResource BackgroundWeak}"
-                        Margin="5 2">
-                    <Grid RowDefinitions="*, Auto"
                           HorizontalAlignment="Stretch">
                         <!-- Folder Name -->
-                        <Grid Grid.Row="0"
-                              ColumnDefinitions="Auto, Auto, *"
-                              Margin="0 3">
+                        <Grid ColumnDefinitions="Auto, Auto, *"
+                              Margin="0 ">
                             <PathIcon Grid.Column="0" Data="{StaticResource FolderRegular}"
                                       Foreground="{DynamicResource Text}"
                                       Margin="5 0" />
@@ -24,15 +22,7 @@
                                        Foreground="{DynamicResource Text}" 
                                        Text="{TemplateBinding Text}" 
                                        VerticalAlignment="Center"/>
-
                         </Grid>
-                        <!-- Button to add features -->
-                        <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
-                                Foreground="{DynamicResource Text}"
-                                Background="{DynamicResource Buttons}"
-                                Padding="0"
-                                Content="+" />
-                    </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
