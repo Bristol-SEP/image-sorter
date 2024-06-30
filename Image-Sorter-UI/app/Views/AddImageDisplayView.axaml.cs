@@ -46,6 +46,7 @@ public partial class AddImageDisplayView : UserControl
         viewModel.AddFolders(folders);
     }
 
+    // TODO implement drag and drop
     /// <summary>
     /// Event which is called when folder dropped into area
     /// </summary>

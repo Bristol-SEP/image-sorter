@@ -11,18 +11,6 @@ namespace app.ViewModels.Interfaces;
 /// </summary>
 public interface IAddImageDisplayViewModel
 {
-    /// <summary>
-    /// Sets the <see cref="IMainWindowViewModel"/> context
-    /// </summary>
-    /// <param name="mainViewModel">An instance of <see cref="IMainWindowViewModel"/></param>
-    public void SetMainViewModel(IMainWindowViewModel mainViewModel);
-    
-   /// <summary>
-   /// Occurs when processing button is clicked, sends the data to the
-   /// python script to be processed and moves display to <see cref="FolderStructureDisplayView"/>
-   /// </summary>
-   public void ButtonPressed();
-   
    /// <summary>
    /// A list of <see cref="FeatureGroup"/> used in feature selection
    /// within the <see cref="AddImageDisplayView"/>
@@ -39,6 +27,30 @@ public interface IAddImageDisplayViewModel
    /// Is true when <see cref="FolderList"/> contains no items
    /// </summary>
    public bool FoldersEmpty { get; }
+   
+   /// <summary>
+   /// Determines whether or not a prompt to select a <see cref="Feature"/>
+   /// should appear
+   /// </summary>
+   public bool FeaturePrompt { get; }
+   
+   /// <summary>
+   /// Determines whether or not a prompt to select a <see cref="SelectFolders">folder</see>
+   /// should appear
+   /// </summary>
+   public bool FolderPrompt { get; }
+   
+    /// <summary>
+    /// Sets the <see cref="IMainWindowViewModel"/> context
+    /// </summary>
+    /// <param name="mainViewModel">An instance of <see cref="IMainWindowViewModel"/></param>
+    public void SetMainViewModel(IMainWindowViewModel mainViewModel);
+    
+   /// <summary>
+   /// Occurs when processing button is clicked, sends the data to the
+   /// python script to be processed and moves display to <see cref="FolderStructureDisplayView"/>
+   /// </summary>
+   public void ButtonPressed();
    
    /// <summary>
    /// Add folders to the <see cref="FolderList"/>

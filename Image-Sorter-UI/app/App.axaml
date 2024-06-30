@@ -18,6 +18,7 @@
         <SolidColorBrush x:Key="BackgroundStrong">#ACACAC</SolidColorBrush>
         <SolidColorBrush x:Key="Menu">#D9D9D9</SolidColorBrush>
         <SolidColorBrush x:Key="Background">#ffffff</SolidColorBrush>
+        <SolidColorBrush x:Key="Alert">Red</SolidColorBrush>
         
         <!-- Changing the Expander colours -->
         <SolidColorBrush x:Key="ExpanderHeaderBackground">#ACACAC</SolidColorBrush>
