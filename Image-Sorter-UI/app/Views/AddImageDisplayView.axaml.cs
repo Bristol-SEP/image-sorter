@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using app.Model;
 using app.ViewModels.Interfaces;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -43,7 +45,8 @@ public partial class AddImageDisplayView : UserControl
             : throw new NullReferenceException();
     
         // Pass into viewModel
-        viewModel.AddFolders(folders);
+        var folderList = folders.Select(folder => new SelectFolders(folder.Name, folder.Path)).ToList();
+        viewModel.AddFolders(folderList);
     }
 
     // TODO implement drag and drop

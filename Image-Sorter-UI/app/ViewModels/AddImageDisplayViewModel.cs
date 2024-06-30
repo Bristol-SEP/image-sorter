@@ -163,13 +163,11 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 
 
     /// <inheritdoc/>
-    public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
+    public void AddFolders(List<SelectFolders> folders)
     {
-        if (folders is null) return;
         foreach (var folder in folders)
         {
-            var folderModel = new SelectFolders(folder.Name, folder.Path);
-            if(IsNotPresent(folderModel)) FolderList.Add(folderModel);
+            if(IsNotPresent(folder)) FolderList.Add(folder);
         }
         this.RaisePropertyChanged(nameof(FoldersEmpty));
     }

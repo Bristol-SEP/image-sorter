@@ -26,7 +26,7 @@ public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewMo
         throw new System.NotImplementedException();
     }
 
-    public void AddFolders(IReadOnlyList<IStorageFolder>? folders)
+    public void AddFolders(List<SelectFolders> folders)
     {
         throw new System.NotImplementedException();
     }
