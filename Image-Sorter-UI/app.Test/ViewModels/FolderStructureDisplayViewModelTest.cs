@@ -36,7 +36,6 @@ public class FolderStructureDisplayViewModelTest
    public void FolderDirectoriesTest()
    {
       IFolderStructureDisplayViewModel viewModel = new FolderStructureDisplayViewModel();
-      Assert.That(viewModel.FolderDirectories, Is.Empty);
-      
+      Assert.That(viewModel.FolderDirectories.FolderDictionary, Is.Empty);
    }
 }

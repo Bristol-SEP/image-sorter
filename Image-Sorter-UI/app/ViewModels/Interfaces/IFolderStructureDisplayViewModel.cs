@@ -12,9 +12,9 @@ namespace app.ViewModels.Interfaces;
 public interface IFolderStructureDisplayViewModel
 {
     /// <summary>
-    /// A <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="DirectoryItem"/> 
+    /// A <see cref="DirectoryPriorityList"/> used to find the directory levels
     /// </summary>
-    public ObservableCollection<DirectoryItem> FolderDirectories { get; set; }
+    public DirectoryPriorityList FolderDirectories { get; set; }
     
     /// <summary>
     /// Sets the <see cref="IMainWindowViewModel"/> context

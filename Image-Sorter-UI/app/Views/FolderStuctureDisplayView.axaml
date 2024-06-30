@@ -54,7 +54,7 @@
                                   RectangleWidth="230" />
             </Grid>
             <ScrollViewer Grid.Row="1">
-                <ItemsControl  ItemsSource="{Binding FolderDirectories}">
+                <ItemsControl  ItemsSource="{Binding FolderDirectories.FolderDictionary}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <styles:FolderOrdering Text="{Binding Folder.Name}" Height="50"

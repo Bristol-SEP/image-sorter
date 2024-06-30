@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using app.ViewModels;
+using ReactiveUI;
 
 namespace app.Model;
 
@@ -8,15 +10,21 @@ namespace app.Model;
 /// A model with creates a <see cref="FolderDictionary"/>, showing the different subfolders
 /// and their levels
 /// </summary>
-public class DirectoryPriorityList
+public class DirectoryPriorityList: ViewModelBase
 {
+    private ObservableCollection<DirectoryItem> _folderDictionary = new();
+
     /// <summary>
     /// A <see cref="Dictionary{TKey,TValue}">Dictionary</see> which holds
     /// the selected folders and their subfolders in the form
     /// (<see cref="SelectFolders">Folder</see>, <see cref="int">priorityLevel</see>)
     /// Where priority level is the level of subfolder
     /// </summary>
-    public readonly ObservableCollection<DirectoryItem> FolderDictionary = new();
+    public ObservableCollection<DirectoryItem> FolderDictionary
+    {
+        get => _folderDictionary;
+        set => this.RaiseAndSetIfChanged(ref _folderDictionary, value);
+    }
 
     /// <summary>
     /// Looks at the folder and adds its children (recursively in order with priority levels)

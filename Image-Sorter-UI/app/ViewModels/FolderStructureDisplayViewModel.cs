@@ -10,9 +10,9 @@ namespace app.ViewModels;
 public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDisplayViewModel
 {
     /// <summary>
-    /// Backing field for <see cref="Directories"/>
+    /// Backing field for <see cref="FolderDirectories"/>
     /// </summary>
-    private ObservableCollection<DirectoryItem> _directories = new();
+    private DirectoryPriorityList _directories = new(new ObservableCollection<SelectFolders>());
     
     /// <summary>
     /// A reference to <see cref="MainWindowViewModel"/>
@@ -22,7 +22,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     private IMainWindowViewModel? MainModel { get; set; }
 
     /// <inheritdoc/>
-    public ObservableCollection<DirectoryItem> FolderDirectories
+    public DirectoryPriorityList FolderDirectories
     {
         get => _directories;
         set => this.RaiseAndSetIfChanged(ref _directories, value);

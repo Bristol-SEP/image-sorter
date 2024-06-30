@@ -10,7 +10,7 @@ namespace Image_Sorter_UI.Mock.ViewModels;
 public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDisplayViewModel
 {
     private IMainWindowViewModel? _mainModel;
-    public ObservableCollection<DirectoryItem> FolderDirectories { get; set; } = new();
+    public DirectoryPriorityList FolderDirectories { get; set; } = new(new ObservableCollection<SelectFolders>());
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
         _mainModel = mainViewModel;
