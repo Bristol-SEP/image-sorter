@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
 using Image_Sorter_UI.Mock.ViewModels;
@@ -26,5 +30,13 @@ public class FolderStructureDisplayViewModelTest
          Assert.That(mainViewModel.CurrentPage, Is.EqualTo(pageHeld));
          Assert.That(mainViewModel.IsImagePage, Is.True);
       }));
+   }
+
+   [Test]
+   public void FolderDirectoriesTest()
+   {
+      IFolderStructureDisplayViewModel viewModel = new FolderStructureDisplayViewModel();
+      Assert.That(viewModel.FolderDirectories, Is.Empty);
+      
    }
 }

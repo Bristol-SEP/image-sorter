@@ -40,8 +40,5 @@ public interface IMainWindowViewModel
     /// Remove folders from the <see cref="FolderList"/>
     /// </summary>
     /// <param name="folder">The Folder to be removed</param>
-    public void RemoveFolders(SelectFolders folder)
-    {
-        FolderList.Remove(folder);
-    }
+    public void RemoveFolders(SelectFolders folder);
 }

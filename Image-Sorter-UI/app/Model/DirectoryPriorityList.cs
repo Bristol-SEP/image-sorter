@@ -30,7 +30,7 @@ public class DirectoryPriorityList
         foreach (var directory in directories)
         {
             var folderName = directory[(directory.LastIndexOf('/')+1)..];
-            if (folderName[0] == '.' || folderName == "error") return;
+            if (folderName[0] == '.') continue;
             var newFolder = new SelectFolders(folderName, directory);
             var newItem = new DirectoryItem(newFolder, folder.Level + 1);
             FolderDictionary.Add(newItem);

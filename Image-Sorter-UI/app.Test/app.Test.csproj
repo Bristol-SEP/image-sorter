@@ -20,4 +20,10 @@
       <ProjectReference Include="..\app\app.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="FolderStructure\.SecretFolder\" />
+      <Folder Include="FolderStructure\Folder1\" />
+      <Folder Include="FolderStructure\Folder2\" />
+    </ItemGroup>
+
 </Project>
