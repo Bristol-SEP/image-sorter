@@ -8,20 +8,32 @@
     <Style Selector="controls|FolderOrdering">
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid RowDefinitions="*, Auto"
-                      HorizontalAlignment="Stretch"
-                      Background="{DynamicResource BackgroundWeak}"
-                      Margin="2">
-                    <!-- Folder Name -->
-                    <TextBlock Grid.Row="0"
-                               Foreground="{DynamicResource Text}" Text="{TemplateBinding Text}" />
-                    <!-- Button to add features -->
-                    <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
-                            Foreground="{DynamicResource Text}"
-                            Background="{DynamicResource Buttons}"
-                            Padding="0"
-                            Content="+" />
-                </Grid>
+                <Border CornerRadius="5"
+                          Background="{DynamicResource BackgroundWeak}"
+                        Margin="5 2">
+                    <Grid RowDefinitions="*, Auto"
+                          HorizontalAlignment="Stretch">
+                        <!-- Folder Name -->
+                        <Grid Grid.Row="0"
+                              ColumnDefinitions="Auto, Auto, *"
+                              Margin="0 3">
+                            <PathIcon Grid.Column="0" Data="{StaticResource FolderRegular}"
+                                      Foreground="{DynamicResource Text}"
+                                      Margin="5 0" />
+                            <TextBlock Grid.Column="1"
+                                       Foreground="{DynamicResource Text}" 
+                                       Text="{TemplateBinding Text}" 
+                                       VerticalAlignment="Center"/>
+
+                        </Grid>
+                        <!-- Button to add features -->
+                        <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                Foreground="{DynamicResource Text}"
+                                Background="{DynamicResource Buttons}"
+                                Padding="0"
+                                Content="+" />
+                    </Grid>
+                </Border>
             </ControlTemplate>
         </Setter>
     </Style>

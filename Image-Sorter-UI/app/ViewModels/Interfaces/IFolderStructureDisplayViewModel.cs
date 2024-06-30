@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using app.Model;
 using app.Views;
 using Avalonia.Collections;
@@ -10,9 +12,9 @@ namespace app.ViewModels.Interfaces;
 public interface IFolderStructureDisplayViewModel
 {
     /// <summary>
-    /// A List of directories
+    /// A <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="DirectoryItem"/> 
     /// </summary>
-    public AvaloniaDictionary<string, int> FolderDirectories { get; set; }
+    public ObservableCollection<DirectoryItem> FolderDirectories { get; set; }
     
     /// <summary>
     /// Sets the <see cref="IMainWindowViewModel"/> context

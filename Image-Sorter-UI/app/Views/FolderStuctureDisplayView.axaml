@@ -3,10 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
+             xmlns:converters="clr-namespace:app.Styles.Converters"
              xmlns:styles="clr-namespace:app.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IFolderStructureDisplayViewModel"
              x:Class="app.Views.FolderStructureDisplayView">
+    <UserControl.Resources>
+        <converters:IndentConverter x:Key="IndentConverter"/>
+    </UserControl.Resources>
     <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
         <!-- add images button -->
         <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
@@ -53,7 +57,8 @@
                 <ItemsControl  ItemsSource="{Binding FolderDirectories}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <styles:FolderOrdering Text="{Binding }" Height="40"/>
+                            <styles:FolderOrdering Text="{Binding Folder.Name}" Height="50"
+                                                   Margin="{Binding Level, Converter={StaticResource IndentConverter}}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

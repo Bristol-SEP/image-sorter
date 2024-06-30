@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using Avalonia.Collections;
 
 namespace app.Model;
 
@@ -17,25 +16,25 @@ public class DirectoryPriorityList
     /// (<see cref="SelectFolders">Folder</see>, <see cref="int">priorityLevel</see>)
     /// Where priority level is the level of subfolder
     /// </summary>
-    public readonly AvaloniaDictionary<SelectFolders, int> FolderDictionary = new();
+    public readonly ObservableCollection<DirectoryItem> FolderDictionary = new();
 
     /// <summary>
     /// Looks at the folder and adds its children (recursively in order with priority levels)
     /// to <see cref="FolderDictionary"/>
     /// </summary>
     /// <param name="folder">The folder whose children will be added</param>
-    private void AddChildren(SelectFolders folder)
+    private void AddChildren(DirectoryItem folder)
     {
-        var rootPath = folder.Path;
+        var rootPath = folder.Folder.Path;
         var directories = Directory.GetDirectories(rootPath, "*", SearchOption.TopDirectoryOnly);
         foreach (var directory in directories)
         {
             var folderName = directory[(directory.LastIndexOf('/')+1)..];
             if (folderName[0] == '.' || folderName == "error") return;
             var newFolder = new SelectFolders(folderName, directory);
-            var priorityLevel = FolderDictionary[folder];
-            FolderDictionary.Add(newFolder, priorityLevel+1);
-            AddChildren(newFolder);
+            var newItem = new DirectoryItem(newFolder, folder.Level + 1);
+            FolderDictionary.Add(newItem);
+            AddChildren(newItem);
         }
     }
     
@@ -46,10 +45,11 @@ public class DirectoryPriorityList
     /// <param name="foldersList">A list of folders to be added</param>
     public DirectoryPriorityList(ObservableCollection<SelectFolders> foldersList)
     {
-        foreach (var folder in foldersList)   
+        foreach (var folder in foldersList)
         {
-           FolderDictionary.Add(folder, 0); 
-           AddChildren(folder);
+            var item = new DirectoryItem(folder, 0);
+           FolderDictionary.Add(item); 
+           AddChildren(item);
         }
     }
 }

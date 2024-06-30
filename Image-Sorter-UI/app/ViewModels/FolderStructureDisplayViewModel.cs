@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels.Interfaces;
-using Avalonia.Collections;
 using ReactiveUI;
 
 namespace app.ViewModels;
@@ -13,7 +12,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// <summary>
     /// Backing field for <see cref="Directories"/>
     /// </summary>
-    private AvaloniaDictionary<SelectFolders, int> _directories = new(){{new SelectFolders("",""), 0}};
+    private ObservableCollection<DirectoryItem> _directories = new();
     
     /// <summary>
     /// A reference to <see cref="MainWindowViewModel"/>
@@ -23,11 +22,11 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     private IMainWindowViewModel? MainModel { get; set; }
 
     /// <inheritdoc/>
-    public AvaloniaDictionary<string, int> FolderDirectories { get; set; } = new() { { "test", 1 } };
-    // {
-    //     get => _directories;
-    //     set => this.RaiseAndSetIfChanged(ref _directories, value);
-    // }
+    public ObservableCollection<DirectoryItem> FolderDirectories
+    {
+        get => _directories;
+        set => this.RaiseAndSetIfChanged(ref _directories, value);
+    }
 
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
