@@ -21,9 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="FolderStructure\.SecretFolder\" />
-      <Folder Include="FolderStructure\Folder1\" />
-      <Folder Include="FolderStructure\Folder2\" />
+      <Content Include="FolderStructure\.SecretFolder\.keep" />
     </ItemGroup>
 
 </Project>
