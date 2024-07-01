@@ -8,19 +8,19 @@ namespace Image_Sorter_UI.Views;
 // [TestFixture]
 // public class MainWindowTest
 // {
-    // [AvaloniaTest]
-    // public void ViewModelTest()
-    // {
-    //     var vm = new MockMainWindowViewModel();
-    //     var mainWindow = new MainWindow
-    //     {
-    //         DataContext = vm
-    //     };
-    //
-    //     Assert.Multiple(() =>
-    //     {
-    //         Assert.That(mainWindow.MainView.DataContext, Is.EqualTo(vm.CurrentPage));
-    //         Assert.That(mainWindow.SideBar, Is.TypeOf<SideBar>());
-    //     });
-    // }
+//     [AvaloniaTest]
+//     public void ViewModelTest()
+//     {
+//         var vm = new MockMainWindowViewModel();
+//         var mainWindow = new MainWindow
+//         {
+//             DataContext = vm
+//         };
+//     
+//         Assert.Multiple(() =>
+//         {
+//             Assert.That(mainWindow.MainContent.DataContext, Is.EqualTo(vm.CurrentPage));
+//             Assert.That(mainWindow.SideBar, Is.TypeOf<SideBar>());
+//         });
+//     }
 // }

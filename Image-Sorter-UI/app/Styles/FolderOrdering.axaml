@@ -1,0 +1,30 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:app.ViewModels.Interfaces"
+        xmlns:controls="using:app.Styles">
+    <Design.PreviewWith>
+        <controls:FolderOrdering />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|FolderOrdering">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border CornerRadius="5"
+                          Background="{DynamicResource BackgroundWeak}"
+                          HorizontalAlignment="Stretch">
+                        <!-- Folder Name -->
+                        <Grid ColumnDefinitions="Auto, Auto, *"
+                              Margin="0 ">
+                            <PathIcon Grid.Column="0" Data="{StaticResource FolderRegular}"
+                                      Foreground="{DynamicResource Text}"
+                                      Margin="5 0" />
+                            <TextBlock Grid.Column="1"
+                                       Foreground="{DynamicResource Text}" 
+                                       Text="{TemplateBinding Text}" 
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

@@ -1,24 +1,20 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
-using Avalonia.Platform.Storage;
 
 namespace Image_Sorter_UI.Mock.ViewModels;
 
 public class MockAddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
 {
-    private IMainWindowViewModel? _mainView;
-    public bool FolderPrompt => true; 
-    public bool FeaturePrompt => true;
+    public IMainWindowViewModel? MainModel { get; private set; }
     public List<FeatureGroup> FeatureList => new();
-    public ObservableCollection<SelectFolders> FolderList => new();
     public bool FoldersEmpty => true;
-
+    public bool FeaturePrompt => true;
+    public bool FolderPrompt => true;
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        _mainView = mainViewModel;
+        MainModel = mainViewModel;
     }
 
     public void ButtonPressed()

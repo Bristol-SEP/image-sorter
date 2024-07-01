@@ -1,17 +1,27 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
+using Avalonia.Collections;
 
 namespace Image_Sorter_UI.Mock.ViewModels;
 
 public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDisplayViewModel
 {
-    private IMainWindowViewModel? _mainView;
+    private IMainWindowViewModel? _mainModel;
+    public DirectoryPriorityList FolderDirectories { get; set; } = new(new ObservableCollection<SelectFolders>());
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        _mainView = mainViewModel;
+        _mainModel = mainViewModel;
     }
 
     public void ButtonPressed()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddFeature(DirectoryItem item)
     {
         throw new System.NotImplementedException();
     }

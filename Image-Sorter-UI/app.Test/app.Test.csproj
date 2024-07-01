@@ -20,4 +20,8 @@
       <ProjectReference Include="..\app\app.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="FolderStructure\.SecretFolder\.keep" />
+    </ItemGroup>
+
 </Project>

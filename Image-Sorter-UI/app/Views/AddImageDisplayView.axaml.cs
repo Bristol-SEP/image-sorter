@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using app.Model;
 using app.ViewModels.Interfaces;
@@ -45,7 +43,7 @@ public partial class AddImageDisplayView : UserControl
             : throw new NullReferenceException();
     
         // Pass into viewModel
-        var folderList = folders.Select(folder => new SelectFolders(folder.Name, folder.Path)).ToList();
+        var folderList = folders.Select(folder => new SelectFolders(folder.Name, folder.Path.AbsolutePath)).ToList();
         viewModel.AddFolders(folderList);
     }
 

@@ -1,5 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
+using app.Model;
 using app.ViewModels.Interfaces;
+using ReactiveUI;
 
 namespace app.ViewModels;
 
@@ -7,23 +10,40 @@ namespace app.ViewModels;
 public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDisplayViewModel
 {
     /// <summary>
+    /// Backing field for <see cref="FolderDirectories"/>
+    /// </summary>
+    private DirectoryPriorityList _directories = new(new ObservableCollection<SelectFolders>());
+    
+    /// <summary>
     /// A reference to <see cref="MainWindowViewModel"/>
     /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
     /// to be called
     /// </summary>
-    private IMainWindowViewModel? _mainModel;
+    private IMainWindowViewModel? MainModel { get; set; }
+
+    /// <inheritdoc/>
+    public DirectoryPriorityList FolderDirectories
+    {
+        get => _directories;
+        set => this.RaiseAndSetIfChanged(ref _directories, value);
+    }
 
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
-        _mainModel = mainViewModel;
+        MainModel = mainViewModel;
     }
 
     /// <inheritdoc/>
     public void ButtonPressed()
     {
-        if (_mainModel is null) throw new NullReferenceException();
-        if (_mainModel.IsImagePage) throw new InvalidOperationException();
-        _mainModel.ToggleView();
+        if (MainModel is null) throw new NullReferenceException();
+        if (MainModel.IsImagePage) throw new InvalidOperationException();
+        MainModel.ToggleView();
+    }
+
+    public void AddFeature(DirectoryItem item)
+    {
+        FolderDirectories.AddFeature(item);
     }
 }
