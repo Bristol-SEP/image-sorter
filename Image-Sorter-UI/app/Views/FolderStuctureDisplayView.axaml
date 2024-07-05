@@ -11,73 +11,83 @@
     <UserControl.Resources>
         <converters:IndentConverter x:Key="IndentConverter" />
     </UserControl.Resources>
-    <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
-        <!-- add images button -->
-        <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
-            <Button Grid.Column="1" Classes="baseButton"
-                    Width="200"
-                    Command="{Binding ButtonPressed}">
-                <Grid RowDefinitions="*,*">
-                    <PathIcon Grid.Row="0" Width="15" Height="15" Data="{StaticResource ChevronUpRegular}" />
-                    <TextBlock Grid.Row="1" Foreground="{DynamicResource Text}" Text="Add Images" />
-                </Grid>
-            </Button>
-        </Grid>
-        <!-- TODO turn this into a single object -->
-        <!-- processing progress -->
-        <Grid Grid.Row="2" ColumnDefinitions="*, Auto, Auto, Auto, *">
-            <TextBlock Grid.Column="1" Padding="0,0,5,0"
-                       Foreground="{DynamicResource Text}">
-                Processing
-            </TextBlock>
-            <Panel Grid.Column="2">
-                <Rectangle Width="100" Height="15"
-                           HorizontalAlignment="Left" VerticalAlignment="Top"
-                           Fill="{DynamicResource BackgroundWeak}" />
-                <Rectangle Width="54" Height="15"
-                           Fill="{DynamicResource BackgroundStrong}"
-                           HorizontalAlignment="Left" VerticalAlignment="Top" />
-            </Panel>
-            <TextBlock Grid.Column="3" Padding="5,0,0,0"
-                       Foreground="{DynamicResource Text}">
-                54%
-            </TextBlock>
-        </Grid>
-        <!-- select folder structure -->
-        <Grid Grid.Row="4"
-              RowDefinitions="Auto, *">
-            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
-                <styles:StageText Grid.Column="0"
-                                  Text="Select Folder Structure"
-                                  Number="3"
-                                  RectangleHeight="30"
-                                  RectangleWidth="230" />
+    <Panel>
+        <Grid RowDefinitions="5*, *, 5*, *, 15*, 2*, 40">
+            <!-- add images button -->
+            <Grid Grid.Row="0" ColumnDefinitions="*, Auto, *">
+                <Button Grid.Column="1" Classes="baseButton"
+                        Width="200"
+                        Command="{Binding ButtonPressed}">
+                    <Grid RowDefinitions="*,*">
+                        <PathIcon Grid.Row="0" Width="15" Height="15" Data="{StaticResource ChevronUpRegular}" />
+                        <TextBlock Grid.Row="1" Foreground="{DynamicResource Text}" Text="Add Images" />
+                    </Grid>
+                </Button>
             </Grid>
-            <ScrollViewer Grid.Row="1">
-                <ItemsControl ItemsSource="{Binding FolderDirectories.FolderDictionary}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid RowDefinitions="*, Auto" Height="50"
-                                  Margin="{Binding Level, Converter={StaticResource IndentConverter}}">
-                                <styles:FolderOrdering Grid.Row="0" Text="{Binding Folder.Name}" />
-                                <Button Grid.Row="1" Content="+" HorizontalAlignment="Stretch"
-                                        Padding="0" Margin="0"
-                                        CornerRadius="5"
-                                        HorizontalContentAlignment="Center"
-                                        Command="{Binding $parent[ItemsControl].((vm:IFolderStructureDisplayViewModel)DataContext).AddFeature, FallbackValue={Binding}}"
-                                        CommandParameter="{Binding}"
-                                        Foreground="{DynamicResource Text}"
-                                        Background="{DynamicResource BackgroundStrong}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <!-- TODO turn this into a single object -->
+            <!-- processing progress -->
+            <Grid Grid.Row="2" ColumnDefinitions="*, Auto, Auto, Auto, *">
+                <TextBlock Grid.Column="1" Padding="0,0,5,0"
+                           Foreground="{DynamicResource Text}">
+                    Processing
+                </TextBlock>
+                <Panel Grid.Column="2">
+                    <Rectangle Width="100" Height="15"
+                               HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Fill="{DynamicResource BackgroundWeak}" />
+                    <Rectangle Width="54" Height="15"
+                               Fill="{DynamicResource BackgroundStrong}"
+                               HorizontalAlignment="Left" VerticalAlignment="Top" />
+                </Panel>
+                <TextBlock Grid.Column="3" Padding="5,0,0,0"
+                           Foreground="{DynamicResource Text}">
+                    54%
+                </TextBlock>
+            </Grid>
+            <!-- select folder structure -->
+            <Grid Grid.Row="4"
+                  RowDefinitions="Auto, *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Select Folder Structure"
+                                      Number="3"
+                                      RectangleHeight="30"
+                                      RectangleWidth="230" />
+                </Grid>
+                <ScrollViewer Grid.Row="1">
+                    <ItemsControl ItemsSource="{Binding FolderDirectories.FolderDictionary}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowDefinitions="*, Auto" Height="50"
+                                      Margin="{Binding Level, Converter={StaticResource IndentConverter}}">
+                                    <styles:FolderOrdering Grid.Row="0" Text="{Binding Folder.Name}" />
+                                    <Button Grid.Row="1" Content="+" HorizontalAlignment="Stretch"
+                                            Padding="0" Margin="0"
+                                            CornerRadius="5"
+                                            HorizontalContentAlignment="Center"
+                                            Command="{Binding $parent[ItemsControl].((vm:IFolderStructureDisplayViewModel)DataContext).AddFeature, FallbackValue={Binding}}"
+                                            CommandParameter="{Binding}"
+                                            Foreground="{DynamicResource Text}"
+                                            Background="{DynamicResource BackgroundStrong}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+            <!-- Create structure button -->
+            <Grid Grid.Row="6" ColumnDefinitions="*,Auto,*">
+                <Button Grid.Column="1" Classes="baseButton">Create Structure</Button>
+            </Grid>
         </Grid>
-        <!-- Create structure button -->
-        <Grid Grid.Row="6" ColumnDefinitions="*,Auto,*">
-            <Button Grid.Column="1" Classes="baseButton">Create Structure</Button>
-        </Grid>
-    </Grid>
+        <!-- Popup -->
+        <Panel Background="{DynamicResource BackgroundStrong}"
+               IsVisible="{Binding  ShowPopup}"
+               Margin="30">
+        <TransitioningContentControl HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     Content="{Binding View}" />
+        </Panel>
+    </Panel>
 
 </UserControl>

@@ -13,109 +13,109 @@
         <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
     </UserControl.Resources>
 
-    <Grid Background="{DynamicResource Background}"
-          RowDefinitions="*,5*,*, 10*, *, 40">
-        <!-- select features -->
-        <Grid Grid.Row="1" RowDefinitions="Auto, *">
-            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
-                <styles:StageText Grid.Column="0"
-                                  Text="Select Features"
-                                  Number="1"
-                                  RectangleHeight="30"
-                                  RectangleWidth="150" />
-                <TextBlock Grid.Column="1"
-                           Classes="alert"
-                           IsVisible="{Binding FeaturePrompt}"
-                           Text="Select a feature"/>
-            </Grid>
+        <Grid Background="{DynamicResource Background}"
+              RowDefinitions="*,5*,*, 10*, *, 40">
+            <!-- select features -->
+            <Grid Grid.Row="1" RowDefinitions="Auto, *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Select Features"
+                                      Number="1"
+                                      RectangleHeight="30"
+                                      RectangleWidth="150" />
+                    <TextBlock Grid.Column="1"
+                               Classes="alert"
+                               IsVisible="{Binding FeaturePrompt}"
+                               Text="Select a feature" />
+                </Grid>
 
-            <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
-                <ItemsControl ItemsSource="{Binding FeatureList}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Expander HorizontalAlignment="Stretch"
-                                      Background="{DynamicResource BackgroundWeak}"
-                                      IsExpanded="{Binding ShouldExpand}">
-                                <Expander.Header>
-                                    <Label Content="{Binding GroupName}" />
-                                </Expander.Header>
-                                <ItemsControl ItemsSource="{Binding Features}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <CheckBox Foreground="{DynamicResource Text}"
-                                                      Classes="baseCheckBox"
-                                                      Content="{Binding Name}" 
-                                                      IsChecked="{Binding Selected}"
-                                                      Command="{Binding ToggleSelected}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </Expander>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </Grid>
-        <!-- add images -->
-        <Grid Grid.Row="3"
-              RowDefinitions="Auto, *">
-            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
-                <styles:StageText Grid.Column="0"
-                                  Text="Add Images"
-                                  Number="2"
-                                  RectangleHeight="30"
-                                  RectangleWidth="150" />
-                
-                <TextBlock Grid.Column="1"
-                           Classes="alert"
-                           IsVisible="{Binding FolderPrompt}"
-                           Text="Select a folder"/>
-            </Grid>
-            <Panel Grid.Row="1" Background="{DynamicResource BackgroundWeak}"
-                   DragDrop.AllowDrop="True">
-                <!-- if no folders present -->
-                <Button Classes="baseButton" HorizontalAlignment="Center"
-                        IsVisible="{Binding FoldersEmpty}"
-                        Click="OpenFileButton_Clicked">
-                    Add Folder
-                </Button>
-                <!-- if folders present -->
-                <ScrollViewer IsVisible="{Binding FoldersEmpty, Converter={StaticResource InverseBoolConverter}}">
-                    <StackPanel>
-                        <ItemsControl ItemsSource="{Binding  MainModel.FolderList}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Panel>
-                                        <styles:ImageFolder Text="{Binding Name}" />
-                                        <!-- TODO FallBack not correct -->
-                                        <Button
-                                            Command="{Binding $parent[ItemsControl].((vm:IAddImageDisplayViewModel)DataContext).RemoveFolders, FallbackValue={Binding}}"
-                                            CommandParameter="{Binding}"
-                                            HorizontalAlignment="Right"
-                                            Margin="0,2,5,2"
-                                            Foreground="{StaticResource Text}"
-                                            Background="{StaticResource BackgroundStrong}">
-                                            <PathIcon Data="{StaticResource DeleteRegular}"/>
-                                        </Button>
-                                    </Panel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <Button Classes="baseButton" HorizontalAlignment="Left"
-                                Click="OpenFileButton_Clicked">
-                            Add Folder
-                        </Button>
-                    </StackPanel>
+                <ScrollViewer Grid.Row="1" Background="{DynamicResource BackgroundWeak}">
+                    <ItemsControl ItemsSource="{Binding FeatureList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Expander HorizontalAlignment="Stretch"
+                                          Background="{DynamicResource BackgroundWeak}"
+                                          IsExpanded="{Binding ShouldExpand}">
+                                    <Expander.Header>
+                                        <Label Content="{Binding GroupName}" />
+                                    </Expander.Header>
+                                    <ItemsControl ItemsSource="{Binding Features}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Foreground="{DynamicResource Text}"
+                                                          Classes="baseCheckBox"
+                                                          Content="{Binding Name}"
+                                                          IsChecked="{Binding Selected}"
+                                                          Command="{Binding ToggleSelected}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Expander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </ScrollViewer>
-            </Panel>
+            </Grid>
+            <!-- add images -->
+            <Grid Grid.Row="3"
+                  RowDefinitions="Auto, *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                    <styles:StageText Grid.Column="0"
+                                      Text="Add Images"
+                                      Number="2"
+                                      RectangleHeight="30"
+                                      RectangleWidth="150" />
+
+                    <TextBlock Grid.Column="1"
+                               Classes="alert"
+                               IsVisible="{Binding FolderPrompt}"
+                               Text="Select a folder" />
+                </Grid>
+                <Panel Grid.Row="1" Background="{DynamicResource BackgroundWeak}"
+                       DragDrop.AllowDrop="True">
+                    <!-- if no folders present -->
+                    <Button Classes="baseButton" HorizontalAlignment="Center"
+                            IsVisible="{Binding FoldersEmpty}"
+                            Click="OpenFileButton_Clicked">
+                        Add Folder
+                    </Button>
+                    <!-- if folders present -->
+                    <ScrollViewer IsVisible="{Binding FoldersEmpty, Converter={StaticResource InverseBoolConverter}}">
+                        <StackPanel>
+                            <ItemsControl ItemsSource="{Binding  MainModel.FolderList}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Panel>
+                                            <styles:ImageFolder Text="{Binding Name}" />
+                                            <!-- TODO FallBack not correct -->
+                                            <Button
+                                                Command="{Binding $parent[ItemsControl].((vm:IAddImageDisplayViewModel)DataContext).RemoveFolders, FallbackValue={Binding}}"
+                                                CommandParameter="{Binding}"
+                                                HorizontalAlignment="Right"
+                                                Margin="0,2,5,2"
+                                                Foreground="{StaticResource Text}"
+                                                Background="{StaticResource BackgroundStrong}">
+                                                <PathIcon Data="{StaticResource DeleteRegular}" />
+                                            </Button>
+                                        </Panel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Button Classes="baseButton" HorizontalAlignment="Left"
+                                    Click="OpenFileButton_Clicked">
+                                Add Folder
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Panel>
+            </Grid>
+            <!-- start processing -->
+            <Grid Grid.Row="5"
+                  ColumnDefinitions="*, Auto, *">
+                <Button Grid.Column="1" Classes="baseButton"
+                        Command="{Binding ButtonPressed}">
+                    Start Processing
+                </Button>
+            </Grid>
         </Grid>
-        <!-- start processing -->
-        <Grid Grid.Row="5"
-              ColumnDefinitions="*, Auto, *">
-            <Button Grid.Column="1" Classes="baseButton"
-                    Command="{Binding ButtonPressed}">
-                Start Processing
-            </Button>
-        </Grid>
-    </Grid>
 </UserControl>
