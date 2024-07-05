@@ -1,5 +1,8 @@
 namespace app.ViewModels.Interfaces;
 
+/// <summary>
+/// A way of initialising views
+/// </summary>
 public interface IViewModelProvider
 {
     /// <summary>

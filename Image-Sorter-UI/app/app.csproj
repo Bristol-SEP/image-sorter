@@ -29,4 +29,12 @@
     <UpToDateCheckInput Remove="Views\AddImageDisplay\FeatureSelectionView.axaml" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Compile Update="Views\Popup\PopupMainPageView.axaml.cs">
+      <DependentUpon>PopupMainPage.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

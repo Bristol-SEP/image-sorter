@@ -1,9 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace app.Model;
 
+/// <summary>
+/// A collection of <see cref="Feature"/> relating to a certain sport, e.g.
+/// Rowing
+/// </summary>
 public class FeatureGroup 
 {
     /// <summary>

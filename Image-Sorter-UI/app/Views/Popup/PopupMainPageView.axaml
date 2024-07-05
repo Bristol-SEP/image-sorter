@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:app.ViewModels.Interfaces.Popup"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:IPopupMainPageViewModel"
+             x:Class="app.Views.Popup.PopupMainPageView">
+    <Grid RowDefinitions="*, *, 4*" >
+        <TextBlock Grid.Row="0" Text="File Name" Foreground="{DynamicResource Text}" />
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
+            <TextBlock Grid.Column="0" Text="Select all folders in directory"
+                       Foreground="{DynamicResource Text}" />
+            <CheckBox Grid.Column="1" IsChecked="False" Classes="baseCheckBox" />
+        </Grid>
+        <DropDownButton Grid.Row="2" Content="Subfolders"></DropDownButton>
+    </Grid>
+</UserControl>

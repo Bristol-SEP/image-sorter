@@ -7,7 +7,6 @@
     </Design.PreviewWith>
 
     <Style Selector="controls|ImageFolder">
-        <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
                 <Border CornerRadius="5" Margin="5,2,5,2"

@@ -11,20 +11,22 @@ namespace app.ViewModels.Interfaces;
 /// </summary>
 public interface IAddImageDisplayViewModel
 {
+    /// <summary>
+    /// A reference to <see cref="MainWindowViewModel"/>
+    /// which allows the <see cref="MainWindowViewModel.ToggleView"/>
+    /// to be called
+    /// </summary>
+    public IMainWindowViewModel? MainModel { get; }
+    
    /// <summary>
    /// A list of <see cref="FeatureGroup"/> used in feature selection
    /// within the <see cref="AddImageDisplayView"/>
    /// </summary>
    public List<FeatureGroup> FeatureList { get; }
    
-   /// <summary>
-   /// A list of <see cref="SelectFolders"/> used in image selection
-   /// within the <see cref="AddImageDisplayView"/>
-   /// </summary>
-   public ObservableCollection<SelectFolders> FolderList { get; }
 
    /// <summary>
-   /// Is true when <see cref="FolderList"/> contains no items
+   /// Is true when <see cref="MainWindowViewModel.FolderList"/> contains no items
    /// </summary>
    public bool FoldersEmpty { get; }
    
@@ -53,14 +55,14 @@ public interface IAddImageDisplayViewModel
    public void ButtonPressed();
    
    /// <summary>
-   /// Add folders to the <see cref="FolderList"/>
+   /// Add folders to the <see cref="MainWindowViewModel.FolderList"/>
    /// </summary>
    /// <param name="folders"><see cref="IReadOnlyList{T}">ReadOnlyList</see>
    /// of <see cref="IStorageFolder">Folders</see></param>
    public void AddFolders(List<SelectFolders> folders);
 
    /// <summary>
-   /// Remove folders from the <see cref="FolderList"/>
+   /// Remove folders from the <see cref="MainWindowViewModel.FolderList"/>
    /// </summary>
    /// <param name="folder">The Folder to be removed</param>
    public void RemoveFolders(SelectFolders folder);

@@ -13,7 +13,7 @@ public class FolderStructureDisplayViewModelTest
    [Test] 
    public void ButtonPressedTest()
    {
-      IMainWindowViewModel mainViewModel = _vmProvider.GetMainViewModel();
+      var mainViewModel = _vmProvider.GetMainViewModel();
       IFolderStructureDisplayViewModel viewModel = new FolderStructureDisplayViewModel();
       Assert.Throws<NullReferenceException>((() => viewModel.ButtonPressed()));
       viewModel.SetMainViewModel(mainViewModel);
@@ -26,5 +26,12 @@ public class FolderStructureDisplayViewModelTest
          Assert.That(mainViewModel.CurrentPage, Is.EqualTo(pageHeld));
          Assert.That(mainViewModel.IsImagePage, Is.True);
       }));
+   }
+
+   [Test]
+   public void FolderDirectoriesTest()
+   {
+      IFolderStructureDisplayViewModel viewModel = new FolderStructureDisplayViewModel();
+      Assert.That(viewModel.FolderDirectories.FolderDictionary, Is.Empty);
    }
 }

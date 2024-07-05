@@ -12,11 +12,12 @@ public class SelectFoldersTest
     public void SetAndGetTest()
     {
         var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
-        var selectFolder = new SelectFolders("test", new Uri(path!));
+        if (path == null) return;
+        var selectFolder = new SelectFolders("test", path);
         Assert.Multiple(() =>
         {
             Assert.That(selectFolder.Name, Is.EqualTo("test"));
-            Assert.That(selectFolder.Path, Is.EqualTo(new Uri(path!)));
+            Assert.That(selectFolder.Path, Is.EqualTo(path));
         });
     }
 }
