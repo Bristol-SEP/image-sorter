@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using app.Model;
 using app.Views;
-using Avalonia.Collections;
 
 namespace app.ViewModels.Interfaces;
 
@@ -20,6 +18,12 @@ public interface IFolderStructureDisplayViewModel
     /// a boolean which decides whether to show the popup page
     /// </summary>
     public bool ShowPopup { get; }
+    
+   /// <summary>
+   /// A list of <see cref="FeatureGroup"/> used in folder adding
+   /// within the <see cref="FolderStructureDisplayView"/>
+   /// </summary>
+   public List<FeatureGroup> FeatureList { get; set; }
     
     /// <summary>
     /// A <see cref="DirectoryPriorityList"/> used to find the directory levels

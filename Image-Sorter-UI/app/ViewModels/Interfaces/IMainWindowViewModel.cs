@@ -15,6 +15,10 @@ public interface IMainWindowViewModel
    /// </summary>
    public ObservableCollection<SelectFolders> FolderList { get; }
     
+   /// <summary>
+   /// An instance of <see cref="FeatureList"/>
+   /// </summary>
+   public FeatureList FeatureList { get; }
     /// <summary>
     /// Holds the current display, when changed page shown will change
     /// </summary>

@@ -13,6 +13,7 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
     private IMainWindowViewModel? _mainModel;
     public ViewModelBase View { get; } = new MockPopupMainPageViewModel();
     public bool ShowPopup { get; } = false;
+    public List<FeatureGroup> FeatureList { get; set; } = new();
     public DirectoryPriorityList FolderDirectories { get; set; } = new(new ObservableCollection<SelectFolders>());
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {

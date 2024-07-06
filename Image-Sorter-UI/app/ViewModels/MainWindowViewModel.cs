@@ -67,6 +67,8 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     /// <inheritdoc/>
     public ObservableCollection<SelectFolders> FolderList { get; } = new();
 
+    public FeatureList FeatureList { get; } = new();
+
     /// <inheritdoc/>
     public ViewModelBase CurrentPage
     {
@@ -93,6 +95,7 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
         {
             CurrentPage = (ViewModelBase)FolderStructureDisplayViewModel;
             FolderStructureDisplayViewModel.FolderDirectories = new DirectoryPriorityList(FolderList);
+            FolderStructureDisplayViewModel.FeatureList = FeatureList.FeatureGroups;
             return;
         }
         CurrentPage = (ViewModelBase)AddImageDisplayViewModel;

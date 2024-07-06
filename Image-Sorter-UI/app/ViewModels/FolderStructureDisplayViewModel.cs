@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels.Interfaces;
@@ -30,7 +31,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// <summary>
     /// Backing field for <see cref="View"/>
     /// </summary>
-    private ViewModelBase _view = new PopupMainPageViewModel();
+    private ViewModelBase _view = new PopupMainPageViewModel(new List<FeatureGroup>());
 
     /// <inheritdoc/>
     public ViewModelBase View
@@ -44,6 +45,13 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     {
         get => _showPopup;
         private set => this.RaiseAndSetIfChanged(ref _showPopup, value);
+    }
+
+    /// <inheritdoc/>
+    public List<FeatureGroup> FeatureList
+    {
+        get => new();
+        set => View = new PopupMainPageViewModel(value);
     }
 
     /// <inheritdoc/>

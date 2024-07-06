@@ -56,7 +56,9 @@ public class MockMainWindowViewModel : ViewModelBase, IMainWindowViewModel
     {
         get => _foldersList;
         set => this.RaiseAndSetIfChanged(ref _foldersList, value);
-    } 
+    }
+
+    public FeatureList FeatureList { get; } = new();
     public bool IsImagePage => CurrentPage == _imagePage;
     public ViewModelBase CurrentPage
     {

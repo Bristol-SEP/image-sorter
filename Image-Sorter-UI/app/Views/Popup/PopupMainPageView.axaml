@@ -6,13 +6,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IPopupMainPageViewModel"
              x:Class="app.Views.Popup.PopupMainPageView">
-    <Grid RowDefinitions="*, *, 4*" >
-        <TextBlock Grid.Row="0" Text="File Name" Foreground="{DynamicResource Text}" />
-        <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
-            <TextBlock Grid.Column="0" Text="Select all folders in directory"
-                       Foreground="{DynamicResource Text}" />
-            <CheckBox Grid.Column="1" IsChecked="False" Classes="baseCheckBox" />
-        </Grid>
-        <DropDownButton Grid.Row="2" Content="Subfolders"></DropDownButton>
-    </Grid>
+    <ItemsControl ItemsSource="{Binding FeatureGroup.Features}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Name}"></TextBlock>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>
