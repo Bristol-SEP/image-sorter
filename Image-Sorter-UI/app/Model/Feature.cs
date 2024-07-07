@@ -1,3 +1,5 @@
+using app.ViewModels;
+
 namespace app.Model;
 
 /// <summary>
@@ -16,14 +18,20 @@ public class Feature
     /// A <see cref="bool"/> which is true when this feature is selected
     /// </summary>
     public bool Selected { get; private set; }
+    
+    /// <summary>
+    /// Holds the view of this feature to be used in popup
+    /// </summary>
+    public ViewModelBase View { get; }
 
     /// <summary>
     /// Creates a new <see cref="Feature"/>
     /// </summary>
     /// <param name="name">The name of the feature</param>
-    public Feature(string name)
+    public Feature(string name, ViewModelBase view)
     {
         Name = name;
+        View = view;
         Selected = false;
     }
 

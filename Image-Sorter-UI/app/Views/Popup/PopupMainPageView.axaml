@@ -6,10 +6,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IPopupMainPageViewModel"
              x:Class="app.Views.Popup.PopupMainPageView">
-    <ItemsControl ItemsSource="{Binding FeatureGroup.Features}">
+    <ItemsControl ItemsSource="{Binding FeatureGroup}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding Name}"></TextBlock>
+                <Button Content="{Binding Name}" Classes="baseButton"
+                        Command="{Binding $parent[ItemsControl].((vm:IPopupMainPageViewModel)DataContext).ChooseFeature, FallbackValue={Binding}}"
+                        CommandParameter="{Binding View}"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

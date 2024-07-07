@@ -12,7 +12,7 @@ public interface IFolderStructureDisplayViewModel
     /// <summary>
     /// The page to be displayed in the popup
     /// </summary>
-    public ViewModelBase View { get; }
+    public ViewModelBase View { get; set; }
     
     /// <summary>
     /// a boolean which decides whether to show the popup page

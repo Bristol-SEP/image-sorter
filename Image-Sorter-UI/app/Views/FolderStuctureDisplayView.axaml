@@ -81,9 +81,9 @@
             </Grid>
         </Grid>
         <!-- Popup -->
-        <Panel Background="{DynamicResource BackgroundStrong}"
+        <Panel Background="{DynamicResource BackgroundWeak}"
                IsVisible="{Binding  ShowPopup}"
-               Margin="30">
+               Height="300" Width="300"> 
         <TransitioningContentControl HorizontalAlignment="Stretch"
                                      VerticalAlignment="Stretch"
                                      Content="{Binding View}" />

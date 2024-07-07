@@ -7,8 +7,19 @@ namespace app.ViewModels.Interfaces.Popup;
 public interface IPopupMainPageViewModel
 {
     /// <summary>
-    /// A <see cref="FeatureGroup"/> used in folder adding
+    /// A <see cref="List{T}">list</see> of <see cref="Feature"/> used in folder adding
     /// within the <see cref="PopupMainPageView"/>
     /// </summary>
-    public FeatureGroup FeatureGroup { get; }
+    public List<Feature> FeatureGroup { get; }
+    
+    /// <summary>
+    /// Holds a reference to <see cref="FolderStructureDisplayViewModel"/>
+    /// </summary>
+    public IFolderStructureDisplayViewModel FolderView { get; }
+
+    /// <summary>
+    /// Changes the <see cref="View"/> to that of the
+    /// selected feature
+    /// </summary>
+    public void ChooseFeature(ViewModelBase view);
 }

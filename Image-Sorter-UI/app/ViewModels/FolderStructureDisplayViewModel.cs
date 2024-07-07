@@ -31,7 +31,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// <summary>
     /// Backing field for <see cref="View"/>
     /// </summary>
-    private ViewModelBase _view = new PopupMainPageViewModel(new List<FeatureGroup>());
+    private ViewModelBase _view = new PopupMainPageViewModel();
 
     /// <inheritdoc/>
     public ViewModelBase View
@@ -51,7 +51,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     public List<FeatureGroup> FeatureList
     {
         get => new();
-        set => View = new PopupMainPageViewModel(value);
+        set => View = new PopupMainPageViewModel(value, this);
     }
 
     /// <inheritdoc/>
