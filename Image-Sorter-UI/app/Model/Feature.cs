@@ -28,6 +28,7 @@ public class Feature
     /// Creates a new <see cref="Feature"/>
     /// </summary>
     /// <param name="name">The name of the feature</param>
+    /// <param name="view">The ViewModel of the related popup</param>
     public Feature(string name, ViewModelBase view)
     {
         Name = name;

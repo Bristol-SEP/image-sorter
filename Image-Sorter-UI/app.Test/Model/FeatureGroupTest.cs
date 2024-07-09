@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using app.Model;
+using app.ViewModels;
 using NUnit.Framework;
 
 namespace Image_Sorter_UI.Model;
@@ -23,7 +24,7 @@ public class FeatureGroupTest
     [Test]
     public void ShouldExpandTest()
     {
-        var feature = new Feature("test");
+        var feature = new Feature("test", new ViewModelBase());
         var featureList = new List<Feature> { feature };
         var featureGroup = new FeatureGroup("testGroup", featureList);
         Assert.That(featureGroup.ShouldExpand, Is.False);
