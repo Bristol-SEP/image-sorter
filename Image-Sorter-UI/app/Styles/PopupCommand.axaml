@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:app.Styles">
+    <Design.PreviewWith>
+        <controls:PopupCommand />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|PopupCommand">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ColumnDefinitions="30, *, 30" Background="{DynamicResource BackgroundStrong}">
+                    <Button Grid.Column="0" Background="{DynamicResource BackgroundStrong}"
+                            Classes="baseButton" IsVisible="{TemplateBinding IsFeaturePage}"
+                            HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <PathIcon Data="{StaticResource ChevronLeftRegular}" 
+                                  Height="15" Width="15"
+                                  Foreground="{DynamicResource Text}"/>
+                    </Button>
+                    <TextBlock Grid.Column="1" Text="{TemplateBinding Text}"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Foreground="{DynamicResource Text}"/>
+                    <Button Grid.Column="2" Background="{DynamicResource BackgroundStrong}"
+                            Classes="baseButton"
+                            HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <PathIcon Data="{StaticResource DismissRegular}"
+                                  Height="15" Width="15"
+                                  Foreground="{DynamicResource Text}"/>
+                    </Button>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

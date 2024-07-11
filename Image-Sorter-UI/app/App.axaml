@@ -39,6 +39,7 @@
         <StyleInclude Source="avares://app/Styles/ImageFolder.axaml" />
         <StyleInclude Source="avares://app/Styles/FolderOrdering.axaml" />
         <StyleInclude Source="avares://app/Styles/ObjectStyles.axaml" />
+        <StyleInclude Source="avares://app/Styles/PopupCommand.axaml" />
         <StyleInclude Source="avares://app/Styles/Icons.axaml" />
     </Application.Styles>
 </Application>
