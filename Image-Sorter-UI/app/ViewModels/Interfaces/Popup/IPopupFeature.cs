@@ -1,0 +1,17 @@
+using app.ViewModels.Popup;
+
+namespace app.ViewModels.Interfaces.Popup;
+
+public interface IPopupFeature
+{
+    /// <summary>
+    /// Holds a reference to <see cref="IPopupMainPageViewModel"/> so
+    /// you can go back
+    /// </summary>
+    public IPopupMainPageViewModel MainPage { get; }
+
+    /// <summary>
+    /// Returns the popup to the <see cref="PopupMainPageViewModel"/>
+    /// </summary>
+    public void Return();
+}

@@ -18,10 +18,22 @@ public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
     /// <inheritdoc/>
     public IFolderStructureDisplayViewModel? FolderView { get; }
 
+    public void BackToMain()
+    {
+        FolderView.View = this;
+    }
+
     /// <inheritdoc/>
     public void ChooseFeature(ViewModelBase view)
     {
         FolderView.View = view;
+    }
+
+    /// <inheritdoc/>
+    public void ClosePopup()
+    {
+        if(FolderView is null) return;
+        FolderView.ShowPopup = false;
     }
 
     public PopupMainPageViewModel()

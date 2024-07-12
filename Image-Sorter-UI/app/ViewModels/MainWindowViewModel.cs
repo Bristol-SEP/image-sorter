@@ -95,7 +95,7 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
         {
             CurrentPage = (ViewModelBase)FolderStructureDisplayViewModel;
             FolderStructureDisplayViewModel.FolderDirectories = new DirectoryPriorityList(FolderList);
-            FolderStructureDisplayViewModel.FeatureList = FeatureList.FeatureGroups;
+            FolderStructureDisplayViewModel.FeatureList = FeatureList;
             return;
         }
         CurrentPage = (ViewModelBase)AddImageDisplayViewModel;

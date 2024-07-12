@@ -17,13 +17,13 @@ public interface IFolderStructureDisplayViewModel
     /// <summary>
     /// a boolean which decides whether to show the popup page
     /// </summary>
-    public bool ShowPopup { get; }
+    public bool ShowPopup { get; set; }
     
    /// <summary>
    /// A list of <see cref="FeatureGroup"/> used in folder adding
    /// within the <see cref="FolderStructureDisplayView"/>
    /// </summary>
-   public List<FeatureGroup> FeatureList { get; set; }
+   public FeatureList FeatureList { get; set; }
     
     /// <summary>
     /// A <see cref="DirectoryPriorityList"/> used to find the directory levels

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels.Interfaces;
@@ -44,14 +43,18 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     public bool ShowPopup
     {
         get => _showPopup;
-        private set => this.RaiseAndSetIfChanged(ref _showPopup, value);
+        set => this.RaiseAndSetIfChanged(ref _showPopup, value);
     }
 
     /// <inheritdoc/>
-    public List<FeatureGroup> FeatureList
+    public FeatureList FeatureList
     {
         get => new();
-        set => View = new PopupMainPageViewModel(value, this);
+        set
+        {
+            value.MainViewContext(this);
+            View = (ViewModelBase)value.MainView;   
+        }
     }
 
     /// <inheritdoc/>

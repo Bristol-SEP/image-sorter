@@ -16,10 +16,20 @@ public interface IPopupMainPageViewModel
     /// Holds a reference to <see cref="FolderStructureDisplayViewModel"/>
     /// </summary>
     public IFolderStructureDisplayViewModel FolderView { get; }
-
+    
     /// <summary>
-    /// Changes the <see cref="View"/> to that of the
+    /// Returns the <see cref="ContextView"/> back to the <see cref="PopupMainPageView"/>
+    /// </summary>
+    public void BackToMain();
+    
+    /// <summary>
+    /// Changes the popup to that of the
     /// selected feature
     /// </summary>
     public void ChooseFeature(ViewModelBase view);
+
+    /// <summary>
+    /// Makes the popup invisible
+    /// </summary>
+    public void ClosePopup();
 }
