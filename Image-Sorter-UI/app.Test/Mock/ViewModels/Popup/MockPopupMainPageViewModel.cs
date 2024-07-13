@@ -11,7 +11,17 @@ public class MockPopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
     private List<Feature> _featureGroup = new List<Feature>();
     public FeatureGroup FeatureGroup { get; } = new("test", new List<Feature>());
     public IFolderStructureDisplayViewModel FolderView { get; } = new MockFolderStructureDisplayViewModel();
+    public void BackToMain()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void ChooseFeature(ViewModelBase view)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ClosePopup()
     {
         throw new System.NotImplementedException();
     }

@@ -1,6 +1,8 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:app.Styles">
+        xmlns:vm="clr-namespace:app.ViewModels.Interfaces.Popup"
+        xmlns:controls="using:app.Styles"
+        x:DataType="vm:IPopupFeature">
     <Design.PreviewWith>
         <controls:PopupCommand />
     </Design.PreviewWith>
@@ -12,6 +14,7 @@
                 <Grid ColumnDefinitions="30, *, 30" Background="{DynamicResource BackgroundStrong}">
                     <Button Grid.Column="0" Background="{DynamicResource BackgroundStrong}"
                             Classes="baseButton" IsVisible="{TemplateBinding IsFeaturePage}"
+                            Command="{Binding Return}"
                             HorizontalAlignment="Left" VerticalAlignment="Center">
                         <PathIcon Data="{StaticResource ChevronLeftRegular}" 
                                   Height="15" Width="15"

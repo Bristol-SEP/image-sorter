@@ -20,12 +20,14 @@ public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
 
     public void BackToMain()
     {
+        if (FolderView is null) throw new NullReferenceException();
         FolderView.View = this;
     }
 
     /// <inheritdoc/>
     public void ChooseFeature(ViewModelBase view)
     {
+        if (FolderView is null) throw new NullReferenceException();
         FolderView.View = view;
     }
 
