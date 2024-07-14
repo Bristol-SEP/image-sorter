@@ -8,10 +8,11 @@ namespace app.Model;
 
 public class FeatureList
 {
+    //TODO resolve the null reference occuring on this page
     /// <summary>
     /// Holds a reference to the <see cref="PopupMainPageViewModel"/>
     /// </summary>
-    public IPopupMainPageViewModel MainView { get; private set; } = new PopupMainPageViewModel();
+    public IPopupMainPageViewModel MainView { get; private set; }
     
     /// <summary>
     /// A list of <see cref="FeatureGroup"/> that can be used
@@ -31,6 +32,7 @@ public class FeatureList
         {
             rowing
         };
+        MainView = new PopupMainPageViewModel(FeatureGroups, new FolderStructureDisplayViewModel());
     }
 
     /// <summary>
@@ -40,5 +42,12 @@ public class FeatureList
     public void MainViewContext(IFolderStructureDisplayViewModel folderViewModel)
     {
         MainView = new PopupMainPageViewModel(FeatureGroups, folderViewModel);
+        var rowingFeatures = new List<Feature>
+        {
+            new("Boat Code", new PopupBoatNumberViewModel(MainView)),
+            new("Bow Number", new PopupBowNumberViewModel(MainView))
+        };
+        var rowing = new FeatureGroup("Rowing", rowingFeatures);
+        FeatureGroups.Add(rowing);
     }
 }

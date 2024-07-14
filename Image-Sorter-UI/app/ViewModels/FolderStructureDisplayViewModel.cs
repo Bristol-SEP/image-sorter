@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using app.Model;
 using app.ViewModels.Interfaces;
-using app.ViewModels.Popup;
 using ReactiveUI;
 
 namespace app.ViewModels;
@@ -26,11 +25,11 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// to be called
     /// </summary>
     private IMainWindowViewModel? MainModel { get; set; }
-    
+
     /// <summary>
     /// Backing field for <see cref="View"/>
     /// </summary>
-    private ViewModelBase _view = new PopupMainPageViewModel();
+    private ViewModelBase _view = new();
 
     /// <inheritdoc/>
     public ViewModelBase View
