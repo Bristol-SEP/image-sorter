@@ -2,7 +2,7 @@ using app.ViewModels.Interfaces.Popup;
 
 namespace app.ViewModels.Popup;
 
-public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel, IPopupFeature
+public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel, IPopupFeature, INavigationControl
 {
     /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
@@ -17,6 +17,12 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     public void Return()
     {
         MainPage.BackToMain();
+    }
+
+    public void Close()
+    {
+        Return();
+        MainPage.ClosePopup();
     }
 
     public PopupBoatNumberViewModel(IPopupMainPageViewModel mainPage)

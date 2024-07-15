@@ -10,7 +10,7 @@ namespace app.ViewModels.Popup;
 /// <summary>
 /// The starting page of the popup
 /// </summary>
-public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
+public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel, INavigationControl
 {
     /// <inheritdoc/>
     public List<Feature> FeatureGroup { get; } = new();
@@ -47,5 +47,15 @@ public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
             FeatureGroup = featureGroup.Features.Where(feature => feature.Selected).ToList();
         }
         FolderView = view;
+    }
+
+    public void Return()
+    {
+        throw new NotSupportedException();
+    }
+
+    public void Close()
+    {
+        ClosePopup();
     }
 }
