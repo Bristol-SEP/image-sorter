@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
 using app.ViewModels.Interfaces.Popup;
@@ -8,7 +9,6 @@ namespace app.Model;
 
 public class FeatureList
 {
-    //TODO resolve the null reference occuring on this page
     /// <summary>
     /// Holds a reference to the <see cref="PopupMainPageViewModel"/>
     /// </summary>
@@ -42,12 +42,11 @@ public class FeatureList
     public void MainViewContext(IFolderStructureDisplayViewModel folderViewModel)
     {
         MainView = new PopupMainPageViewModel(FeatureGroups, folderViewModel);
-        var rowingFeatures = new List<Feature>
+        foreach (var view in FeatureGroups.SelectMany(group => 
+                     group.Features.Select(feature => 
+                         (IPopupFeature)feature.View)))
         {
-            new("Boat Code", new PopupBoatNumberViewModel(MainView)),
-            new("Bow Number", new PopupBowNumberViewModel(MainView))
-        };
-        var rowing = new FeatureGroup("Rowing", rowingFeatures);
-        FeatureGroups.Add(rowing);
+            view.SetContext(MainView);
+        }
     }
 }

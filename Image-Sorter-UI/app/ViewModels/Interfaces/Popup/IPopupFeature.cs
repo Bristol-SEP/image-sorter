@@ -11,6 +11,12 @@ public interface IPopupFeature
     public IPopupMainPageViewModel MainPage { get; }
 
     /// <summary>
+    /// Sets the <see cref="MainPage"/>
+    /// </summary>
+    /// <param name="mainPage">An instance of <see cref="IPopupMainPageViewModel"/></param>
+    public void SetContext(IPopupMainPageViewModel mainPage);
+
+    /// <summary>
     /// Returns the popup to the <see cref="PopupMainPageViewModel"/>
     /// </summary>
     public void Return();
