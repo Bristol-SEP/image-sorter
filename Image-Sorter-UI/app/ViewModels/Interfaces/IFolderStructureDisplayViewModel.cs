@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using app.Model;
 using app.Views;
 
@@ -18,6 +19,12 @@ public interface IFolderStructureDisplayViewModel
     /// a boolean which decides whether to show the popup page
     /// </summary>
     public bool ShowPopup { get; set; }
+    
+    /// <summary>
+    /// A <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="DirectoryItem"/>
+    /// who are to have a subfolder for a feature added
+    /// </summary>
+    public ObservableCollection<DirectoryItem> FeatureFolderList { get; }
     
    /// <summary>
    /// A list of <see cref="FeatureGroup"/> used in folder adding

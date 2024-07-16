@@ -14,7 +14,7 @@
                        VerticalAlignment="Center" HorizontalAlignment="Left"
                        Foreground="{DynamicResource Text}" 
                        Padding="3,0"/>
-            <TextBlock Grid.Column="1" Text="The folders name"
+            <TextBlock Grid.Column="1" Text="{Binding FolderList}"
                        VerticalAlignment="Center" HorizontalAlignment="Left"
                        Foreground="{DynamicResource Text}" />
         </Grid>

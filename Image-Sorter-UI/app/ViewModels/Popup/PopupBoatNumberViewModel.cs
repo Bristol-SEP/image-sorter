@@ -1,9 +1,23 @@
+using System.Linq;
 using app.ViewModels.Interfaces.Popup;
 
 namespace app.ViewModels.Popup;
 
 public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel, IPopupFeature, INavigationControl
 {
+    /// <inheritdoc/>
+    public string FolderList
+    {
+        get
+        {
+            var folders = MainPage.FolderView.FeatureFolderList.Aggregate
+                ("", (current, folder) 
+                    => current + (folder.Folder.Name + ", "));
+            folders = folders.Length <= 2 ? folders : folders.Remove(folders.Length - 2);
+            return folders;
+        }
+    }
+
     /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
 
@@ -29,4 +43,5 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     {
         MainPage = mainPage;
     }
+
 }

@@ -31,6 +31,11 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// </summary>
     private ViewModelBase _view = new();
 
+    /// <summary>
+    /// Backing field for <see cref="FeatureFolderList"/>
+    /// </summary>
+    private ObservableCollection<DirectoryItem> _featureFolderList = new();
+    
     /// <inheritdoc/>
     public ViewModelBase View
     {
@@ -43,6 +48,13 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     {
         get => _showPopup;
         set => this.RaiseAndSetIfChanged(ref _showPopup, value);
+    }
+
+    /// <inheritdoc/>
+    public ObservableCollection<DirectoryItem> FeatureFolderList
+    {
+        get => _featureFolderList;
+        private set => this.RaiseAndSetIfChanged(ref _featureFolderList, value);
     }
 
     /// <inheritdoc/>
@@ -80,6 +92,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     public void AddFeature(DirectoryItem item)
     {
         ShowPopup = true;
+        FeatureFolderList.Add(item);
         FolderDirectories.AddFeature(item);
     }
 }
