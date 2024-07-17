@@ -7,19 +7,29 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IPopupBoatNumberViewModel"
              x:Class="app.Views.Popup.PopupBoatNumberView">
-    <Grid RowDefinitions="Auto, *, *, *">
-        <style:PopupCommand Grid.Row="0" Text="Boat Code" IsFeaturePage="True" DataContext="{Binding}" />
-        <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto *">
-            <TextBlock Grid.Column="0" Text="Affected Folders:"
-                       VerticalAlignment="Center" HorizontalAlignment="Left"
-                       Foreground="{DynamicResource Text}" 
-                       Padding="3,0"/>
-            <TextBlock Grid.Column="1" Text="{Binding FolderList}"
-                       VerticalAlignment="Center" HorizontalAlignment="Left"
-                       Foreground="{DynamicResource Text}" />
-        </Grid>
-        <CheckBox Grid.Row="2" Margin="3,0" Content="Implement for all folders on this level" Classes="baseCheckBox" />
-        <Grid Grid.Row="3" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
+    <Grid RowDefinitions="*, Auto">
+        <StackPanel Grid.Row="0">
+            <style:PopupCommand Text="Boat Code" IsFeaturePage="True" DataContext="{Binding}" />
+            <Grid ColumnDefinitions="Auto, *">
+                <TextBlock Grid.Column="0" Text="Folder Name:"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}"
+                           Padding="3,0"/>
+                <TextBox Grid.Column="1" Watermark="Boat Code"
+                         Classes="baseTextBox"/>
+            </Grid>
+            <Grid ColumnDefinitions="Auto, Auto *">
+                <TextBlock Grid.Column="0" Text="Affected Folders:"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}"
+                           Padding="3,0" />
+                <TextBlock Grid.Column="1" Text="{Binding FolderList}"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}" />
+            </Grid>
+            <CheckBox Margin="3,0" Content="Implement for all folders on this level" Classes="baseCheckBox" />
+        </StackPanel>
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
             <Button Grid.Column="1" Classes="baseButton" Content="Add Feature" />
         </Grid>
     </Grid>
