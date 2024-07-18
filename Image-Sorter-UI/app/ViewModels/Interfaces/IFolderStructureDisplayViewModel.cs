@@ -24,7 +24,7 @@ public interface IFolderStructureDisplayViewModel
     /// A <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="DirectoryItem"/>
     /// who are to have a subfolder for a feature added
     /// </summary>
-    public ObservableCollection<DirectoryItem> FeatureFolderList { get; }
+    public ObservableCollection<DirectoryItem> FeatureFolderList { get; set; }
     
    /// <summary>
    /// A list of <see cref="FeatureGroup"/> used in folder adding

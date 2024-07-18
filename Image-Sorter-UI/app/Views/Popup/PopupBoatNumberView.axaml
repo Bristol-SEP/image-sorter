@@ -27,7 +27,9 @@
                            VerticalAlignment="Center" HorizontalAlignment="Left"
                            Foreground="{DynamicResource Text}" />
             </Grid>
-            <CheckBox Margin="3,0" Content="Implement for all folders on this level" Classes="baseCheckBox" />
+            <CheckBox Margin="3,0" Content="Implement for all folders on this level" 
+                      Classes="baseCheckBox"
+                      Command="{Binding AddFolderLevel}"/>
         </StackPanel>
         <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
             <Button Grid.Column="1" Classes="baseButton" Content="Add Feature" />

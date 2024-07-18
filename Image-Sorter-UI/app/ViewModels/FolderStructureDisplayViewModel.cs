@@ -54,7 +54,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     public ObservableCollection<DirectoryItem> FeatureFolderList
     {
         get => _featureFolderList;
-        private set => this.RaiseAndSetIfChanged(ref _featureFolderList, value);
+        set => this.RaiseAndSetIfChanged(ref _featureFolderList, value);
     }
 
     /// <inheritdoc/>
