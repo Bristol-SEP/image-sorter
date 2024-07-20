@@ -92,7 +92,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     public void AddFeature(DirectoryItem item)
     {
         ShowPopup = true;
-        FeatureFolderList.Add(item);
+        FeatureFolderList = new ObservableCollection<DirectoryItem>() { item };
         FolderDirectories.AddFeature(item);
     }
 }

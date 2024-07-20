@@ -21,22 +21,24 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     private ObservableCollection<DirectoryItem> GetAllFoldersOfLevel(DirectoryItem item,
         DirectoryPriorityList dictionary)
     {
-        var list = dictionary.FolderDictionary;
-        var start = list.IndexOf(item);
-        var level = item.Level;
         var folders = new ObservableCollection<DirectoryItem>();
-        while (list[start].Level >= level)
+        var level = item.Level;
+        var levelBreak = false;
+        var found = false;
+        foreach (var dictionaryItem in dictionary.FolderDictionary)
         {
-            start--;
-        }
-        start++;
-        while (list[start].Level >= level)
-        {
-            if (list[start].Level == level)
+            if (dictionaryItem.Level == level)
             {
-                folders.Add(list[start]);
+                folders = levelBreak ? new ObservableCollection<DirectoryItem>() : folders;
+                folders.Add(dictionaryItem);
+                if (dictionaryItem == item) found = true;
+                levelBreak = false;
             }
-            start++;
+            else if (dictionaryItem.Level < level)
+            {
+                if (found) break;
+                levelBreak = true;
+            }
         }
         return folders;
     }   
