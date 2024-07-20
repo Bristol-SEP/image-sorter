@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
+using app.ViewModels.Interfaces;
 using app.ViewModels.Interfaces.Popup;
 using ReactiveUI;
 
@@ -41,31 +42,52 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
             }
         }
         return folders;
-    }   
+    }
+
+    /// <summary>
+    /// Takes an <see cref="ObservableCollection{T}">ObservableCollection</see>
+    /// and converts it into a string of all the present items
+    /// </summary>
+    /// <param name="list">The items to be turned into a continuous string</param>
+    /// <returns>A string of all the present items</returns>
+    private string ListToString(ObservableCollection<DirectoryItem> list)
+    {
+        var folders = list.Aggregate
+        ("", (current, folder) 
+            => current + (folder.Folder.Name + ", "));
+        folders = folders.Length <= 2 ? folders : folders.Remove(folders.Length - 2);
+        return folders;
+    }
+
+    /// <summary>
+    /// backing field for <see cref="FolderList"/>
+    /// </summary>
+    private string _folderList = "Error";
+
+    /// <summary>
+    /// Holds an instance of <see cref="IFolderStructureDisplayViewModel.FolderDirectories"/>
+    /// </summary>
+    private ObservableCollection<DirectoryItem> FeatureFolderList
+    {
+        get => MainPage.FolderView.FeatureFolderList;
+        set => FolderList = ListToString(value);
+    }
     
-    //TODO have FeatureFolderList be a private variable and implement so FolderList will update
-    // when there is a change
     /// <inheritdoc/>
     public string FolderList
     {
-        get
-        {
-            var folders = MainPage.FolderView.FeatureFolderList.Aggregate
-                ("", (current, folder) 
-                    => current + (folder.Folder.Name + ", "));
-            folders = folders.Length <= 2 ? folders : folders.Remove(folders.Length - 2);
-            return folders;
-        }
+        get => _folderList;
+        private set => this.RaiseAndSetIfChanged(ref _folderList, value);
     }
 
     /// <inheritdoc/>
     public void AddFolderLevel()
     {
-        var folders = MainPage.FolderView.FeatureFolderList;
+        var folders = FeatureFolderList;
         folders = folders.Count > 1 ? 
             new ObservableCollection<DirectoryItem>() { folders[0] } : 
             GetAllFoldersOfLevel(folders[0], MainPage.FolderView.FolderDirectories);
-        MainPage.FolderView.FeatureFolderList = folders;
+        FeatureFolderList = folders;
     }
 
     /// <inheritdoc/>
