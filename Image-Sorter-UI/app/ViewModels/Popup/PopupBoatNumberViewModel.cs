@@ -65,7 +65,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private string _folderList = "Error";
 
-    private DirectoryItem CoreFolder;
+    private DirectoryItem _coreFolder;
 
     private ObservableCollection<DirectoryItem> _featureFolderList = new();
     /// <summary>
@@ -78,7 +78,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         {
             if (_featureFolderList.Any()) return _featureFolderList;
             var ffl = MainPage.FolderView.FeatureFolderList;
-            CoreFolder = ffl[0];
+            _coreFolder = ffl[0];
             return ffl;
         }
         set
@@ -99,13 +99,8 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     public void AddFolderLevel()
     {
         FeatureFolderList = FeatureFolderList.Count > 1 ? 
-            new ObservableCollection<DirectoryItem>() { CoreFolder } : 
-            GetAllFoldersOfLevel(CoreFolder, MainPage.FolderView.FolderDirectories);
-        foreach (var folder in FeatureFolderList)
-        {
-           Console.Write(folder.Folder.Name+","); 
-        }
-        Console.WriteLine();
+            new ObservableCollection<DirectoryItem>() { _coreFolder } : 
+            GetAllFoldersOfLevel(_coreFolder, MainPage.FolderView.FolderDirectories);
     }
 
     /// <inheritdoc/>
@@ -118,6 +113,12 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     }
 
     /// <inheritdoc/>
+    public void AddFeature()
+    {
+        Close();
+    }
+
+    /// <inheritdoc/>
     public void Return()
     {
         FeatureFolderList = new ObservableCollection<DirectoryItem>();
@@ -125,6 +126,7 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
         MainPage.BackToMain();
     }
 
+    /// <inheritdoc/>
     public void Close()
     {
         Return();

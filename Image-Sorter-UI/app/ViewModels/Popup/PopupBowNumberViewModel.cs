@@ -13,6 +13,11 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         MainPage = mainPage;
     }
 
+    public void AddFeature()
+    {
+        throw new System.NotImplementedException();
+    }
+
     /// <inheritdoc/>
     public void Return()
     {
