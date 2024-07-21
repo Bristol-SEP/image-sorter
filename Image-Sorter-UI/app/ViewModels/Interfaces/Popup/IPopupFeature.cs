@@ -1,9 +1,16 @@
+using app.Model.Interfaces;
 using app.ViewModels.Popup;
 
 namespace app.ViewModels.Interfaces.Popup;
 
 public interface IPopupFeature
 {
+    /// <summary>
+    /// Holds an instance of <see cref="IFeatureFolderDetails"/>
+    /// so when exited the inputted details may be compacted into one model
+    /// </summary>
+    public IFeatureFolderDetails FeatureModel { get; }
+    
     /// <summary>
     /// Holds a reference to <see cref="IPopupMainPageViewModel"/> so
     /// you can go back

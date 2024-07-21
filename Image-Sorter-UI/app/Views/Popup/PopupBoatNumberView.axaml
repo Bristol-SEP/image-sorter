@@ -3,7 +3,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:app.ViewModels.Interfaces.Popup"
-             xmlns:page="clr-namespace:app.ViewModels.Popup"
              xmlns:style="clr-namespace:app.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IPopupBoatNumberViewModel"
@@ -11,14 +10,6 @@
     <Grid RowDefinitions="*, Auto">
         <StackPanel Grid.Row="0">
             <style:PopupCommand Text="Boat Code" IsFeaturePage="True" DataContext="{Binding}" />
-            <Grid ColumnDefinitions="Auto, *">
-                <TextBlock Grid.Column="0" Text="Folder Name:"
-                           VerticalAlignment="Center" HorizontalAlignment="Left"
-                           Foreground="{DynamicResource Text}"
-                           Padding="3,0"/>
-                <TextBox Grid.Column="1" Watermark="Boat Code"
-                         Classes="baseTextBox"/>
-            </Grid>
             <Grid ColumnDefinitions="Auto, Auto *">
                 <TextBlock Grid.Column="0" Text="Affected Folders:"
                            VerticalAlignment="Center" HorizontalAlignment="Left"

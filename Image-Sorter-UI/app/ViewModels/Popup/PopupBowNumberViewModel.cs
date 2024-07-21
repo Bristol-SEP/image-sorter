@@ -1,9 +1,13 @@
+using app.Model.Interfaces;
 using app.ViewModels.Interfaces.Popup;
 
 namespace app.ViewModels.Popup;
 
 public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, IPopupFeature, INavigationControl
 {
+    /// <inheritdoc/>
+    public IFeatureFolderDetails FeatureModel { get; }
+
     /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
 

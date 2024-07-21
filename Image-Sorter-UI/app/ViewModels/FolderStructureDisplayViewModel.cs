@@ -89,6 +89,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         MainModel.ToggleView();
     }
 
+    /// <inheritdoc/>
     public void AddFeature(DirectoryItem item)
     {
         ShowPopup = true;

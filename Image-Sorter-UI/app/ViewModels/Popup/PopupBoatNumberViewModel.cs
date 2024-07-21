@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
+using app.Model.Interfaces;
 using app.ViewModels.Interfaces;
 using app.ViewModels.Interfaces.Popup;
 using ReactiveUI;
@@ -73,7 +74,6 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private ObservableCollection<DirectoryItem> FeatureFolderList
     {
-        // get => !_featureFolderList.Any() ? MainPage.FolderView.FeatureFolderList : _featureFolderList;
         get
         {
             if (_featureFolderList.Any()) return _featureFolderList;
@@ -104,6 +104,9 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     }
 
     /// <inheritdoc/>
+    public IFeatureFolderDetails FeatureModel => new BoatNumberFeature();
+
+    /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
 
     /// <inheritdoc/>
@@ -115,6 +118,7 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     /// <inheritdoc/>
     public void AddFeature()
     {
+        FeatureModel.AddAffectedFolders(FeatureFolderList);
         Close();
     }
 
