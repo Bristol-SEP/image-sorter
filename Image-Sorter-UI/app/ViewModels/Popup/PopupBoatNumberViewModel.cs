@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
@@ -50,7 +51,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     /// <param name="list">The items to be turned into a continuous string</param>
     /// <returns>A string of all the present items</returns>
-    private string ListToString(ObservableCollection<DirectoryItem> list)
+    private string ListToString(IEnumerable<DirectoryItem> list)
     {
         var folders = list.Aggregate
         ("", (current, folder) 
@@ -64,30 +65,47 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private string _folderList = "Error";
 
+    private DirectoryItem CoreFolder;
+
+    private ObservableCollection<DirectoryItem> _featureFolderList = new();
     /// <summary>
     /// Holds an instance of <see cref="IFolderStructureDisplayViewModel.FolderDirectories"/>
     /// </summary>
     private ObservableCollection<DirectoryItem> FeatureFolderList
     {
-        get => MainPage.FolderView.FeatureFolderList;
-        set => FolderList = ListToString(value);
+        // get => !_featureFolderList.Any() ? MainPage.FolderView.FeatureFolderList : _featureFolderList;
+        get
+        {
+            if (_featureFolderList.Any()) return _featureFolderList;
+            var ffl = MainPage.FolderView.FeatureFolderList;
+            CoreFolder = ffl[0];
+            return ffl;
+        }
+        set
+        {
+            FolderList = ListToString(value);
+            this.RaiseAndSetIfChanged(ref _featureFolderList, value);
+        }
     }
     
     /// <inheritdoc/>
     public string FolderList
     {
-        get => _folderList;
+get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderList) : _folderList;
         private set => this.RaiseAndSetIfChanged(ref _folderList, value);
     }
 
     /// <inheritdoc/>
     public void AddFolderLevel()
     {
-        var folders = FeatureFolderList;
-        folders = folders.Count > 1 ? 
-            new ObservableCollection<DirectoryItem>() { folders[0] } : 
-            GetAllFoldersOfLevel(folders[0], MainPage.FolderView.FolderDirectories);
-        FeatureFolderList = folders;
+        FeatureFolderList = FeatureFolderList.Count > 1 ? 
+            new ObservableCollection<DirectoryItem>() { CoreFolder } : 
+            GetAllFoldersOfLevel(CoreFolder, MainPage.FolderView.FolderDirectories);
+        foreach (var folder in FeatureFolderList)
+        {
+           Console.Write(folder.Folder.Name+","); 
+        }
+        Console.WriteLine();
     }
 
     /// <inheritdoc/>
@@ -102,6 +120,8 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <inheritdoc/>
     public void Return()
     {
+        FeatureFolderList = new ObservableCollection<DirectoryItem>();
+        FolderList = "Error";
         MainPage.BackToMain();
     }
 
