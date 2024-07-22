@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Python.Runtime;
 
 namespace app.Models;
@@ -12,36 +13,83 @@ public class RunPython
       // TODO this is where the issue is coming from, cannot find correct DLL and how to package it 
       // so can run on others computers
       // see app.Test/Models/RunPythonTest this is a useful way of running this script in isolation
-      Runtime.PythonDLL = @"C:\usr\local\Cellar\python@3.11\3.11.9\Frameworks\Python.framework\Versions\3.11\lib\libpython3.11.dylib";
+      // Runtime.PythonDLL = @"C:\Python312\python312.dll";
+      // Console.WriteLine("here start");
 
-      // Initialize engine
-      PythonEngine.Initialize();
-      
-      // Create a scope for the Python code
-      using (Py.GIL())
-      {
-         try
-         {
-            string pythonScriptPath = @"~/Documents/image-sorter/Image-Sorter-UI/app.Test/Assets";
-            PythonEngine.Exec($"import sys; sys.path.append(r'{pythonScriptPath}')");
+      // Ensure the Python DLL path is correct
+      string pythonDllPath = @"C:\Python312\python312.dll";
+      if (!File.Exists(pythonDllPath)){
+         Console.WriteLine($"Python DLL not found at {pythonDllPath}");
+         return false;
+      }
 
-            // Import python script
-            dynamic pyScript = Py.Import("testPython");
+      Runtime.PythonDLL = pythonDllPath;
+      Console.WriteLine("Python DLL path set");
 
-            // call function from python script
-            dynamic result = pyScript.noParamTest();
+      // Set the Python script path
+      string pythonScriptPath = @"C:\Users\jackw\Documents\Coding Projects\image-sorter\Image-Sorter-UI\app.Test\Assets";
+      if (!Directory.Exists(pythonScriptPath)){
+         Console.WriteLine($"Python script directory not found at {pythonScriptPath}");
+         return false;
+      }
 
-            // Print result
-            Console.WriteLine($"Result from Python script: {result}");
-         }
-         catch (Exception e)
-         {
-            Console.WriteLine(($"An error occurred: {e.Message}"));
-         }
+
+
+      try{
+         // Initialize engine
+         PythonEngine.Initialize();
+         Console.WriteLine("Python engine initialized");
          
+         // Create a scope for the Python code
+         using (Py.GIL())
+         {
+            try
+            {
+               PythonEngine.Exec($"import sys; sys.path.append(r'{pythonScriptPath}')");
+               Console.WriteLine($"Python script path appended: {pythonScriptPath}");
+
+               // Import python script
+               dynamic pyScript = Py.Import("testPython");
+               Console.WriteLine("Python script imported");
+
+               // call function from python script
+               int param1 = 1;
+               int param2 = 2;
+
+               int[] parameters = {1,2,3};
+
+               dynamic result = pyScript.noParamTest();
+               Console.WriteLine($"Result from Python script: {result}");
+
+               result = pyScript.paramTest(param1, param2);
+               Console.WriteLine($"Result from Python script: {result}");
+
+               result = pyScript.manyParamTest(parameters);
+               Console.WriteLine($"Result from Python script: {result}");
+
+
+
+            }
+            catch (Exception e)
+            {
+               Console.WriteLine($"An error occurred after initalisation: {e.Message}");
+               return false;
+
+            }
+
+      }
+      }catch (Exception e){
+         Console.WriteLine($"An error occurred before initialisation: {e.Message}");
+         return false;
+      }
+
+      finally{
          // Shutdown the Python engine
          PythonEngine.Shutdown();
-         return true;
+         Console.WriteLine("Python engine shutdown");
       }
+         
+      return true;
+         
    }
 }
