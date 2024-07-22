@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.Model;
@@ -65,4 +66,11 @@ public interface IFolderStructureDisplayViewModel
     /// <param name="featureModel">An instance of a model to be unpacked and converted into
     /// <see cref="FeatureFolderDetailsList"/></param>
     public void UpdateFeatureFolderList(IFeatureFolderDetails featureModel);
+
+    /// <summary>
+    /// Removes the feature from the <see cref="FolderDirectories"/>
+    /// and removes the parent directory from the <see cref="FeatureFolderDetailsList"/>
+    /// </summary>
+    /// <param name="folder">The folder to be removed</param>
+    public void RemoveFeature(DirectoryItem folder);
 }

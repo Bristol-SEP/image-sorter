@@ -62,7 +62,7 @@ public class DirectoryPriorityList: ViewModelBase
             FolderDictionary.IndexOf(feature) <= pos).ToList();
         var selectFolder = new SelectFolders(featureFolder.FolderName, firstHalf[pos].Folder.Path);
         var level = firstHalf[pos].Level + 1;
-        var featureItem = new DirectoryItem(selectFolder, firstHalf[pos].Level + 1);
+        var featureItem = new DirectoryItem(selectFolder, firstHalf[pos].Level + 1, true);
         firstHalf.Add(featureItem);
         for (var i = pos + 1; i < FolderDictionary.Count; i++)
         {

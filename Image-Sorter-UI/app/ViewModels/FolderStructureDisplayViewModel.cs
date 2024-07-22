@@ -117,4 +117,12 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         // update the UI
         FolderDirectories.AddFeature(featureModel);
     }
+
+    /// <inheritdoc/>
+    public void RemoveFeature(DirectoryItem folder)
+    {
+        Console.WriteLine(folder.Folder.Path);
+        // remove folder from list
+        // remove parent folder from affected folders in model
+    }
 }

@@ -15,10 +15,23 @@ public class DirectoryItem
     /// </summary>
     public int Level { get; private set; }
 
+    /// <summary>
+    /// Is true if the folder is a feature and so has the ability to be deleted
+    /// </summary>
+    public bool IsFeature { get; }
+
     public DirectoryItem(SelectFolders folder, int level)
     {
         Folder = folder;
         Level = level;
+        IsFeature = false;
+    }
+
+    public DirectoryItem(SelectFolders folder, int level, bool isFeature)
+    {
+        Folder = folder;
+        Level = level;
+        IsFeature = isFeature;
     }
 
     /// <summary>

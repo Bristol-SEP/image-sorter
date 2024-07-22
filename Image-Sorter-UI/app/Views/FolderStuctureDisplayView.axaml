@@ -60,17 +60,29 @@
                             <DataTemplate>
                                 <Grid RowDefinitions="*, Auto" Height="50"
                                       Margin="{Binding Level, Converter={StaticResource IndentConverter}}">
-                                    <styles:FolderOrdering Grid.Row="0" Text="{Binding Folder.Name}" />
+                                    <Panel Grid.Row="0">
+                                        <styles:FolderOrdering Text="{Binding Folder.Name}" />
+                                        <Button IsVisible="{Binding  IsFeature}"
+                                            Command="{Binding $parent[ItemsControl].((vm:IFolderStructureDisplayViewModel)DataContext).RemoveFeature, FallbackValue={Binding}}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Right"
+                                            Margin="0,2,5,2"
+                                            Foreground="{StaticResource Text}"
+                                            Background="{StaticResource BackgroundWeak}">
+                                            <PathIcon Data="{StaticResource DeleteRegular}" />
+                                        </Button>
+                                    </Panel>
                                     <Button Grid.Row="1" HorizontalAlignment="Stretch"
                                             Padding="0" Margin="0"
                                             CornerRadius="5"
                                             HorizontalContentAlignment="Center"
+                                            IsVisible="{Binding !IsFeature}"
                                             Command="{Binding $parent[ItemsControl].((vm:IFolderStructureDisplayViewModel)DataContext).AddFeature, FallbackValue={Binding}}"
                                             CommandParameter="{Binding}"
                                             Foreground="{DynamicResource Text}"
                                             Background="{DynamicResource BackgroundStrong}">
                                         <PathIcon Data="{StaticResource AddRegular}"
-                                                  Height="10" Width="10" Margin="4"/>
+                                                  Height="10" Width="10" Margin="4" />
                                     </Button>
                                 </Grid>
                             </DataTemplate>
@@ -86,10 +98,10 @@
         <!-- Popup -->
         <Panel Background="{DynamicResource BackgroundWeak}"
                IsVisible="{Binding  ShowPopup}"
-               Height="300" Width="300"> 
-        <TransitioningContentControl HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch"
-                                     Content="{Binding View}" />
+               Height="300" Width="300">
+            <TransitioningContentControl HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Stretch"
+                                         Content="{Binding View}" />
         </Panel>
     </Panel>
 
