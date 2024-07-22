@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.Views;
 
@@ -10,6 +11,11 @@ public interface IFeatureFolderDetails
     /// UI
     /// </summary>
     public string FolderName { get; }
+    
+    /// <summary>
+    /// Shows which features scripts are to be run when button clicked
+    /// </summary>
+    public bool Active { get; }
     
     /// <summary>
     /// The folders where the features subfolders will be placed

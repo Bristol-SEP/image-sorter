@@ -67,6 +67,11 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     private string _folderList = "Error";
 
     private DirectoryItem _coreFolder;
+    
+    /// <summary>
+    /// Backing field for <see cref="FeatureModel"/>
+    /// </summary>
+    private IFeatureFolderDetails _featureModel = new BoatNumberFeature();
 
     private ObservableCollection<DirectoryItem> _featureFolderList = new();
     /// <summary>
@@ -104,7 +109,11 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     }
 
     /// <inheritdoc/>
-    public IFeatureFolderDetails FeatureModel => new BoatNumberFeature();
+    public IFeatureFolderDetails FeatureModel
+    {
+        get => _featureModel;
+        private set => this.RaiseAndSetIfChanged(ref _featureModel, value);
+    }
 
     /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
@@ -119,6 +128,7 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     public void AddFeature()
     {
         FeatureModel.AddAffectedFolders(FeatureFolderList);
+        MainPage.FolderView.UpdateFeatureFolderList(FeatureModel);
         Close();
     }
 

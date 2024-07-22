@@ -62,6 +62,7 @@ public interface IFolderStructureDisplayViewModel
     /// A function to update <see cref="FeatureFolderDetailsList"/>
     /// and the UI along with it
     /// </summary>
-    /// <param name="featureModel"></param>
+    /// <param name="featureModel">An instance of a model to be unpacked and converted into
+    /// <see cref="FeatureFolderDetailsList"/></param>
     public void UpdateFeatureFolderList(IFeatureFolderDetails featureModel);
 }

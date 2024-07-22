@@ -13,11 +13,19 @@ public class DirectoryItem
     /// <summary>
     /// The level within the folder structure (each subfolder +1)
     /// </summary>
-    public int Level { get; }
+    public int Level { get; private set; }
 
     public DirectoryItem(SelectFolders folder, int level)
     {
         Folder = folder;
         Level = level;
+    }
+
+    /// <summary>
+    /// Adds 1 to the level of the item
+    /// </summary>
+    public void IndentFolder()
+    {
+        Level++;
     }
 }

@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using app.Model.Interfaces;
 using app.ViewModels;
+using DynamicData;
 using ReactiveUI;
 
 namespace app.Model;
@@ -47,9 +50,45 @@ public class DirectoryPriorityList: ViewModelBase
         }
     }
 
-    public void AddFeature(DirectoryItem item)
+    /// <summary>
+    /// Adds the new feature into <see cref="FolderDictionary"/>
+    /// </summary>
+    /// <param name="pos">Where the effected folder is located</param>
+    /// <param name="featureFolder"></param>
+    private void AddFeatureFolder(int pos, IFeatureFolderDetails featureFolder)
     {
-        Console.WriteLine(item.Folder.Name);
+        if(FolderDictionary[pos+1].Folder.Name == featureFolder.FolderName) return;
+        var firstHalf = FolderDictionary.Where(feature =>
+            FolderDictionary.IndexOf(feature) <= pos).ToList();
+        var selectFolder = new SelectFolders(featureFolder.FolderName, firstHalf[pos].Folder.Path);
+        var level = firstHalf[pos].Level + 1;
+        var featureItem = new DirectoryItem(selectFolder, firstHalf[pos].Level + 1);
+        firstHalf.Add(featureItem);
+        for (var i = pos + 1; i < FolderDictionary.Count; i++)
+        {
+           var item = FolderDictionary[i];
+           if(FolderDictionary[i].Level >= level) item.IndentFolder();
+           firstHalf.Add(item);
+        }
+        
+        FolderDictionary = new ObservableCollection<DirectoryItem>() { firstHalf };
+    }
+
+    /// <summary>
+    /// Takes item and appends the structure of the directory list so the feature
+    /// appears in the list
+    /// </summary>
+    /// <param name="item">The <see cref="IFeatureFolderDetails"/> to be added to structure</param>
+    public void AddFeature(IFeatureFolderDetails item)
+    {
+        foreach (var folder in FolderDictionary)
+        {
+            var level = folder.Level;
+            if (item.AffectedFolders.Contains(folder))
+            {
+               AddFeatureFolder(FolderDictionary.IndexOf(folder), item); 
+            }
+        }
     }
     
     /// <summary>

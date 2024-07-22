@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using app.Model;
+using app.Model.Interfaces;
 using app.ViewModels.Interfaces;
 using ReactiveUI;
 
@@ -35,7 +38,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// Backing field for <see cref="FeatureFolderList"/>
     /// </summary>
     private ObservableCollection<DirectoryItem> _featureFolderList = new();
-    
+
     /// <inheritdoc/>
     public ViewModelBase View
     {
@@ -56,6 +59,12 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         get => _featureFolderList;
         set => this.RaiseAndSetIfChanged(ref _featureFolderList, value);
     }
+
+    /// <inheritdoc/>
+    public List<IFeatureFolderDetails> FeatureFolderDetailsList => new()
+    {
+        new BoatNumberFeature()
+    };
 
     /// <inheritdoc/>
     public FeatureList FeatureList
@@ -94,6 +103,18 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     {
         ShowPopup = true;
         FeatureFolderList = new ObservableCollection<DirectoryItem>() { item };
-        FolderDirectories.AddFeature(item);
+    }
+
+    /// <inheritdoc/>
+    public void UpdateFeatureFolderList(IFeatureFolderDetails featureModel)
+    {
+        // unpack the feature model and update
+        foreach (var featureFolder in FeatureFolderDetailsList.Where(feature =>
+                     feature.FolderName == featureModel.FolderName))
+        {
+            featureFolder.AddAffectedFolders(featureModel.AffectedFolders);
+        }
+        // update the UI
+        FolderDirectories.AddFeature(featureModel);
     }
 }
