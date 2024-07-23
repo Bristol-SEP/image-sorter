@@ -129,6 +129,7 @@ get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderLi
     {
         FeatureModel.AddAffectedFolders(FeatureFolderList);
         MainPage.FolderView.UpdateFeatureFolderList(FeatureModel);
+        FeatureModel = new BoatNumberFeature();
         Close();
     }
 

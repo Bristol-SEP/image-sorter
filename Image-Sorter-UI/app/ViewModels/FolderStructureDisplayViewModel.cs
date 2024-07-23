@@ -35,6 +35,14 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     private ViewModelBase _view = new();
 
     /// <summary>
+    /// Backing field for <see cref="FeatureFolderDetailsList"/>
+    /// </summary>
+    private ObservableCollection<IFeatureFolderDetails> _featureFolderDetailsList = new()
+    {
+        new BoatNumberFeature()
+    };
+    
+    /// <summary>
     /// Backing field for <see cref="FeatureFolderList"/>
     /// </summary>
     private ObservableCollection<DirectoryItem> _featureFolderList = new();
@@ -61,10 +69,11 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     }
 
     /// <inheritdoc/>
-    public List<IFeatureFolderDetails> FeatureFolderDetailsList => new()
+    public ObservableCollection<IFeatureFolderDetails> FeatureFolderDetailsList
     {
-        new BoatNumberFeature()
-    };
+        get => _featureFolderDetailsList;
+        private set => this.RaiseAndSetIfChanged(ref _featureFolderDetailsList, value);
+    } 
 
     /// <inheritdoc/>
     public FeatureList FeatureList
@@ -121,9 +130,17 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// <inheritdoc/>
     public void RemoveFeature(DirectoryItem folder)
     {
-        Console.WriteLine(folder.Folder.Path);
         // remove folder from list
         FolderDirectories.DeleteFeature(folder);
         // remove parent folder from affected folders in model
+        foreach (var featureFolder in FeatureFolderDetailsList)
+        {
+            foreach (var directoryItem in featureFolder.AffectedFolders.Where(feature =>
+                         feature.Folder.Path == folder.Folder.Path))
+            {
+                featureFolder.DeleteAffectedFolders(directoryItem);
+                return;
+            }
+        }
     }
 }

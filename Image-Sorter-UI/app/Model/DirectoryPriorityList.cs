@@ -127,7 +127,7 @@ public class DirectoryPriorityList: ViewModelBase
             }
             list.Add(folder);
         }
-        FolderDictionary = new ObservableCollection<DirectoryItem>() { list };
+        FolderDictionary = new ObservableCollection<DirectoryItem>(list );
     }
     
     /// <summary>

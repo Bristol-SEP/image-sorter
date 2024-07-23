@@ -29,10 +29,10 @@ public interface IFolderStructureDisplayViewModel
     public ObservableCollection<DirectoryItem> FeatureFolderList { get; set; }
     
     /// <summary>
-    /// Is a <see cref="List{T}">list</see> of <see cref="IFeatureFolderDetails"/>
+    /// Is a <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="IFeatureFolderDetails"/>
     /// so program knows which scripts to run and where
     /// </summary>
-    public List<IFeatureFolderDetails> FeatureFolderDetailsList { get; }
+    public ObservableCollection<IFeatureFolderDetails> FeatureFolderDetailsList { get; }
     
     /// <summary>
     /// A list of <see cref="FeatureGroup"/> used in folder adding
