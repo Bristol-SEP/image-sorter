@@ -123,6 +123,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     {
         Console.WriteLine(folder.Folder.Path);
         // remove folder from list
+        FolderDirectories.DeleteFeature(folder);
         // remove parent folder from affected folders in model
     }
 }

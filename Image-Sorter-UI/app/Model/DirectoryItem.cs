@@ -41,4 +41,12 @@ public class DirectoryItem
     {
         Level++;
     }
+    
+    /// <summary>
+    /// Removes 1 to the level of the item
+    /// </summary>
+    public void DedentFolder()
+    {
+        Level--;
+    }
 }

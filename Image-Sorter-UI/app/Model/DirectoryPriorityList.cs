@@ -55,23 +55,31 @@ public class DirectoryPriorityList: ViewModelBase
     /// </summary>
     /// <param name="pos">Where the effected folder is located</param>
     /// <param name="featureFolder"></param>
-    private void AddFeatureFolder(int pos, IFeatureFolderDetails featureFolder)
+    private List<DirectoryItem> AddFeatureFolder(int pos, IFeatureFolderDetails featureFolder)
     {
-        if(FolderDictionary[pos+1].Folder.Name == featureFolder.FolderName) return;
-        var firstHalf = FolderDictionary.Where(feature =>
+        var selectFolder = new SelectFolders(featureFolder.FolderName, FolderDictionary[pos].Folder.Path);
+        var level = FolderDictionary[pos].Level + 1;
+        var featureItem = new DirectoryItem(selectFolder, FolderDictionary[pos].Level + 1, true);
+        var list = FolderDictionary.Where(feature =>
             FolderDictionary.IndexOf(feature) <= pos).ToList();
-        var selectFolder = new SelectFolders(featureFolder.FolderName, firstHalf[pos].Folder.Path);
-        var level = firstHalf[pos].Level + 1;
-        var featureItem = new DirectoryItem(selectFolder, firstHalf[pos].Level + 1, true);
-        firstHalf.Add(featureItem);
+        list.Add(featureItem);
+        if (pos == (FolderDictionary.Count - 1)) return list;
+        if(FolderDictionary[pos+1].Folder.Name == featureFolder.FolderName) return FolderDictionary.ToList();
         for (var i = pos + 1; i < FolderDictionary.Count; i++)
         {
-           var item = FolderDictionary[i];
-           if(FolderDictionary[i].Level >= level) item.IndentFolder();
-           firstHalf.Add(item);
+            var item = FolderDictionary[i];
+            if(FolderDictionary[i].Level >= level) item.IndentFolder();
+            else
+            {
+                var secondHalf = FolderDictionary.Where(feature =>
+                    FolderDictionary.IndexOf(feature) >= i);
+                list.AddRange(secondHalf);
+                break;
+            }
+            list.Add(item);
         }
-        
-        FolderDictionary = new ObservableCollection<DirectoryItem>() { firstHalf };
+
+        return list;
     }
 
     /// <summary>
@@ -81,14 +89,40 @@ public class DirectoryPriorityList: ViewModelBase
     /// <param name="item">The <see cref="IFeatureFolderDetails"/> to be added to structure</param>
     public void AddFeature(IFeatureFolderDetails item)
     {
-        foreach (var folder in FolderDictionary)
+        var list = FolderDictionary.ToList();
+        list = FolderDictionary.Where(folder =>
+            item.AffectedFolders.Contains(folder)).Aggregate(list, (current, folder) =>
+            AddFeatureFolder(current.IndexOf(folder), item));
+
+        FolderDictionary = new ObservableCollection<DirectoryItem>(list);
+    }
+
+    /// <summary>
+    /// Takes item and appends the structure of the directory list so the feature
+    /// is removed from the list
+    /// </summary>
+    /// <param name="item">The <see cref="DirectoryItem"/> to be deleted from the structure</param>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void DeleteFeature(DirectoryItem item)
+    {
+        var pos = FolderDictionary.IndexOf(item);
+        var level = item.Level;
+        var list = FolderDictionary.Where(feature =>
+            FolderDictionary.IndexOf(feature) < pos).ToList();
+        for (var i = pos+1; i < FolderDictionary.Count; i++)
         {
-            var level = folder.Level;
-            if (item.AffectedFolders.Contains(folder))
+            var folder = FolderDictionary[i];
+            if(FolderDictionary[i].Level >= level) folder.DedentFolder();
+            else
             {
-               AddFeatureFolder(FolderDictionary.IndexOf(folder), item); 
+                var secondHalf = FolderDictionary.Where(feature =>
+                    FolderDictionary.IndexOf(feature) >= i);
+                list.AddRange(secondHalf);
+                break;
             }
+            list.Add(folder);
         }
+        FolderDictionary = new ObservableCollection<DirectoryItem>() { list };
     }
     
     /// <summary>
@@ -101,8 +135,8 @@ public class DirectoryPriorityList: ViewModelBase
         foreach (var folder in foldersList)
         {
             var item = new DirectoryItem(folder, 0);
-           FolderDictionary.Add(item); 
-           AddChildren(item);
+            FolderDictionary.Add(item); 
+            AddChildren(item);
         }
     }
 }
