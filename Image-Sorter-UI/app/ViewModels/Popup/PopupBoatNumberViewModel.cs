@@ -96,7 +96,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <inheritdoc/>
     public string FolderList
     {
-get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderList) : _folderList;
+        get => _folderList == "Error" ? ListToString(MainPage.FolderView.FeatureFolderList) : _folderList;
         private set => this.RaiseAndSetIfChanged(ref _folderList, value);
     }
 

@@ -1,3 +1,4 @@
+using System;
 using app.ViewModels;
 using NUnit.Framework;
 
@@ -35,5 +36,11 @@ public class ViewModelProviderTest
     {
         var folderStructureViewModel = ViewModelProvider.Instance.GetFolderStructureViewModel();
         Assert.That(folderStructureViewModel, Is.InstanceOf<FolderStructureDisplayViewModel>());
+    }
+
+    [Test]
+    public void GetPopupMainPageViewModelTest()
+    {
+      Assert.Throws<NotSupportedException>((() => ViewModelProvider.Instance.GetPopupMainPageViewModel()));
     }
 }

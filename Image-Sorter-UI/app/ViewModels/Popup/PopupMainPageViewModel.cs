@@ -18,6 +18,7 @@ public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel, INa
     /// <inheritdoc/>
     public IFolderStructureDisplayViewModel FolderView { get; }
 
+    /// <inheritdoc/>
     public void BackToMain()
     {
         FolderView.View = this;
@@ -49,11 +50,13 @@ public class PopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel, INa
         FolderView = view;
     }
 
+    /// <inheritdoc/>
     public void Return()
     {
         throw new NotSupportedException();
     }
 
+    /// <inheritdoc/>
     public void Close()
     {
         ClosePopup();

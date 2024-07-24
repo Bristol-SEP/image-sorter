@@ -13,7 +13,7 @@ public class MockPopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
     public IFolderStructureDisplayViewModel FolderView { get; } = new MockFolderStructureDisplayViewModel();
     public void BackToMain()
     {
-        throw new System.NotImplementedException();
+        FolderView.View = this;
     }
 
     public void ChooseFeature(ViewModelBase view)
@@ -23,7 +23,7 @@ public class MockPopupMainPageViewModel: ViewModelBase, IPopupMainPageViewModel
 
     public void ClosePopup()
     {
-        throw new System.NotImplementedException();
+        FolderView.ShowPopup = false;
     }
 
     List<Feature> IPopupMainPageViewModel.FeatureGroup => _featureGroup;
