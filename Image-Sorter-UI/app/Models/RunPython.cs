@@ -27,7 +27,20 @@ public class RunPython
       Console.WriteLine("Python DLL path set");
 
       // Set the Python script path
-      string pythonScriptPath = @"C:\Users\jackw\Documents\Coding Projects\image-sorter\Image-Sorter-UI\app.Test\Assets";
+      //Currently the working directory is going from the tests ("Coding Projects\image-sorter\Image-Sorter-UI\app.Test\bin\Debug\net6.0\")
+      //The python script is in the app.Test\Assets file
+      //For the real thing this will all have to be changed to the relevant files
+      string relativePythonScriptPath = @"Assets"; 
+      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+      Console.WriteLine($"Current Directory {currentDirectory}");
+
+      string baseDirectory = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\")); 
+      Console.WriteLine($"Base Directory {baseDirectory}");
+
+      string pythonScriptPath = Path.Combine(baseDirectory, relativePythonScriptPath);
+      Console.WriteLine($"Python Script Directory {pythonScriptPath}");
+
+
       if (!Directory.Exists(pythonScriptPath)){
          Console.WriteLine($"Python script directory not found at {pythonScriptPath}");
          return false;
@@ -53,18 +66,13 @@ public class RunPython
                Console.WriteLine("Python script imported");
 
                // call function from python script
-               int param1 = 1;
-               int param2 = 2;
-
-               int[] parameters = {1,2,3};
-
                dynamic result = pyScript.noParamTest();
                Console.WriteLine($"Result from Python script: {result}");
 
-               result = pyScript.paramTest(param1, param2);
+               result = pyScript.paramTest(1, 2);
                Console.WriteLine($"Result from Python script: {result}");
 
-               result = pyScript.manyParamTest(parameters);
+               result = pyScript.manyParamTest(1, 2, 3, 4);
                Console.WriteLine($"Result from Python script: {result}");
 
 
