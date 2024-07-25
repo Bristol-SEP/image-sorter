@@ -45,6 +45,7 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
         Active = true;
     }
 
+    /// <inheritdoc/>
     public void DeleteAffectedFolders(DirectoryItem folder)
     {
         AffectedFolders.Remove(folder);

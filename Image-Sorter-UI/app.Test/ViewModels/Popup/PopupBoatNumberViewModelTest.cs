@@ -21,9 +21,6 @@ public class PopupBoatNumberViewModelTest
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.MainPage, Is.EqualTo(mainPage));
-            // TODO remove this feature model for just an affected folders section
-            Assert.That(viewModel.FeatureModel.FolderName, Is.EqualTo("Boat Codes"));
-            Assert.That(viewModel.FeatureModel.AffectedFolders, Is.Empty);
             Assert.That(viewModel.FolderList, Is.Empty);
         });
     }
@@ -48,7 +45,7 @@ public class PopupBoatNumberViewModelTest
     [Test]
     public void AddFeatureTest()
     {
-        // Write after cleanup
+        // TODO write test for this function
     }
 
     [Test]
@@ -57,6 +54,9 @@ public class PopupBoatNumberViewModelTest
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
         var viewModel = new PopupBoatNumberViewModel(mainPage);
         mainPage.FolderView.View = viewModel;
+        var folder = new SelectFolders("test", "path");
+        var directoryItem = new DirectoryItem(folder, 1);
+        mainPage.FolderView.FeatureFolderList = new ObservableCollection<DirectoryItem>() { directoryItem };
         viewModel.Return();
         Assert.That(mainPage.FolderView.View, Is.EqualTo(mainPage));
     }
@@ -66,6 +66,9 @@ public class PopupBoatNumberViewModelTest
     {
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
         var viewModel = new PopupBoatNumberViewModel(mainPage);
+        var folder = new SelectFolders("test", "path");
+        var directoryItem = new DirectoryItem(folder, 1);
+        mainPage.FolderView.FeatureFolderList = new ObservableCollection<DirectoryItem>() { directoryItem };
         mainPage.FolderView.ShowPopup = true;
         viewModel.Close();
         Assert.Multiple(() =>

@@ -2,6 +2,9 @@ using app.ViewModels.Popup;
 
 namespace app.ViewModels.Interfaces.Popup;
 
+/// <summary>
+/// The features required to navigate and close popups
+/// </summary>
 public interface INavigationControl
 {
     /// <summary>

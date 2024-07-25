@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.Model;
 using app.Model.Interfaces;
@@ -49,9 +50,11 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
         throw new System.NotImplementedException();
     }
 
-    public void UpdateFeatureFolderList(IFeatureFolderDetails featureModel)
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel)
     {
-        throw new System.NotImplementedException();
+        var folder = new SelectFolders("default", "basicPath");
+        var directoryItem = new DirectoryItem(folder, 1);
+        FeatureFolderList = new ObservableCollection<DirectoryItem>();
     }
 
     public void RemoveFeature(DirectoryItem folder)

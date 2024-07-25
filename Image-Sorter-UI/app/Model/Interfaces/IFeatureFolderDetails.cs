@@ -4,6 +4,9 @@ using app.Views;
 
 namespace app.Model.Interfaces;
 
+/// <summary>
+/// A model which holds the details required to run a script for a feature
+/// </summary>
 public interface IFeatureFolderDetails
 {
     /// <summary>

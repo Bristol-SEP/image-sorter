@@ -57,14 +57,19 @@ public interface IFolderStructureDisplayViewModel
     /// </summary>
     public void ButtonPressed();
 
+    /// <summary>
+    /// Displays the popup and adds the selected item to the <see cref="FeatureFolderList"/>
+    /// </summary>
+    /// <param name="item">The item to display the popup about</param>
     public void AddFeature(DirectoryItem item);
 
     /// <summary>
     /// A function to update <see cref="FeatureFolderDetailsList"/>
     /// and the UI along with it
     /// </summary>
-    /// <param name="featureModel">An instance of a model to be unpacked and converted into
-    /// <see cref="FeatureFolderDetailsList"/></param>
+    /// <param name="name">The name of the feature type to be added</param>
+    /// <param name="featureModel">A list of <see cref="DirectoryItem"/> which hold
+    /// features to be added</param>
     public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel);
 
     /// <summary>

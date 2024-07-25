@@ -114,6 +114,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         FeatureFolderList = new ObservableCollection<DirectoryItem>() { item };
     }
 
+    /// <inheritdoc/>
     public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel)
     {
         // unpack the feature model and update

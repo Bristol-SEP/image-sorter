@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using app.Model.Interfaces;
 using app.ViewModels;
-using DynamicData;
 using ReactiveUI;
 
 namespace app.Model;
@@ -94,7 +93,6 @@ public class DirectoryPriorityList: ViewModelBase
         var list = FolderDictionary.ToList();
         foreach (var directoryItem in FolderDictionary)
         {
-            var level = directoryItem.Level;
             if (item.Contains(directoryItem))
             {
                 list = AddFeatureFolder(list.IndexOf(directoryItem), list, name);

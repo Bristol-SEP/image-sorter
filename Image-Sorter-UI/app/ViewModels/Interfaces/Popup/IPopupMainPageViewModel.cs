@@ -4,6 +4,9 @@ using app.Views.Popup;
 
 namespace app.ViewModels.Interfaces.Popup;
 
+/// <summary>
+/// The popup main page specific features
+/// </summary>
 public interface IPopupMainPageViewModel
 {
     /// <summary>

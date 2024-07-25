@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using app.Model;
-using app.Model.Interfaces;
-using app.ViewModels.Popup;
-
 namespace app.ViewModels.Interfaces.Popup;
 
+/// <summary>
+/// A set of generic elements required for all features on the popup
+/// </summary>
 public interface IPopupFeature
 {
     /// <summary>

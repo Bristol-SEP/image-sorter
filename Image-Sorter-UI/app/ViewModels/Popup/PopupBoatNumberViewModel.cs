@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
-using app.Model.Interfaces;
 using app.ViewModels.Interfaces;
 using app.ViewModels.Interfaces.Popup;
 using ReactiveUI;
@@ -66,6 +64,10 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private string _folderList = "Error";
 
+    /// <summary>
+    /// Holds the instance of the original selected item so it may be toggled
+    /// between one and many
+    /// </summary>
     private DirectoryItem _coreFolder;
     
     private List<DirectoryItem> _featureFolderList = new();

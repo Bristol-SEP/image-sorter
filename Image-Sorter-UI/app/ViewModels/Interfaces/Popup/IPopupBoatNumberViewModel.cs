@@ -1,5 +1,8 @@
 namespace app.ViewModels.Interfaces.Popup;
 
+/// <summary>
+/// The Feature details specific to Boat Numbers
+/// </summary>
 public interface IPopupBoatNumberViewModel
 {
     /// <summary>
