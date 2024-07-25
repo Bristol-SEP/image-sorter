@@ -31,7 +31,7 @@ public interface IFeatureFolderDetails
     /// Adds new folders to <see cref="AffectedFolders"/>
     /// </summary>
     /// <param name="folders">Folders to be added</param>
-    public void AddAffectedFolders(ObservableCollection<DirectoryItem> folders);
+    public void AddAffectedFolders(List<DirectoryItem> folders);
 
     /// <summary>
     /// Removes a folder from <see cref="AffectedFolders"/>

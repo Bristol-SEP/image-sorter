@@ -55,17 +55,17 @@ public class DirectoryPriorityList: ViewModelBase
     /// </summary>
     /// <param name="pos">Where the effected folder is located</param>
     /// <param name="list">The list to alter and return</param>
-    /// <param name="featureFolder">The folder to be added</param>
-    private List<DirectoryItem> AddFeatureFolder(int pos, IList<DirectoryItem> list, IFeatureFolderDetails featureFolder)
+    /// <param name="name">The name of the folder to be added</param>
+    private List<DirectoryItem> AddFeatureFolder(int pos, IList<DirectoryItem> list, string name)
     {
-        var selectFolder = new SelectFolders(featureFolder.FolderName, list[pos].Folder.Path);
+        var selectFolder = new SelectFolders(name, list[pos].Folder.Path);
         var level = list[pos].Level + 1;
         var featureItem = new DirectoryItem(selectFolder, list[pos].Level + 1, true);
         var newList = list.Where(feature =>
             list.IndexOf(feature) <= pos).ToList();
         newList.Add(featureItem);
         if (pos == (list.Count - 1)) return newList;
-        if(list[pos+1].Folder.Name == featureFolder.FolderName) return list.ToList();
+        if(list[pos+1].Folder.Name == name) return list.ToList();
         for (var i = pos + 1; i < list.Count; i++)
         {
             var item = list[i];
@@ -88,15 +88,16 @@ public class DirectoryPriorityList: ViewModelBase
     /// appears in the list
     /// </summary>
     /// <param name="item">The <see cref="IFeatureFolderDetails"/> to be added to structure</param>
-    public void AddFeature(IFeatureFolderDetails item)
+    /// <param name="name">The name of the folders to be added to structure</param>
+    public void AddFeature(string name, List<DirectoryItem> item)
     {
         var list = FolderDictionary.ToList();
         foreach (var directoryItem in FolderDictionary)
         {
             var level = directoryItem.Level;
-            if (item.AffectedFolders.Contains(directoryItem))
+            if (item.Contains(directoryItem))
             {
-                list = AddFeatureFolder(list.IndexOf(directoryItem), list, item);
+                list = AddFeatureFolder(list.IndexOf(directoryItem), list, name);
             }
         }
         FolderDictionary = new ObservableCollection<DirectoryItem>(list);

@@ -21,10 +21,10 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <returns>A <see cref="ObservableCollection{T}">ObservableCollection</see> of
     /// <see cref="DirectoryItem"/> holding all the folders with the same parent on the same
     /// level</returns>
-    private ObservableCollection<DirectoryItem> GetAllFoldersOfLevel(DirectoryItem item,
+    private List<DirectoryItem> GetAllFoldersOfLevel(DirectoryItem item,
         DirectoryPriorityList dictionary)
     {
-        var folders = new ObservableCollection<DirectoryItem>();
+        var folders = new List<DirectoryItem>();
         var level = item.Level;
         var levelBreak = false;
         var found = false;
@@ -32,7 +32,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         {
             if (dictionaryItem.Level == level)
             {
-                folders = levelBreak ? new ObservableCollection<DirectoryItem>() : folders;
+                folders = levelBreak ? new List<DirectoryItem>() : folders;
                 folders.Add(dictionaryItem);
                 if (dictionaryItem == item) found = true;
                 levelBreak = false;
@@ -68,23 +68,18 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
 
     private DirectoryItem _coreFolder;
     
-    /// <summary>
-    /// Backing field for <see cref="FeatureModel"/>
-    /// </summary>
-    private IFeatureFolderDetails _featureModel = new BoatNumberFeature();
-
-    private ObservableCollection<DirectoryItem> _featureFolderList = new();
+    private List<DirectoryItem> _featureFolderList = new();
     /// <summary>
     /// Holds an instance of <see cref="IFolderStructureDisplayViewModel.FolderDirectories"/>
     /// </summary>
-    private ObservableCollection<DirectoryItem> FeatureFolderList
+    private List<DirectoryItem> FeatureFolderList
     {
         get
         {
             if (_featureFolderList.Any()) return _featureFolderList;
             var ffl = MainPage.FolderView.FeatureFolderList;
             _coreFolder = ffl[0];
-            return ffl;
+            return ffl.ToList();
         }
         set
         {
@@ -104,15 +99,8 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     public void AddFolderLevel()
     {
         FeatureFolderList = FeatureFolderList.Count > 1 ? 
-            new ObservableCollection<DirectoryItem>() { _coreFolder } : 
+            new List<DirectoryItem>() { _coreFolder } : 
             GetAllFoldersOfLevel(_coreFolder, MainPage.FolderView.FolderDirectories);
-    }
-
-    /// <inheritdoc/>
-    public IFeatureFolderDetails FeatureModel
-    {
-        get => _featureModel;
-        private set => this.RaiseAndSetIfChanged(ref _featureModel, value);
     }
 
     /// <inheritdoc/>
@@ -127,16 +115,15 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <inheritdoc/>
     public void AddFeature()
     {
-        FeatureModel.AddAffectedFolders(FeatureFolderList);
-        MainPage.FolderView.UpdateFeatureFolderList(FeatureModel);
-        FeatureModel = new BoatNumberFeature();
+        MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
+        FeatureFolderList.Clear();
         Close();
     }
 
     /// <inheritdoc/>
     public void Return()
     {
-        FeatureFolderList = new ObservableCollection<DirectoryItem>();
+        FeatureFolderList.Clear();
         FolderList = "Error";
         MainPage.BackToMain();
     }

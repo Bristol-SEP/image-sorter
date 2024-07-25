@@ -37,7 +37,7 @@ public class ViewModelProviderTest
         var folderStructureViewModel = ViewModelProvider.Instance.GetFolderStructureViewModel();
         Assert.That(folderStructureViewModel, Is.InstanceOf<FolderStructureDisplayViewModel>());
     }
-
+    
     [Test]
     public void GetPopupMainPageViewModelTest()
     {

@@ -35,12 +35,13 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     public string ShellScript => "";
 
     /// <inheritdoc/>
-    public void AddAffectedFolders(ObservableCollection<DirectoryItem> folders)
+    public void AddAffectedFolders(List<DirectoryItem> folders)
     {
-        foreach (var folder in folders)
+        foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
-            if (!AffectedFolders.Contains(folder)) AffectedFolders.Add(folder);
+            AffectedFolders.Add(folder);
         }
+
         Active = true;
     }
 

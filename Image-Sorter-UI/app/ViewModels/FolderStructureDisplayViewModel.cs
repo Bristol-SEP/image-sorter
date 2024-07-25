@@ -114,17 +114,18 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
         FeatureFolderList = new ObservableCollection<DirectoryItem>() { item };
     }
 
-    /// <inheritdoc/>
-    public void UpdateFeatureFolderList(IFeatureFolderDetails featureModel)
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel)
     {
         // unpack the feature model and update
         foreach (var featureFolder in FeatureFolderDetailsList.Where(feature =>
-                     feature.FolderName == featureModel.FolderName))
+                     feature.FolderName == name))
         {
-            featureFolder.AddAffectedFolders(featureModel.AffectedFolders);
+            featureFolder.AddAffectedFolders(featureModel);
+            
         }
         // update the UI
-        FolderDirectories.AddFeature(featureModel);
+        FolderDirectories.AddFeature(name, featureModel);
+        
     }
 
     /// <inheritdoc/>

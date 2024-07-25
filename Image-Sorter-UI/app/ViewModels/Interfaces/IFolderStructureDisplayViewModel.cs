@@ -65,7 +65,7 @@ public interface IFolderStructureDisplayViewModel
     /// </summary>
     /// <param name="featureModel">An instance of a model to be unpacked and converted into
     /// <see cref="FeatureFolderDetailsList"/></param>
-    public void UpdateFeatureFolderList(IFeatureFolderDetails featureModel);
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel);
 
     /// <summary>
     /// Removes the feature from the <see cref="FolderDirectories"/>
