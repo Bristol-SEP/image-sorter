@@ -7,6 +7,12 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
 {
     /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
+    
+    /// <inheritdoc/>
+    public string FolderList { get; }
+    
+    /// <inheritdoc/>
+    public int BoatsPerFolder { get; }
 
     /// <inheritdoc/>
     public void SetContext(IPopupMainPageViewModel mainPage)
@@ -36,5 +42,11 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     public PopupBowNumberViewModel(IPopupMainPageViewModel mainPage)
     {
         MainPage = mainPage;
+    }
+
+    /// <inheritdoc/>
+    public void AddFolderLevel()
+    {
+        throw new System.NotImplementedException();
     }
 }

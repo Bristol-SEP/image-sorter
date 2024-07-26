@@ -58,4 +58,29 @@
         <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BackgroundStrong}"/>
     </Style>
+    
+    <!-- Slider Style -->
+    <Style Selector="Slider.defaultSlider">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10,0"/>
+    </Style>
+    <Style Selector="Slider.defaultSlider /template/ Thumb">
+        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
+    </Style>
+    <Style Selector="Slider.defaultSlider:pressed /template/ Thumb">
+        <Setter Property="Background" Value="{DynamicResource Text}"/>
+    </Style>
+    <Style Selector="Slider.defaultSlider /template/ RepeatButton#PART_IncreaseButton">
+        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
+    </Style>
+    <Style Selector="Slider.defaultSlider /template/ RepeatButton#PART_DecreaseButton">
+        <Setter Property="Background" Value="{DynamicResource Text}"/>
+    </Style>
+    
+    <!-- Expander style -->
+    <Style Selector="Expander.defaultExpander">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundWeak}"/>
+    </Style>
 </Styles>

@@ -7,7 +7,39 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:IPopupBowNumberViewModel"
              x:Class="app.Views.Popup.PopupBowNumberView">
-    <StackPanel>
-        <style:PopupCommand Text="Bow Number" IsFeaturePage="True" DataContext="{Binding}"/>
-    </StackPanel>
+    <Grid RowDefinitions="*, Auto">
+        <StackPanel Grid.Row="0">
+            <style:PopupCommand Text="Bow Number" IsFeaturePage="True" DataContext="{Binding}" />
+            <Grid ColumnDefinitions="Auto, Auto *">
+                <TextBlock Grid.Column="0" Text="Affected Folders:"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}"
+                           Padding="3,0" />
+                <TextBlock Grid.Column="1" Text="{Binding FolderList}"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}" />
+            </Grid>
+            <CheckBox Margin="3,0" Content="Implement for all folders on this level"
+                      Classes="baseCheckBox"
+                      Command="{Binding AddFolderLevel}" />
+            <CheckBox Margin="3,0" Content="Implement folder per boat"
+                      Classes="baseCheckBox"
+                      Command="{Binding AddFolderLevel}" />
+            <Grid ColumnDefinitions="Auto, Auto, *">
+                <TextBlock Grid.Column="0" Text="Number of boats per folder:"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}"
+                           Padding="3,0" />
+                <TextBlock Grid.Column="1" Text="{Binding BoatsPerFolder}"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}" />
+            </Grid>
+            <Slider Classes="defaultSlider">
+            </Slider>
+        </StackPanel>
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
+            <Button Grid.Column="1" Classes="baseButton" Content="Add Feature"
+                    Command="{Binding (vm:IPopupFeature).AddFeature}" />
+        </Grid>
+    </Grid>
 </UserControl>
