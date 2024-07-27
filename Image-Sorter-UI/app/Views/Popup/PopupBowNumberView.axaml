@@ -23,8 +23,9 @@
                       Classes="baseCheckBox"
                       Command="{Binding AddFolderLevel}" />
             <CheckBox Margin="3,0" Content="Implement folder per boat"
+                      IsChecked="{Binding IsIndividualFolders}"
                       Classes="baseCheckBox"
-                      Command="{Binding AddFolderLevel}" />
+                      Command="{Binding ToggleIsIndividualFolder}" />
             <Grid ColumnDefinitions="Auto, Auto, *">
                 <TextBlock Grid.Column="0" Text="Number of boats per folder:"
                            VerticalAlignment="Center" HorizontalAlignment="Left"
@@ -34,8 +35,9 @@
                            VerticalAlignment="Center" HorizontalAlignment="Left"
                            Foreground="{DynamicResource Text}" />
             </Grid>
-            <Slider Classes="defaultSlider">
-            </Slider>
+            <Slider Classes="defaultSlider" Minimum="0" Maximum="100"
+                    IsSnapToTickEnabled="True" TickFrequency="5"
+                    Value="{Binding BoatsPerFolder}"/>
         </StackPanel>
         <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
             <Button Grid.Column="1" Classes="baseButton" Content="Add Feature"
