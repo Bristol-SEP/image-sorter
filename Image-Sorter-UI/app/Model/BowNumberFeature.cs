@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,10 +7,7 @@ using ReactiveUI;
 
 namespace app.Model;
 
-/// <summary>
-/// Holds the details for this feature
-/// </summary>
-public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
+public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
 {
     /// <summary>
     /// Backing field for <see cref="AffectedFolders"/>
@@ -19,11 +15,21 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     private ObservableCollection<DirectoryItem> _affectedFolders = new();
     
     /// <inheritdoc/>
-    public string FolderName => "Boat Codes";
-
+    public string FolderName => "Bow Number";
+    
     /// <inheritdoc/>
     public bool Active { get; private set; }
-
+    
+    /// <summary>
+    /// Decides whether all of the same number should have their own folder
+    /// </summary>
+    public bool IsIndividualFolders { get; set; }
+    
+    /// <summary>
+    /// Holds the number of boats which should be in grouped per folder
+    /// </summary>
+    public int BoatsPerFolder { get; set; }
+    
     /// <inheritdoc/>
     public ObservableCollection<DirectoryItem> AffectedFolders
     {
@@ -33,7 +39,7 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
 
     /// <inheritdoc/>
     public string ShellScript => "";
-
+    
     /// <inheritdoc/>
     public void AddAffectedFolders(List<DirectoryItem> folders)
     {

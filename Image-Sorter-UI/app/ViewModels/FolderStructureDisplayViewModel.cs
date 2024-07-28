@@ -39,7 +39,8 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// </summary>
     private ObservableCollection<IFeatureFolderDetails> _featureFolderDetailsList = new()
     {
-        new BoatNumberFeature()
+        new BoatNumberFeature(),
+        new BowNumberFeature()
     };
     
     /// <summary>
