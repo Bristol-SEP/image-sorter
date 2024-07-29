@@ -1,3 +1,6 @@
+using app.Model;
+using app.Model.Interfaces;
+
 namespace app.ViewModels.Interfaces.Popup;
 
 /// <summary>
@@ -19,6 +22,11 @@ public interface IPopupBowNumberViewModel
     /// Decides whether all of the same number should have their own folder
     /// </summary>
     public bool IsIndividualFolders { get; }
+    
+    /// <summary>
+    /// Reference to the model for the view model
+    /// </summary>
+    public BowNumberFeature BowNumberFeature { get; }
 
     /// <summary>
     /// Toggles between 1 folder being affected and all folders on that level being affected

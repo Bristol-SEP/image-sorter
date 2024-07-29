@@ -9,6 +9,8 @@ using ReactiveUI;
 
 namespace app.ViewModels.Popup;
 
+// Plan is to have the model be in this page rather than folder page all the changes to model 
+// should happen here
 public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, IPopupFeature, INavigationControl
 {
     /// <summary>
@@ -101,6 +103,16 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     private int _boatsPerFolder = 10;
 
     /// <summary>
+    /// A method to update <see cref="BowNumberFeature"/>
+    /// </summary>
+    private void SetFolderChanges()
+    {
+        BowNumberFeature.AddAffectedFolders();
+        BowNumberFeature.IsIndividualFolders = IsIndividualFolders;
+        BowNumberFeature.BoatsPerFolder = BoatsPerFolder;
+    }
+
+    /// <summary>
     /// Backing field for <see cref="IsIndividualFolders"/>
     /// </summary>
     public bool _isIndividualFolders = true;
@@ -125,6 +137,8 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         get => _isIndividualFolders;
         private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
     }
+
+    public BowNumberFeature BowNumberFeature => new();
 
     /// <inheritdoc/>
     public void AddFolderLevel()
@@ -152,8 +166,9 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// <inheritdoc/>
     public void AddFeature()
     {
-        MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
-        FeatureFolderList.Clear();
+        // MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
+        // FeatureFolderList.Clear();
+        SetFolderChanges();
         Close();
     }
 
