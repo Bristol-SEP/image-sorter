@@ -103,19 +103,24 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     private int _boatsPerFolder = 10;
 
     /// <summary>
+    /// Backing field for <see cref="BowNumberFeature"/>
+    /// </summary>
+    private BowNumberFeature _bowNumberFeature = new();
+    
+    /// <summary>
     /// A method to update <see cref="BowNumberFeature"/>
     /// </summary>
     private void SetFolderChanges()
     {
-        BowNumberFeature.AddAffectedFolders();
-        BowNumberFeature.IsIndividualFolders = IsIndividualFolders;
+        BowNumberFeature.AddAffectedFolders(FeatureFolderList);
+        // BowNumberFeature.IsIndividualFolders = IsIndividualFolders;
         BowNumberFeature.BoatsPerFolder = BoatsPerFolder;
     }
 
     /// <summary>
     /// Backing field for <see cref="IsIndividualFolders"/>
     /// </summary>
-    public bool _isIndividualFolders = true;
+    // private bool _isIndividualFolders;
     
     /// <inheritdoc/>
     public string FolderList
@@ -131,14 +136,20 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         set => this.RaiseAndSetIfChanged(ref _boatsPerFolder, value);
     }
 
-    /// <inheritdoc/>
-    public bool IsIndividualFolders
-    {
-        get => _isIndividualFolders;
-        private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
-    }
+    public bool IsIndividualFolders { get; }
 
-    public BowNumberFeature BowNumberFeature => new();
+    /// <inheritdoc/>
+    // public bool IsIndividualFolders
+    // {
+    //     get => _isIndividualFolders;
+    //     private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
+    // }
+
+    public BowNumberFeature BowNumberFeature
+    {
+        get => _bowNumberFeature;
+        set => this.RaiseAndSetIfChanged(ref _bowNumberFeature, value);
+    }
 
     /// <inheritdoc/>
     public void AddFolderLevel()
@@ -151,7 +162,7 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// <inheritdoc/>
     public void ToggleIsIndividualFolder()
     {
-        IsIndividualFolders = !IsIndividualFolders;
+        BowNumberFeature.ToggleIsIndividualFolder();
     }
 
     /// <inheritdoc/>
@@ -178,7 +189,7 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         FeatureFolderList.Clear();
         FolderList = "Error";
         BoatsPerFolder = 10;
-        IsIndividualFolders = true;
+        // IsIndividualFolders = true;
         MainPage.BackToMain();
     }
 

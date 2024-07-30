@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,16 +15,25 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// </summary>
     private ObservableCollection<DirectoryItem> _affectedFolders = new();
     
+    /// <summary>
+    /// Backing field for <see cref="IsIndividualFolders"/>
+    /// </summary>
+    // private bool _isIndividualFolders = true;
+    
     /// <inheritdoc/>
     public string FolderName => "Bow Number";
     
     /// <inheritdoc/>
     public bool Active { get; private set; }
-    
+
     /// <summary>
     /// Decides whether all of the same number should have their own folder
     /// </summary>
     public bool IsIndividualFolders { get; set; }
+    // {
+    //     get => _isIndividualFolders;
+    //     set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
+    // }
     
     /// <summary>
     /// Holds the number of boats which should be in grouped per folder
@@ -39,6 +49,14 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
 
     /// <inheritdoc/>
     public string ShellScript => "";
+    
+    /// <summary>
+    /// Toggles the <see cref="IsIndividualFolders"/>
+    /// </summary>
+    public void ToggleIsIndividualFolder()
+    {
+        IsIndividualFolders = !IsIndividualFolders;
+    }
     
     /// <inheritdoc/>
     public void AddAffectedFolders(List<DirectoryItem> folders)

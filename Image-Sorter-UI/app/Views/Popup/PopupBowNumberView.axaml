@@ -23,7 +23,7 @@
                       Classes="baseCheckBox"
                       Command="{Binding AddFolderLevel}" />
             <CheckBox Margin="3,0" Content="Implement folder per boat"
-                      IsChecked="{Binding IsIndividualFolders}"
+                      IsChecked="{Binding BowNumberFeature.IsIndividualFolders}"
                       Classes="baseCheckBox"
                       Command="{Binding ToggleIsIndividualFolder}" />
             <Grid ColumnDefinitions="Auto, Auto, *">
