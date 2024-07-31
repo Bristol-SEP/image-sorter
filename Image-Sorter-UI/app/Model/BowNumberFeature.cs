@@ -29,7 +29,7 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// <summary>
     /// Decides whether all of the same number should have their own folder
     /// </summary>
-    public bool IsIndividualFolders { get; set; }
+    public bool IsIndividualFolders { get; private set; } = true;
     // {
     //     get => _isIndividualFolders;
     //     set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
@@ -49,7 +49,7 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
 
     /// <inheritdoc/>
     public string ShellScript => "";
-    
+
     /// <summary>
     /// Toggles the <see cref="IsIndividualFolders"/>
     /// </summary>
