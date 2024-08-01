@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,31 +14,12 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// </summary>
     private ObservableCollection<DirectoryItem> _affectedFolders = new();
     
-    /// <summary>
-    /// Backing field for <see cref="IsIndividualFolders"/>
-    /// </summary>
-    // private bool _isIndividualFolders = true;
-    
     /// <inheritdoc/>
     public string FolderName => "Bow Number";
     
     /// <inheritdoc/>
     public bool Active { get; private set; }
 
-    /// <summary>
-    /// Decides whether all of the same number should have their own folder
-    /// </summary>
-    public bool IsIndividualFolders { get; private set; } = true;
-    // {
-    //     get => _isIndividualFolders;
-    //     set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
-    // }
-    
-    /// <summary>
-    /// Holds the number of boats which should be in grouped per folder
-    /// </summary>
-    public int BoatsPerFolder { get; set; }
-    
     /// <inheritdoc/>
     public ObservableCollection<DirectoryItem> AffectedFolders
     {
@@ -47,23 +27,25 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
         set => this.RaiseAndSetIfChanged(ref _affectedFolders, value);
     }
 
+    public List<BowNumberDetails> BowNumberFolders = new();
+
     /// <inheritdoc/>
     public string ShellScript => "";
 
     /// <summary>
-    /// Toggles the <see cref="IsIndividualFolders"/>
+    /// Adds new folders to <see cref="AffectedFolders"/>
     /// </summary>
-    public void ToggleIsIndividualFolder()
-    {
-        IsIndividualFolders = !IsIndividualFolders;
-    }
-    
-    /// <inheritdoc/>
-    public void AddAffectedFolders(List<DirectoryItem> folders)
+    /// <param name="folders">Folders to be added</param>
+    /// <param name="isIndividualFolder">Parameter to create <see cref="BowNumberDetails"/></param>
+    /// <param name="boatsPerFolder">Parameter to create <see cref="BowNumberDetails"/></param>
+    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, bool isIndividualFolder, int boatsPerFolder)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
             AffectedFolders.Add(folder);
+            BowNumberFolders.Add(
+                new BowNumberDetails(folder, isIndividualFolder, boatsPerFolder)
+                );
         }
 
         Active = true;
@@ -73,6 +55,7 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     public void DeleteAffectedFolders(DirectoryItem folder)
     {
         AffectedFolders.Remove(folder);
+        BowNumberFolders.Remove(BowNumberFolders.First(bowNumber => bowNumber.AffectedFolder == folder));
         if (AffectedFolders.Count == 0) Active = false;
     }
 }

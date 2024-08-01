@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
+using app.Model.Interfaces;
 using app.ViewModels.Interfaces;
 using app.ViewModels.Interfaces.Popup;
 using ReactiveUI;
@@ -120,6 +121,11 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
         FeatureFolderList.Clear();
         Close();
+    }
+
+    public IFeatureFolderDetails GetModelBasic()
+    {
+        return new BoatNumberFeature();
     }
 
     /// <inheritdoc/>

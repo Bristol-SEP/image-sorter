@@ -34,7 +34,10 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// <inheritdoc/>
     public string ShellScript => "";
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Adds new folders to <see cref="AffectedFolders"/>
+    /// </summary>
+    /// <param name="folders">Folders to be added</param>
     public void AddAffectedFolders(List<DirectoryItem> folders)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))

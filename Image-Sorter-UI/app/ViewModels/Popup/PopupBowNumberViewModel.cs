@@ -112,15 +112,13 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// </summary>
     private void SetFolderChanges()
     {
-        BowNumberFeature.AddAffectedFolders(FeatureFolderList);
-        // BowNumberFeature.IsIndividualFolders = IsIndividualFolders;
-        BowNumberFeature.BoatsPerFolder = BoatsPerFolder;
+        BowNumberFeature.AddAffectedFolders(FeatureFolderList, IsIndividualFolders, BoatsPerFolder);
     }
 
     /// <summary>
     /// Backing field for <see cref="IsIndividualFolders"/>
     /// </summary>
-    // private bool _isIndividualFolders;
+    private bool _isIndividualFolders = true;
     
     /// <inheritdoc/>
     public string FolderList
@@ -136,14 +134,12 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         set => this.RaiseAndSetIfChanged(ref _boatsPerFolder, value);
     }
 
-    public bool IsIndividualFolders { get; }
-
     /// <inheritdoc/>
-    // public bool IsIndividualFolders
-    // {
-    //     get => _isIndividualFolders;
-    //     private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
-    // }
+    public bool IsIndividualFolders
+    {
+        get => _isIndividualFolders;
+        private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
+    }
 
     public BowNumberFeature BowNumberFeature
     {
@@ -162,7 +158,7 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// <inheritdoc/>
     public void ToggleIsIndividualFolder()
     {
-        BowNumberFeature.ToggleIsIndividualFolder();
+        IsIndividualFolders = !IsIndividualFolders;
     }
 
     /// <inheritdoc/>
@@ -177,10 +173,18 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// <inheritdoc/>
     public void AddFeature()
     {
-        // MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
-        // FeatureFolderList.Clear();
+        FeatureFolderList.Clear();
+        FolderList = "Error";
+        BoatsPerFolder = 10;
+        IsIndividualFolders = true;
         SetFolderChanges();
+        MainPage.FolderView.UpdateFeatureFolderList("Bow Number", FeatureFolderList);
         Close();
+    }
+
+    public IFeatureFolderDetails GetModelBasic()
+    {
+        return BowNumberFeature;
     }
 
     /// <inheritdoc/>
@@ -189,7 +193,7 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         FeatureFolderList.Clear();
         FolderList = "Error";
         BoatsPerFolder = 10;
-        // IsIndividualFolders = true;
+        IsIndividualFolders = true;
         MainPage.BackToMain();
     }
 
