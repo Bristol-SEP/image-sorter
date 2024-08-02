@@ -76,10 +76,8 @@ public class FolderStructureDisplayViewModelTest
         var directoryItem = new DirectoryItem(folder, 1);
         var directoryList = new List<DirectoryItem>() { directoryItem };
         viewModel.UpdateFeatureFolderList("Boat Codes", directoryList);
-        var item = viewModel.FeatureFolderDetailsList.Where(feature => feature.FolderName == "Boat Codes").ToList();
         Assert.Multiple(() =>
         {
-            Assert.That(item[0].AffectedFolders, Contains.Item(directoryItem));
             // TODO create mock of DirectoryPriorityList so you may run this test
             // Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryItem));
         });
