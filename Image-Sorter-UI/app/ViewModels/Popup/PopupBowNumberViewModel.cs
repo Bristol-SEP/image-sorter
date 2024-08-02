@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -141,6 +142,7 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
         private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
     }
 
+    /// <inheritdoc/>
     public BowNumberFeature BowNumberFeature
     {
         get => _bowNumberFeature;
@@ -173,12 +175,11 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// <inheritdoc/>
     public void AddFeature()
     {
-        FeatureFolderList.Clear();
-        FolderList = "Error";
-        BoatsPerFolder = 10;
-        IsIndividualFolders = true;
         SetFolderChanges();
         MainPage.FolderView.UpdateFeatureFolderList("Bow Number", FeatureFolderList);
+        FeatureFolderList.Clear();
+        BoatsPerFolder = 10;
+        IsIndividualFolders = true;
         Close();
     }
 

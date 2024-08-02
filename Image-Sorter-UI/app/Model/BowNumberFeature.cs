@@ -7,6 +7,9 @@ using ReactiveUI;
 
 namespace app.Model;
 
+/// <summary>
+/// Holds the details for the bow number feature
+/// </summary>
 public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
 {
     /// <summary>
@@ -27,6 +30,10 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
         set => this.RaiseAndSetIfChanged(ref _affectedFolders, value);
     }
 
+    /// <summary>
+    /// A list of <see cref="BowNumberDetails"/> used to display the personalised
+    /// features for each folder
+    /// </summary>
     public List<BowNumberDetails> BowNumberFolders = new();
 
     /// <inheritdoc/>

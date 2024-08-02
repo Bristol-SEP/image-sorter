@@ -1,5 +1,9 @@
 namespace app.Model;
 
+/// <summary>
+/// Holds the specific constraints for each folder to be added for
+/// <see cref="BowNumberFeature"/>
+/// </summary>
 public class BowNumberDetails
 {
     /// <summary>

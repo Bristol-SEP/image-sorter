@@ -1,3 +1,5 @@
+using app.Model;
+
 namespace app.ViewModels.Interfaces.Popup;
 
 /// <summary>
@@ -10,6 +12,11 @@ public interface IPopupBoatNumberViewModel
     /// </summary>
     public string FolderList { get; }
 
+    /// <summary>
+    /// Reference to the model for the view model
+    /// </summary>
+    public BoatNumberFeature BoatNumberFeature { get; }
+    
     /// <summary>
     /// Toggles between 1 folder being affected and all folders on that level being affected
     /// </summary>
