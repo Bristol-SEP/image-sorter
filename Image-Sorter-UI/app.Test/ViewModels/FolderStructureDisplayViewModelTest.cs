@@ -5,6 +5,7 @@ using System.Linq;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
+using Image_Sorter_UI.Mock.Model;
 using Image_Sorter_UI.Mock.ViewModels;
 using NUnit.Framework;
 
@@ -72,14 +73,11 @@ public class FolderStructureDisplayViewModelTest
     public void UpdateFeatureFolderListTest()
     {
         var viewModel = new FolderStructureDisplayViewModel();
-        var folder = new SelectFolders("test", "path");
-        var directoryItem = new DirectoryItem(folder, 1);
-        var directoryList = new List<DirectoryItem>() { directoryItem };
-        viewModel.UpdateFeatureFolderList("Boat Codes", directoryList);
+        var directoryList = new MockDirectoryPriorityList();
+        viewModel.UpdateFeatureFolderList("Boat Codes", directoryList.FolderDictionary.ToList());
         Assert.Multiple(() =>
         {
-            // TODO create mock of DirectoryPriorityList so you may run this test
-            // Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryItem));
+            Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryList.FolderDictionary[0]));
         });
     }
 
