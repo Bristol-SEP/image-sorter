@@ -4,6 +4,7 @@ using app.Model;
 using app.Model.Interfaces;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
+using Image_Sorter_UI.Mock.Model;
 using ReactiveUI;
 
 namespace Image_Sorter_UI.Mock.ViewModels;
@@ -36,7 +37,7 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
         private set => this.RaiseAndSetIfChanged(ref _featureFolderDetailsList, value);
     }
     public FeatureList FeatureList { get; set; } = new();
-    public DirectoryPriorityList FolderDirectories { get; set; } = new(new ObservableCollection<SelectFolders>());
+    public IDirectoryPriorityList FolderDirectories { get; set; } = new MockDirectoryPriorityList();
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
     }

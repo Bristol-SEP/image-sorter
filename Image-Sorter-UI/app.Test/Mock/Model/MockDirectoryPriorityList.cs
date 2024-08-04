@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using app.Model;
 using app.Model.Interfaces;
+using DynamicData;
 
 namespace Image_Sorter_UI.Mock.Model;
 
@@ -13,11 +15,14 @@ public class MockDirectoryPriorityList: IDirectoryPriorityList
     };
     public void AddFeature(string name, List<DirectoryItem> item)
     {
-        throw new System.NotImplementedException();
+        foreach (var folder in item)
+        {
+            FolderDictionary.Add(folder);
+        }
     }
 
     public void DeleteFeature(DirectoryItem item)
     {
-        throw new System.NotImplementedException();
+        FolderDictionary.Remove(item);
     }
 }

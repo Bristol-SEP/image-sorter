@@ -21,7 +21,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <see cref="DirectoryItem"/> holding all the folders with the same parent on the same
     /// level</returns>
     private List<DirectoryItem> GetAllFoldersOfLevel(DirectoryItem item,
-        DirectoryPriorityList dictionary)
+        IDirectoryPriorityList dictionary)
     {
         var folders = new List<DirectoryItem>();
         var level = item.Level;

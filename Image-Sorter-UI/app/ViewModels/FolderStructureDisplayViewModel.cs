@@ -16,7 +16,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     /// <summary>
     /// Backing field for <see cref="FolderDirectories"/>
     /// </summary>
-    private DirectoryPriorityList _directories = new(new ObservableCollection<SelectFolders>());
+    private IDirectoryPriorityList _directories = new DirectoryPriorityList(new ObservableCollection<SelectFolders>());
 
     /// <summary>
     /// Backing field for <see cref="ShowPopup"/>
@@ -91,7 +91,7 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     }
 
     /// <inheritdoc/>
-    public DirectoryPriorityList FolderDirectories
+    public IDirectoryPriorityList FolderDirectories
     {
         get => _directories;
         set => this.RaiseAndSetIfChanged(ref _directories, value);
