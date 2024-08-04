@@ -105,7 +105,7 @@ public class DirectoryPriorityList: ViewModelBase, IDirectoryPriorityList
         for (var i = pos+1; i < FolderDictionary.Count; i++)
         {
             var folder = FolderDictionary[i];
-            if(FolderDictionary[i].Level >= level) folder.DedentFolder();
+            if(FolderDictionary[i].Level > level) folder.DedentFolder();
             else
             {
                 var secondHalf = FolderDictionary.Where(feature =>
