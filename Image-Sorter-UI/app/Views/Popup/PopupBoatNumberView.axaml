@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:app.ViewModels.Interfaces.Popup"
+             xmlns:style="clr-namespace:app.Styles"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:IPopupBoatNumberViewModel"
+             x:Class="app.Views.Popup.PopupBoatNumberView">
+    <Grid RowDefinitions="*, Auto">
+        <StackPanel Grid.Row="0">
+            <style:PopupCommand Text="Boat Code" IsFeaturePage="True" DataContext="{Binding}" />
+            <Grid ColumnDefinitions="Auto, Auto *">
+                <TextBlock Grid.Column="0" Text="Affected Folders:"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}"
+                           Padding="3,0" />
+                <TextBlock Grid.Column="1" Text="{Binding FolderList}"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}" />
+            </Grid>
+            <CheckBox Margin="3,0" Content="Implement for all folders on this level" 
+                      Classes="baseCheckBox"
+                      Command="{Binding AddFolderLevel}"/>
+        </StackPanel>
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
+            <Button Grid.Column="1" Classes="baseButton" Content="Add Feature" 
+                    Command="{Binding (vm:IPopupFeature).AddFeature}"/>
+        </Grid>
+    </Grid>
+</UserControl>

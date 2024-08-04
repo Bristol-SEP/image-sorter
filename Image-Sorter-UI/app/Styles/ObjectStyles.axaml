@@ -39,4 +39,23 @@
         <Setter Property="Foreground" Value="{StaticResource Alert}"/>
         <Setter Property="Margin" Value="5,0,0,0"/>
     </Style>
+    <!-- Text Box style -->
+    <Style Selector="TextBox.baseTextBox">
+        <Setter Property="Background" Value="{DynamicResource BackgroundWeak}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundStrong}"/>
+        <Setter Property="Margin" Value="5,2"/>
+    </Style>
+    <Style Selector="TextBox.baseTextBox:pointerover /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundStrong}"/>
+    </Style>
+    <Style Selector="TextBox.baseTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundStrong}"/>
+    </Style>
 </Styles>

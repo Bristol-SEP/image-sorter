@@ -1,4 +1,5 @@
 using app.ViewModels.Interfaces;
+using app.ViewModels.Interfaces.Popup;
 
 namespace app.ViewModels;
 
@@ -27,4 +28,10 @@ public sealed class ViewModelProvider : IViewModelProvider
 
     /// <inheritdoc/>
     public IFolderStructureDisplayViewModel GetFolderStructureViewModel() => new FolderStructureDisplayViewModel();
+
+    /// <inheritdoc/>
+    public IPopupMainPageViewModel GetPopupMainPageViewModel()
+    {
+        throw new System.NotSupportedException();
+    }
 }

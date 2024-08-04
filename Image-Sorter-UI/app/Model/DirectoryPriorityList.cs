@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using app.Model.Interfaces;
 using app.ViewModels;
 using ReactiveUI;
 
@@ -47,9 +49,84 @@ public class DirectoryPriorityList: ViewModelBase
         }
     }
 
-    public void AddFeature(DirectoryItem item)
+    /// <summary>
+    /// Adds the new feature into <see cref="FolderDictionary"/>
+    /// </summary>
+    /// <param name="pos">Where the effected folder is located</param>
+    /// <param name="list">The list to alter and return</param>
+    /// <param name="name">The name of the folder to be added</param>
+    private List<DirectoryItem> AddFeatureFolder(int pos, IList<DirectoryItem> list, string name)
     {
-        Console.WriteLine(item.Folder.Name);
+        var selectFolder = new SelectFolders(name, list[pos].Folder.Path);
+        var level = list[pos].Level + 1;
+        var featureItem = new DirectoryItem(selectFolder, list[pos].Level + 1, true);
+        var newList = list.Where(feature =>
+            list.IndexOf(feature) <= pos).ToList();
+        newList.Add(featureItem);
+        if (pos == (list.Count - 1)) return newList;
+        if(list[pos+1].Folder.Name == name) return list.ToList();
+        for (var i = pos + 1; i < list.Count; i++)
+        {
+            var item = list[i];
+            if(list[i].Level >= level) item.IndentFolder();
+            else
+            {
+                var secondHalf = list.Where(feature =>
+                    list.IndexOf(feature) >= i);
+                newList.AddRange(secondHalf);
+                break;
+            }
+            newList.Add(item);
+        }
+
+        return newList;
+    }
+
+    /// <summary>
+    /// Takes item and appends the structure of the directory list so the feature
+    /// appears in the list
+    /// </summary>
+    /// <param name="item">The <see cref="IFeatureFolderDetails"/> to be added to structure</param>
+    /// <param name="name">The name of the folders to be added to structure</param>
+    public void AddFeature(string name, List<DirectoryItem> item)
+    {
+        var list = FolderDictionary.ToList();
+        foreach (var directoryItem in FolderDictionary)
+        {
+            if (item.Contains(directoryItem))
+            {
+                list = AddFeatureFolder(list.IndexOf(directoryItem), list, name);
+            }
+        }
+        FolderDictionary = new ObservableCollection<DirectoryItem>(list);
+    }
+
+    /// <summary>
+    /// Takes item and appends the structure of the directory list so the feature
+    /// is removed from the list
+    /// </summary>
+    /// <param name="item">The <see cref="DirectoryItem"/> to be deleted from the structure</param>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void DeleteFeature(DirectoryItem item)
+    {
+        var pos = FolderDictionary.IndexOf(item);
+        var level = item.Level;
+        var list = FolderDictionary.Where(feature =>
+            FolderDictionary.IndexOf(feature) < pos).ToList();
+        for (var i = pos+1; i < FolderDictionary.Count; i++)
+        {
+            var folder = FolderDictionary[i];
+            if(FolderDictionary[i].Level >= level) folder.DedentFolder();
+            else
+            {
+                var secondHalf = FolderDictionary.Where(feature =>
+                    FolderDictionary.IndexOf(feature) >= i);
+                list.AddRange(secondHalf);
+                break;
+            }
+            list.Add(folder);
+        }
+        FolderDictionary = new ObservableCollection<DirectoryItem>(list );
     }
     
     /// <summary>
@@ -62,8 +139,8 @@ public class DirectoryPriorityList: ViewModelBase
         foreach (var folder in foldersList)
         {
             var item = new DirectoryItem(folder, 0);
-           FolderDictionary.Add(item); 
-           AddChildren(item);
+            FolderDictionary.Add(item); 
+            AddChildren(item);
         }
     }
 }

@@ -60,35 +60,22 @@ public class AddImageDisplayViewModel: ViewModelBase, IAddImageDisplayViewModel
         get => _featurePrompt;
         private set => this.RaiseAndSetIfChanged(ref _featurePrompt, value);
     }
-    
+
     /// <inheritdoc/>
-    public List<FeatureGroup> FeatureList { get; }
+    public List<FeatureGroup> FeatureList { get; private set; } = new();
 
     /// <inheritdoc/>
     public bool FoldersEmpty => MainModel is { FolderList.Count: 0 };
     
     #endregion
     
-    public AddImageDisplayViewModel()
-    {
-        var rowingFeatures = new List<Feature>
-        {
-            new("Boat Code"),
-            new("Race Number")
-        };
-        var rowing = new FeatureGroup("Rowing", rowingFeatures);
-        FeatureList = new List<FeatureGroup>
-        {
-            rowing
-        };
-    }
-
     #region Public Methods
 
     /// <inheritdoc/>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel)
     {
         MainModel = mainViewModel;
+        FeatureList = mainViewModel.FeatureList.FeatureGroups;
     }
     
     /// <inheritdoc/>

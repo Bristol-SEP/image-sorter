@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.Model;
+using app.Model.Interfaces;
 using app.Views;
-using Avalonia.Collections;
 
 namespace app.ViewModels.Interfaces;
 
@@ -14,12 +15,30 @@ public interface IFolderStructureDisplayViewModel
     /// <summary>
     /// The page to be displayed in the popup
     /// </summary>
-    public ViewModelBase View { get; }
+    public ViewModelBase View { get; set; }
     
     /// <summary>
     /// a boolean which decides whether to show the popup page
     /// </summary>
-    public bool ShowPopup { get; }
+    public bool ShowPopup { get; set; }
+    
+    /// <summary>
+    /// A <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="DirectoryItem"/>
+    /// who are to have a subfolder for a feature added
+    /// </summary>
+    public ObservableCollection<DirectoryItem> FeatureFolderList { get; set; }
+    
+    /// <summary>
+    /// Is a <see cref="ObservableCollection{T}">ObservableCollection</see> of <see cref="IFeatureFolderDetails"/>
+    /// so program knows which scripts to run and where
+    /// </summary>
+    public ObservableCollection<IFeatureFolderDetails> FeatureFolderDetailsList { get; }
+    
+    /// <summary>
+    /// A list of <see cref="FeatureGroup"/> used in folder adding
+    /// within the <see cref="FolderStructureDisplayView"/>
+    /// </summary>
+    public FeatureList FeatureList { get; set; }
     
     /// <summary>
     /// A <see cref="DirectoryPriorityList"/> used to find the directory levels
@@ -32,11 +51,31 @@ public interface IFolderStructureDisplayViewModel
     /// <param name="mainViewModel">An instance of <see cref="IMainWindowViewModel"/></param>
     public void SetMainViewModel(IMainWindowViewModel mainViewModel);
 
-   /// <summary>
-   /// Occurs when add images button is clicked returns to the
-   /// <see cref="AddImageDisplayView"/>
-   /// </summary>
-   public void ButtonPressed();
+    /// <summary>
+    /// Occurs when add images button is clicked returns to the
+    /// <see cref="AddImageDisplayView"/>
+    /// </summary>
+    public void ButtonPressed();
 
-   public void AddFeature(DirectoryItem item);
+    /// <summary>
+    /// Displays the popup and adds the selected item to the <see cref="FeatureFolderList"/>
+    /// </summary>
+    /// <param name="item">The item to display the popup about</param>
+    public void AddFeature(DirectoryItem item);
+
+    /// <summary>
+    /// A function to update <see cref="FeatureFolderDetailsList"/>
+    /// and the UI along with it
+    /// </summary>
+    /// <param name="name">The name of the feature type to be added</param>
+    /// <param name="featureModel">A list of <see cref="DirectoryItem"/> which hold
+    /// features to be added</param>
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel);
+
+    /// <summary>
+    /// Removes the feature from the <see cref="FolderDirectories"/>
+    /// and removes the parent directory from the <see cref="FeatureFolderDetailsList"/>
+    /// </summary>
+    /// <param name="folder">The folder to be removed</param>
+    public void RemoveFeature(DirectoryItem folder);
 }

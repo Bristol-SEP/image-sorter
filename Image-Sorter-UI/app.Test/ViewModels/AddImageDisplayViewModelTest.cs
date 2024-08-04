@@ -70,7 +70,9 @@ public class AddImageDisplayViewModelTest
     [Test]
     public void FeatureListTest()
     {
+        var mainModel = _vmProvider.GetMainViewModel();
         var viewModel = new AddImageDisplayViewModel();
+        viewModel.SetMainViewModel(mainModel);
         var features = viewModel.FeatureList;
         Assert.That(features[0].GroupName, Is.EqualTo("Rowing"));
         foreach (var group in features)
