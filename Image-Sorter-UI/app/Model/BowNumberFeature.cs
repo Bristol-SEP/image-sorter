@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using app.Model.Interfaces;
 using app.ViewModels;
@@ -37,7 +39,15 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     public List<BowNumberDetails> BowNumberFolders = new();
 
     /// <inheritdoc/>
-    public string ShellScript => "";
+    public string ShellScript
+    {
+        get
+        {
+            var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.ToString();
+            var file = path + "/Scripts/BowNumberScript.sh";
+            return file;
+        }
+    }
 
     /// <summary>
     /// Adds new folders to <see cref="AffectedFolders"/>
@@ -52,7 +62,7 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
             AffectedFolders.Add(folder);
             BowNumberFolders.Add(
                 new BowNumberDetails(folder, isIndividualFolder, boatsPerFolder)
-                );
+            );
         }
 
         Active = true;
@@ -64,5 +74,10 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
         AffectedFolders.Remove(folder);
         BowNumberFolders.Remove(BowNumberFolders.First(bowNumber => bowNumber.AffectedFolder == folder));
         if (AffectedFolders.Count == 0) Active = false;
+    }
+
+    public void RunShellScript()
+    {
+        Console.WriteLine("entered");
     }
 }

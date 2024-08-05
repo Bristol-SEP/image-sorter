@@ -78,4 +78,10 @@ public interface IFolderStructureDisplayViewModel
     /// </summary>
     /// <param name="folder">The folder to be removed</param>
     public void RemoveFeature(DirectoryItem folder);
+
+    /// <summary>
+    /// Goes through all the <see cref="FeatureFolderDetailsList"/>
+    /// and runs the scripts, reorganising the folder structure
+    /// </summary>
+    public void StructureFolder();
 }

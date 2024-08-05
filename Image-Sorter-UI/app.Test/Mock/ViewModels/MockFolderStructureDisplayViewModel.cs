@@ -62,4 +62,9 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
     {
         throw new System.NotImplementedException();
     }
+
+    public void StructureFolder()
+    {
+        throw new System.NotImplementedException();
+    }
 }

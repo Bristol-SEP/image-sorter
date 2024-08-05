@@ -141,4 +141,15 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
             }
         }
     }
+
+    /// <inheritdoc/>
+    public void StructureFolder()
+    {
+        
+        foreach (var folder in FeatureFolderDetailsList.Where(feature => feature.Active))
+        {
+           folder.RunShellScript(); 
+        }
+        
+    }
 }

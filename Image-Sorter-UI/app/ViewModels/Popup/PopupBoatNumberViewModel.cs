@@ -76,7 +76,11 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private DirectoryItem _coreFolder;
     
+    /// <summary>
+    /// Backing field for <see cref="FeatureFolderList"/>
+    /// </summary>
     private List<DirectoryItem> _featureFolderList = new();
+    
     /// <summary>
     /// Holds an instance of <see cref="IFolderStructureDisplayViewModel.FolderDirectories"/>
     /// </summary>
@@ -145,7 +149,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
 
     public IFeatureFolderDetails GetModelBasic()
     {
-        return new BoatNumberFeature();
+        return BoatNumberFeature;
     }
 
     /// <inheritdoc/>

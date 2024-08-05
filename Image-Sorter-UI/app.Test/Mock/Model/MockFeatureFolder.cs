@@ -17,4 +17,9 @@ public class MockFeatureFolder: IFeatureFolderDetails
     {
         if (AffectedFolders.Contains(folder)) AffectedFolders.Remove(folder);
     }
+
+    public void RunShellScript()
+    {
+        throw new System.NotImplementedException();
+    }
 }

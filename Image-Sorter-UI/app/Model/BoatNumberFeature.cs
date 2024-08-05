@@ -38,7 +38,7 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// Adds new folders to <see cref="AffectedFolders"/>
     /// </summary>
     /// <param name="folders">Folders to be added</param>
-    public void AddAffectedFolders(List<DirectoryItem> folders)
+    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
@@ -53,5 +53,10 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     {
         AffectedFolders.Remove(folder);
         if (AffectedFolders.Count == 0) Active = false;
+    }
+
+    public void RunShellScript()
+    {
+        Console.WriteLine("not implemented");
     }
 }

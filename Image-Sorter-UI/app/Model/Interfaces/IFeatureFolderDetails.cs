@@ -35,4 +35,10 @@ public interface IFeatureFolderDetails
     /// </summary>
     /// <param name="folder">Folder to be removed</param>
     public void DeleteAffectedFolders(DirectoryItem folder);
+
+    /// <summary>
+    /// Runs the <see cref="ShellScript"/> for the given features, altering the folder
+    /// structure
+    /// </summary>
+    public void RunShellScript();
 }
