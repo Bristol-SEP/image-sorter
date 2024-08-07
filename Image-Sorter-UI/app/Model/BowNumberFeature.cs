@@ -25,6 +25,16 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// </summary>
     private readonly string _directory = Directory.GetParent(Directory.GetCurrentDirectory())?
         .Parent?.Parent + "/Scripts/";
+
+    /// <summary>
+    /// Converts a string into something that can be read by cd command
+    /// </summary>
+    /// <param name="directory">The path of the affected directory</param>
+    /// <returns>A string which can be passed by cd commands</returns>
+    private static string EscapeSpaces(string directory)
+    {
+        return directory.Replace(" ", "\\ ");
+    }
     
     /// <summary>
     /// A function to run the shell script
@@ -40,7 +50,7 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
             StartInfo = new ProcessStartInfo
             {
                 FileName = "/bin/bash",
-                Arguments = $"{ShellScript} {affectedFolder} {numberOfBoats} {isIndividualFolder}",
+                Arguments = $"{ShellScript} \"{affectedFolder}\" {numberOfBoats} {isIndividualFolder}",
                 WorkingDirectory = _directory,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
