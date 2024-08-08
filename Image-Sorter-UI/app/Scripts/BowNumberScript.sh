@@ -12,6 +12,12 @@ cd "$affectedFolder"
 for file in *; do
     # Enters is a direct folder is a file of type jpg
     if find "$file" -maxdepth 1 -type f -name '*.jpg' | grep -q .; then
-        exiftool -Description $file
+        description=`exiftool -s3 -Description $file `
+        # isIndividualFolder code
+        # if folder not already present create it
+        if [ ! -d "$description" ]; then
+            mkdir $description
+        fi
+        mv $file $description/
     fi
 done
