@@ -5,6 +5,27 @@ affectedFolder=$1
 numberOfBoats=$2
 isIndividualFolder=$3
 
+group_boats(){
+    startNum=$(((($description - 1) / $numberOfBoats) * $numberOfBoats + 1))
+    endNum=$(($startNum - 1 + $numberOfBoats))
+    title=$startNum"-"$endNum
+    if [ ! -d "$title" ]; then
+        mkdir $title
+    fi
+    mv $1 $title
+}
+
+create_individual_folder(){
+    # Create individual folders
+    # if folder not already present create it
+    if [ ! -d "$description" ]; then
+        mkdir $description
+    fi
+    mv $file $description/
+    # Move individual folders into range folder
+    group_boats $description
+}
+
 # Enter the folder
 cd "$affectedFolder"
 
@@ -14,10 +35,10 @@ for file in *; do
     if find "$file" -maxdepth 1 -type f -name '*.jpg' | grep -q .; then
         description=`exiftool -s3 -Description $file `
         # isIndividualFolder code
-        # if folder not already present create it
-        if [ ! -d "$description" ]; then
-            mkdir $description
+        if [ $isIndividualFolder = "True" ]; then
+            create_individual_folder
+        else 
+            group_boats $file
         fi
-        mv $file $description/
     fi
 done
