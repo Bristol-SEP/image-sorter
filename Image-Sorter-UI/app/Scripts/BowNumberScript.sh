@@ -5,14 +5,28 @@ affectedFolder=$1
 numberOfBoats=$2
 isIndividualFolder=$3
 
-group_boats(){
+organise_boats(){
+    # Find the group which the directory should lay within
     startNum=$(((($description - 1) / $numberOfBoats) * $numberOfBoats + 1))
     endNum=$(($startNum - 1 + $numberOfBoats))
     title=$startNum"-"$endNum
+    # Move to directory
     if [ ! -d "$title" ]; then
         mkdir $title
     fi
     mv $1 $title
+}
+
+group_boats(){
+    for file in *; do
+        # Enters is a direct folder is a file of type jpg
+        if find "$file" -maxdepth 1 -type f -name '*.jpg' | grep -q .; then
+            description=`exiftool -s3 -Description $file `
+            organise_boats $description
+        elif [ -d "$file" ]; then
+            organise_boats $file
+        fi
+    done
 }
 
 create_individual_folder(){
@@ -22,8 +36,6 @@ create_individual_folder(){
         mkdir $description
     fi
     mv $file $description/
-    # Move individual folders into range folder
-    group_boats $description
 }
 
 # Enter the folder
@@ -37,8 +49,8 @@ for file in *; do
         # isIndividualFolder code
         if [ $isIndividualFolder = "True" ]; then
             create_individual_folder
-        else 
-            group_boats $file
         fi
     fi
 done
+# Move individual folders into range folder
+group_boats
