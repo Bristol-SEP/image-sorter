@@ -8,6 +8,11 @@ namespace app.ViewModels.Interfaces.Popup;
 public interface IPopupBoatNumberViewModel
 {
     /// <summary>
+    /// Reference to the location of the folder to be searched
+    /// </summary>
+    public DirectoryItem AffectedFolder { get; }
+    
+    /// <summary>
     /// A string of the affected folders 
     /// </summary>
     public string FolderList { get; }

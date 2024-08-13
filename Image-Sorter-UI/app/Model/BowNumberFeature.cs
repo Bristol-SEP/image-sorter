@@ -52,16 +52,11 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
         proc.Start();
         
         // Read the output (if needed)
-        var output = proc.StandardOutput.ReadToEnd();
         var error = proc.StandardError.ReadToEnd();
              
         // Wait for the process to exit
         proc.WaitForExit();
              
-        // Write the output to the console
-        Console.WriteLine("Output:");
-        Console.WriteLine(output);
-
         // Write the error to the console, if any
         if (!string.IsNullOrEmpty(error))
         {
@@ -120,10 +115,12 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// <inheritdoc/>
     public void RunShellScript()
     {
-        var firstLoop = BowNumberFolders[0];
-        var affectedFolder = firstLoop.AffectedFolder.Folder.Path;
-        var numberOfBoats = firstLoop.BoatsPerFolder.ToString();
-        var isIndividualFolder = firstLoop.IsIndividualFolder.ToString();
-        RestructureBowNumbers(affectedFolder, numberOfBoats, isIndividualFolder);
+        foreach (var folder in BowNumberFolders)
+        {
+            var affectedFolder = folder.AffectedFolder.Folder.Path;
+            var numberOfBoats = folder.BoatsPerFolder.ToString();
+            var isIndividualFolder = folder.IsIndividualFolder.ToString();
+            RestructureBowNumbers(affectedFolder, numberOfBoats, isIndividualFolder);
+        }
     }
 }

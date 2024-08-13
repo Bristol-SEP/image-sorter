@@ -11,6 +11,7 @@ namespace app.ViewModels.Popup;
 
 public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel, IPopupFeature, INavigationControl
 {
+    // TODO implement the change folder button for search folder
     /// <summary>
     /// Looks through <see cref="DirectoryPriorityList"/> and returns all the folders
     /// with the same parent on the same level
@@ -105,8 +106,11 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private void SetFolderChanges()
     {
-        BoatNumberFeature.AddAffectedFolders(FeatureFolderList);
+        BoatNumberFeature.AddAffectedFolders(FeatureFolderList, AffectedFolder);
     }
+
+    /// <inheritdoc/>
+    public DirectoryItem AffectedFolder => MainPage.FolderView.FolderDirectories.FolderDictionary[0];
 
     /// <inheritdoc/>
     public BoatNumberFeature BoatNumberFeature

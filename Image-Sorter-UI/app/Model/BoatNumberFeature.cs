@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using app.Model.Interfaces;
 using app.ViewModels;
@@ -18,8 +20,59 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// </summary>
     private ObservableCollection<DirectoryItem> _affectedFolders = new();
     
+    /// <summary>
+    /// A link to the directory where the shell scripts are held
+    /// </summary>
+    private readonly string _directory = Directory.GetParent(Directory.GetCurrentDirectory())?
+        .Parent?.Parent + "/Scripts/";
+    
+    /// <summary>
+    /// A function to run the shell script
+    /// </summary>
+    /// <param name="affectedFolder">The path of a folder from <see cref="AffectedFolders"/></param>
+    /// <param name="targetFolder">The <see cref="TargetFolder"/></param>
+    /// <exception cref="Exception">Occurs if shell script has an error</exception>
+    private void RestructureBoatNumbers(string affectedFolder, string targetFolder)
+    {
+        var proc = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "/bin/bash",
+                Arguments = $"{ShellScript} \"{affectedFolder}\" \"{targetFolder}\"",
+                WorkingDirectory = _directory,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = false
+            }
+        };
+        
+        proc.Start();
+        
+        // Read the output (if needed)
+        var output = proc.StandardOutput.ReadToEnd();
+        var error = proc.StandardError.ReadToEnd();
+             
+        // Wait for the process to exit
+        proc.WaitForExit();
+             
+        Console.WriteLine(output);
+        
+        // Write the error to the console, if any
+        if (!string.IsNullOrEmpty(error))
+        {
+            throw new Exception(error);
+        }
+    }
+    
     /// <inheritdoc/>
     public string FolderName => "Boat Codes";
+
+    /// <summary>
+    /// The <see cref="DirectoryItem"/> path where the images will be searched for
+    /// </summary>
+    public string TargetFolder { get; private set; } = "";
 
     /// <inheritdoc/>
     public bool Active { get; private set; }
@@ -32,19 +85,21 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     }
 
     /// <inheritdoc/>
-    public string ShellScript => "";
+    public string ShellScript => "BoatNumberScript.sh";
 
     /// <summary>
     /// Adds new folders to <see cref="AffectedFolders"/>
     /// </summary>
     /// <param name="folders">Folders to be added</param>
-    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders)
+    /// <param name="targetFolder">Folder to be searched through</param>
+    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, DirectoryItem targetFolder)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
             AffectedFolders.Add(folder);
         }
 
+        TargetFolder = targetFolder.Folder.Path;
         Active = true;
     }
 
@@ -57,6 +112,10 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
 
     public void RunShellScript()
     {
-        Console.WriteLine("not implemented");
+        foreach (var folder in AffectedFolders)
+        {
+            var affectedFolder = folder.Folder.Path;
+            RestructureBoatNumbers(affectedFolder, TargetFolder);
+        }
     }
 }

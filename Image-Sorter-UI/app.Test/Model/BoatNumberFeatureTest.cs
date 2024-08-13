@@ -29,7 +29,7 @@ public class BoatNumberFeatureTest
          {
              new DirectoryItem(new SelectFolders("test", "folder"), 1)
          };
-         model.AddAffectedFolders(folders);
+         model.AddAffectedFolders(folders, new DirectoryItem(new SelectFolders("test", "path"), 1));
          Assert.Multiple(() =>
          {
              Assert.That(model.AffectedFolders.Contains(folders[0]), Is.True);

@@ -19,13 +19,21 @@
                            VerticalAlignment="Center" HorizontalAlignment="Left"
                            Foreground="{DynamicResource Text}" />
             </Grid>
-            <CheckBox Margin="3,0" Content="Implement for all folders on this level" 
+            <CheckBox Margin="3,0" Content="Implement for all folders on this level"
                       Classes="baseCheckBox"
-                      Command="{Binding AddFolderLevel}"/>
+                      Command="{Binding AddFolderLevel}" />
+            <Grid ColumnDefinitions="Auto, Auto, *">
+                <TextBlock Grid.Column="0" Text="Search Area: " Foreground="{DynamicResource Text}"/>
+                <TextBlock Grid.Column="1" Text="{Binding AffectedFolder.Folder.Name}" 
+                           Foreground="{DynamicResource Text}"/>
+            </Grid>
+            <Button Classes="baseButton" Content="Change Folder" 
+                    Margin="5" Padding="1" Width="150"
+                    HorizontalAlignment="Left"/>
         </StackPanel>
         <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
-            <Button Grid.Column="1" Classes="baseButton" Content="Add Feature" 
-                    Command="{Binding (vm:IPopupFeature).AddFeature}"/>
+            <Button Grid.Column="1" Classes="baseButton" Content="Add Feature"
+                    Command="{Binding (vm:IPopupFeature).AddFeature}" />
         </Grid>
     </Grid>
 </UserControl>
