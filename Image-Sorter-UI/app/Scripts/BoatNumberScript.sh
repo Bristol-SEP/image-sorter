@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# TODO look at the description and only extract the boat code section for file name
 # Create the variables
 affectedFolder=$1
 targetFolder=$1
@@ -11,10 +12,11 @@ cd "$affectedFolder" || exit
 allImages=$(find . -type f -name "*.jpg")
 for image in $allImages; do
     description=$(exiftool -s3 -Description "$image")
+    echo $(grep "Boat Code:" <<< "$description")
     # if folder not already present create it
-    if [ ! -d "$description" ]; then
-        mkdir "$description"
-    fi
-    cp "$image" "$description/"
+#    if [ ! -d "$description" ]; then
+#        mkdir "$description"
+#    fi
+#    cp "$image" "$description/"
 done
 
