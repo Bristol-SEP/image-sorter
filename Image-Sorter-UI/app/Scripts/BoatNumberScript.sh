@@ -12,11 +12,11 @@ cd "$affectedFolder" || exit
 allImages=$(find . -type f -name "*.jpg")
 for image in $allImages; do
     description=$(exiftool -s3 -Description "$image")
-    echo $(grep "Boat Code:" <<< "$description")
+    boatNum=$(awk -F'Boat Code:' '{print $2}' <<< "$description" | cut -d "." -f1)
     # if folder not already present create it
-#    if [ ! -d "$description" ]; then
-#        mkdir "$description"
-#    fi
-#    cp "$image" "$description/"
+    if [ ! -d "$boatNum" ]; then
+        mkdir "$boatNum"
+    fi
+    cp "$image" "$boatNum/"
 done
 
