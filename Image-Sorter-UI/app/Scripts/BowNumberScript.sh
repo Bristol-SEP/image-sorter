@@ -48,8 +48,10 @@ cd "$affectedFolder" || exit
 # Read the metadata
 for file in *; do
     # Enters is a direct folder is a file of type jpg
-    if find "$file" -maxdepth 1 -type f -name '*.jpg' | grep -q .; then
+    if find "$file" -maxdepth 0 -type f -name '*.jpg' | grep -q .; then
         description=$(exiftool -s3 -Description "$file")
+        description=$(awk -F'Bow Number:' '{print $2}' <<< "$description" |
+            cut -d "." -f1)
         # isIndividualFolder code
         if [ "$isIndividualFolder" = "True" ]; then
             create_individual_folder
