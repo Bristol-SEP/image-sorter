@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# TODO look at the description and only extract the boat code section for file name
 # Create the variables
 affectedFolder=$1
-targetFolder=$1
+targetFolder=$2
+folderName=$3
 
 # Enter the folder to search through
 cd "$targetFolder" || exit
@@ -14,17 +14,17 @@ allImages=$(find . -type f -name "*.jpg")
 # Enter the folder to write to
 cd "$affectedFolder" || exit
 
-if [ ! -d "Boat Clubs" ]; then
-    mkdir "Boat Clubs"
+if [ ! -d "$folderName" ]; then
+    mkdir "$folderName"
 fi
 
 for image in $allImages; do
     description=$(exiftool -s3 -Description "$image")
     boatNum=$(awk -F'Boat Code:' '{print $2}' <<< "$description" | cut -d "." -f1)
     # if folder not already present create it
-    if [ ! -d "Boat Clubs/$boatNum" ]; then
-        mkdir "Boat Clubs/$boatNum"
+    if [ ! -d "$folderName/$boatNum" ]; then
+        mkdir "$folderName/$boatNum"
     fi
-    cp "$image" "Boat Clubs/$boatNum/"
+    cp "$image" "$folderName/$boatNum/"
 done
 

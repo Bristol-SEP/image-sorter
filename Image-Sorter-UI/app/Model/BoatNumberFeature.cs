@@ -25,21 +25,22 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// </summary>
     private readonly string _directory = Directory.GetParent(Directory.GetCurrentDirectory())?
         .Parent?.Parent + "/Scripts/";
-    
+
     /// <summary>
     /// A function to run the shell script
     /// </summary>
     /// <param name="affectedFolder">The path of a folder from <see cref="AffectedFolders"/></param>
-    /// <param name="targetFolder">The <see cref="TargetFolder"/></param>
+    /// <param name="targetFolder">The folder to search through</param>
+    /// <param name="folderName">The name for the primary folder</param>
     /// <exception cref="Exception">Occurs if shell script has an error</exception>
-    private void RestructureBoatNumbers(string affectedFolder, string targetFolder)
+    private void RestructureBoatNumbers(string affectedFolder, string targetFolder, string folderName)
     {
         var proc = new Process
         {
             StartInfo = new ProcessStartInfo
             {
                 FileName = "/bin/bash",
-                Arguments = $"{ShellScript} \"{affectedFolder}\" \"{targetFolder}\"",
+                Arguments = $"{ShellScript} \"{affectedFolder}\" \"{targetFolder}\" \"{folderName}\" ",
                 WorkingDirectory = _directory,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
@@ -69,11 +70,6 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// <inheritdoc/>
     public string FolderName => "Boat Codes";
 
-    /// <summary>
-    /// The <see cref="DirectoryItem"/> path where the images will be searched for
-    /// </summary>
-    public string TargetFolder { get; private set; } = "";
-
     /// <inheritdoc/>
     public bool Active { get; private set; }
 
@@ -84,6 +80,12 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
         set => this.RaiseAndSetIfChanged(ref _affectedFolders, value);
     }
 
+    /// <summary>
+    /// A list of <see cref="BoatNumberDetails"/> used to display the personalised
+    /// features for each folder
+    /// </summary>
+    public List<BoatNumberDetails> BoatNumberFolder = new();
+
     /// <inheritdoc/>
     public string ShellScript => "BoatNumberScript.sh";
 
@@ -92,14 +94,16 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// </summary>
     /// <param name="folders">Folders to be added</param>
     /// <param name="targetFolder">Folder to be searched through</param>
-    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, DirectoryItem targetFolder)
+    /// <param name="folderName">The name of the folder</param>
+    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, DirectoryItem targetFolder, string folderName)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
             AffectedFolders.Add(folder);
+            BoatNumberFolder.Add(
+                new BoatNumberDetails(folder, targetFolder, folderName));
         }
 
-        TargetFolder = targetFolder.Folder.Path;
         Active = true;
     }
 
@@ -107,15 +111,18 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     public void DeleteAffectedFolders(DirectoryItem folder)
     {
         AffectedFolders.Remove(folder);
+        BoatNumberFolder.Remove(BoatNumberFolder.First(boatNumber => boatNumber.AffectedFolder == folder));
         if (AffectedFolders.Count == 0) Active = false;
     }
 
     public void RunShellScript()
     {
-        foreach (var folder in AffectedFolders)
+        foreach (var folder in BoatNumberFolder)
         {
-            var affectedFolder = folder.Folder.Path;
-            RestructureBoatNumbers(affectedFolder, TargetFolder);
+            var affectedFolder = folder.AffectedFolder.Folder.Path;
+            var targetFolder = folder.TargetFolder.Folder.Path;
+            var folderName = folder.FolderName;
+            RestructureBoatNumbers(affectedFolder, targetFolder, folderName);
         }
     }
 }

@@ -101,12 +101,13 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         }
     }
     
+    // TODO change the hard coded folder name to be changed by popup
     /// <summary>
     /// A method to update <see cref="BowNumberFeature"/>
     /// </summary>
     private void SetFolderChanges()
     {
-        BoatNumberFeature.AddAffectedFolders(FeatureFolderList, AffectedFolder);
+        BoatNumberFeature.AddAffectedFolders(FeatureFolderList, AffectedFolder, "boat names");
     }
 
     /// <inheritdoc/>
