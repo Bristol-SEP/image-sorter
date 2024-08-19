@@ -101,14 +101,17 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         }
     }
     
-    // TODO change the hard coded folder name to be changed by popup
     /// <summary>
     /// A method to update <see cref="BowNumberFeature"/>
     /// </summary>
     private void SetFolderChanges()
     {
-        BoatNumberFeature.AddAffectedFolders(FeatureFolderList, AffectedFolder, "boat names");
+        BoatNumberFeature.AddAffectedFolders(FeatureFolderList, AffectedFolder, FolderName);
     }
+
+    // TODO have this change with the UI input
+    /// <inheritdoc/>
+    public string FolderName { get; private set; } = "names";
 
     /// <inheritdoc/>
     public DirectoryItem AffectedFolder => MainPage.FolderView.FolderDirectories.FolderDictionary[0];
@@ -147,7 +150,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     public void AddFeature()
     {
         SetFolderChanges();
-        MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
+        MainPage.FolderView.UpdateFeatureFolderList(FolderName, FeatureFolderList, false);
         FeatureFolderList.Clear();
         Close();
     }

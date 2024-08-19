@@ -80,7 +80,7 @@ public class FolderStructureDisplayViewModelTest
             new (new SelectFolders("test2", "path2"), 1)
         };
         viewModel.FolderDirectories = new MockDirectoryPriorityList();
-        viewModel.UpdateFeatureFolderList("Boat Codes", directoryList);
+        viewModel.UpdateFeatureFolderList("Boat Codes", directoryList, true);
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryList[0]));

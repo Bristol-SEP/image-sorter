@@ -51,7 +51,7 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
         throw new System.NotImplementedException();
     }
 
-    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel)
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel, bool increment)
     {
         var folder = new SelectFolders("default", "basicPath");
         var directoryItem = new DirectoryItem(folder, 1);

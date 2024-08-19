@@ -45,13 +45,13 @@ public class DirectoryPriorityListTest
         var folderStructure = new SelectFolders("FolderStructure",  path + "/FolderStructure");
         ObservableCollection<SelectFolders> folders = new() { folder1 };
         var model = new DirectoryPriorityList(folders);
-        model.AddFeature("Boat Code", new List<DirectoryItem>(){model.FolderDictionary[0]});
+        model.AddFeature("Boat Code", new List<DirectoryItem>(){model.FolderDictionary[0]}, true);
         Assert.Multiple(() =>
         {
             Assert.That(model.FolderDictionary.Count, Is.EqualTo(2));
             Assert.That(model.FolderDictionary[1].Folder.Name, Is.EqualTo("Boat Code"));
         });
-        model.AddFeature("Boat Code", new List<DirectoryItem>(){model.FolderDictionary[0]});
+        model.AddFeature("Boat Code", new List<DirectoryItem>(){model.FolderDictionary[0]}, true);
         Assert.That(model.FolderDictionary.Count, Is.EqualTo(2));
         
     }

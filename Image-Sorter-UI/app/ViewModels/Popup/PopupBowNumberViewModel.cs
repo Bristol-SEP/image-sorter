@@ -176,7 +176,7 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     public void AddFeature()
     {
         SetFolderChanges();
-        MainPage.FolderView.UpdateFeatureFolderList("Bow Number", FeatureFolderList);
+        MainPage.FolderView.UpdateFeatureFolderList("Bow Number", FeatureFolderList, true);
         FeatureFolderList.Clear();
         BoatsPerFolder = 10;
         IsIndividualFolders = true;

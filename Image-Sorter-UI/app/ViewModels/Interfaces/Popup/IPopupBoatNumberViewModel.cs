@@ -8,6 +8,11 @@ namespace app.ViewModels.Interfaces.Popup;
 public interface IPopupBoatNumberViewModel
 {
     /// <summary>
+    /// The name of the folder to be created
+    /// </summary>
+    public string FolderName { get; }
+    
+    /// <summary>
     /// Reference to the location of the folder to be searched
     /// </summary>
     public DirectoryItem AffectedFolder { get; }
