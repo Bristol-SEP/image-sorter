@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -131,14 +130,31 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     /// <inheritdoc/>
     public int BoatsPerFolder
     {
-        get => _boatsPerFolder;
+        // get => _boatsPerFolder;
+        get
+        {
+            if (!_isIndividualFolders && _boatsPerFolder == 0)
+            {
+                IsIndividualFolders = true;
+            }
+
+            return _boatsPerFolder;
+        }
         set => this.RaiseAndSetIfChanged(ref _boatsPerFolder, value);
     }
 
     /// <inheritdoc/>
     public bool IsIndividualFolders
     {
-        get => _isIndividualFolders;
+        get
+        {
+            if (!_isIndividualFolders && _boatsPerFolder == 0)
+            {
+                BoatsPerFolder = 5;
+            }
+
+            return _isIndividualFolders;
+        }
         private set => this.RaiseAndSetIfChanged(ref _isIndividualFolders, value);
     }
 
@@ -176,7 +192,11 @@ public class PopupBowNumberViewModel: ViewModelBase, IPopupBowNumberViewModel, I
     public void AddFeature()
     {
         SetFolderChanges();
-        MainPage.FolderView.UpdateFeatureFolderList("Bow Number", FeatureFolderList, true);
+        var foldersName = "Bow Number(";
+        if (IsIndividualFolders) foldersName += BoatsPerFolder == 0 ? "Individual Folders" : "Individual Folders, ";
+        if (BoatsPerFolder != 0) foldersName += "Boats Per Folder: " + BoatsPerFolder;
+        foldersName += ")";
+        MainPage.FolderView.UpdateFeatureFolderList(foldersName, FeatureFolderList, false);
         FeatureFolderList.Clear();
         BoatsPerFolder = 10;
         IsIndividualFolders = true;
