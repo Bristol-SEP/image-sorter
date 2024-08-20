@@ -10,7 +10,7 @@ public interface IPopupBoatNumberViewModel
     /// <summary>
     /// The name of the folder to be created
     /// </summary>
-    public string FolderName { get; }
+    public string FolderName { get; set; }
     
     /// <summary>
     /// Reference to the location of the folder to be searched

@@ -16,7 +16,8 @@
                            Foreground="{DynamicResource Text}"
                            Padding="3, 0"/>
                 <TextBox Grid.Column="1" Classes="baseTextBox"
-                         Watermark="Boat Clubs"/>
+                         Watermark="Boat Clubs"
+                         Text="{Binding FolderName}"/>
             </Grid>
             <Grid ColumnDefinitions="Auto, Auto, *">
                 <TextBlock Grid.Column="0" Text="Affected Folders:"
