@@ -88,6 +88,11 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     private List<DirectoryItem> _featureFolderList = new();
     
     /// <summary>
+    /// Backing field for <see cref="AffectedFolder"/>
+    /// </summary>
+    private SelectFolders _affectedFolder = new("", "");
+    
+    /// <summary>
     /// Holds an instance of <see cref="IFolderStructureDisplayViewModel.FolderDirectories"/>
     /// </summary>
     private List<DirectoryItem> FeatureFolderList
@@ -123,7 +128,14 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     }
 
     /// <inheritdoc/>
-    public DirectoryItem AffectedFolder => MainPage.FolderView.FolderDirectories.FolderDictionary[0];
+    public SelectFolders AffectedFolder
+    {
+        get => _affectedFolder.Path == "" 
+            ? MainPage.FolderView.FolderDirectories.FolderDictionary[0].Folder 
+            : _affectedFolder;
+        private set => this.RaiseAndSetIfChanged(ref _affectedFolder, value);
+
+    }
 
     /// <inheritdoc/>
     public BoatNumberFeature BoatNumberFeature
@@ -147,6 +159,12 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     }
 
     /// <inheritdoc/>
+    public void AddSearch(SelectFolders folder)
+    {
+        AffectedFolder = folder;
+    }
+
+    /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
 
     /// <inheritdoc/>
@@ -165,6 +183,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         Close();
     }
 
+    /// <inheritdoc/>
     public IFeatureFolderDetails GetModelBasic()
     {
         return BoatNumberFeature;

@@ -33,10 +33,11 @@
                       Command="{Binding AddFolderLevel}" />
             <Grid ColumnDefinitions="Auto, Auto, *">
                 <TextBlock Grid.Column="0" Text="Search Area: " Foreground="{DynamicResource Text}"/>
-                <TextBlock Grid.Column="1" Text="{Binding AffectedFolder.Folder.Name}" 
+                <TextBlock Grid.Column="1" Text="{Binding AffectedFolder.Name}" 
                            Foreground="{DynamicResource Text}"/>
             </Grid>
             <Button Classes="baseButton" Content="Change Folder" 
+                    Click="OpenFileButton_Clicked"
                     Margin="5" Padding="1" Width="150"
                     HorizontalAlignment="Left"/>
         </StackPanel>

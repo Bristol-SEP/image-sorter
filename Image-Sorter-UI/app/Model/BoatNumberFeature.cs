@@ -95,7 +95,7 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// <param name="folders">Folders to be added</param>
     /// <param name="targetFolder">Folder to be searched through</param>
     /// <param name="folderName">The name of the folder</param>
-    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, DirectoryItem targetFolder, string folderName)
+    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, SelectFolders targetFolder, string folderName)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
@@ -120,7 +120,7 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
         foreach (var folder in BoatNumberFolder)
         {
             var affectedFolder = folder.AffectedFolder.Folder.Path;
-            var targetFolder = folder.TargetFolder.Folder.Path;
+            var targetFolder = folder.TargetFolder.Path;
             var folderName = folder.FolderName;
             RestructureBoatNumbers(affectedFolder, targetFolder, folderName);
         }
