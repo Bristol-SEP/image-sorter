@@ -1,0 +1,1 @@
+python3 main.py --model frozen_east_text_detection.pb --ocr ResNet_CTC.onnx --input ./images/tt_01/BUA04652.jpg

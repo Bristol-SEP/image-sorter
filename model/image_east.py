@@ -175,6 +175,7 @@ def read_image():
     scores = outs[0]
     geometry = outs[1]
     [boxes, confidences] = decodeBoundingBoxes(scores, geometry, confThreshold)
+    print(boxes)
 
     # Apply NMS
     indices = cv2.dnn.NMSBoxesRotated(boxes, confidences, confThreshold, nmsThreshold)
@@ -203,18 +204,13 @@ def read_image():
             p2 = (int(vertices[(j + 1) % 4][0]), int(vertices[(j + 1) % 4][1]))
             cv2.line(out, p1, p2, (0, 255, 0), 1)
 
-        
-    cv2.imshow(f"Processed image", out)
+    resized = cv2.resize(out, (800, 800))
+    cv2.imshow(f"Processed image", resized)
     cv2.waitKey()
     
 
 def main():
-    images_dir = Path("./images/test")
-    files = list(images_dir.glob("*.jpg")) + list(images_dir.glob("*.JPG"))
-    for file in files:
-        print("Reading file: ", file)
-        args.input = str(file)
-        read_image()
+    read_image()
         
 
 if __name__ == "__main__":
