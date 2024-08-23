@@ -42,7 +42,10 @@ public partial class PopupBoatNumberView : UserControl
             : throw new NullReferenceException();
     
         // Pass into viewModel
-        var folder= folders.Select(folder => new SelectFolders(folder.Name, folder.Path.AbsolutePath.Replace("%20", " "))).ToList()[0];
-        viewModel.AddSearch(folder);
+        var folder= folders.Select(folder => new SelectFolders(folder.Name, folder.Path.AbsolutePath.Replace("%20", " "))).ToList();
+        if (folder.Count == 1)
+        {
+            viewModel.AddSearch(folder[0]);
+        }
     }
 }

@@ -19,12 +19,12 @@ if [ ! -d "$folderName" ]; then
 fi
 
 for image in $allImages; do
-    description=$(exiftool -s3 -Description "$image")
+    description=$(exiftool -s3 -Description "$targetFolder/$image")
     boatNum=$(awk -F'Boat Code:' '{print $2}' <<< "$description" | cut -d "." -f1)
     # if folder not already present create it
     if [ ! -d "$folderName/$boatNum" ]; then
         mkdir "$folderName/$boatNum"
     fi
-    cp "$image" "$folderName/$boatNum/"
+    cp "$targetFolder/$image" "$folderName/$boatNum/"
 done
 
