@@ -101,7 +101,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         {
             if (_featureFolderList.Any()) return _featureFolderList;
             var ffl = MainPage.FolderView.FeatureFolderList;
-            _coreFolder = ffl[0];
+            if (ffl.Count != 0) _coreFolder = ffl[0];
             return ffl.ToList();
         }
         set
@@ -180,6 +180,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         var folderName = FolderName != "" ? FolderName : "Boat Clubs";
         MainPage.FolderView.UpdateFeatureFolderList(folderName, FeatureFolderList, false);
         FeatureFolderList.Clear();
+        FolderName = "";
         Close();
     }
 

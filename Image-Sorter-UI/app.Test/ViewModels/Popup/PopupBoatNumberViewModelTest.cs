@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
@@ -22,7 +23,7 @@ public class PopupBoatNumberViewModelTest
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.MainPage, Is.EqualTo(mainPage));
-            Assert.That(viewModel.FolderList, Is.Empty);
+            Assert.That(viewModel.FolderList, Is.EqualTo("test"));
             Assert.That(viewModel.BoatNumberFeature, Is.TypeOf<BoatNumberFeature>());
         });
     }
@@ -47,7 +48,23 @@ public class PopupBoatNumberViewModelTest
     [Test]
     public void AddFeatureTest()
     {
-        // TODO write test for this function
+        var mainPage = _vmProvider.GetPopupMainPageViewModel();
+        var viewModel = new PopupBoatNumberViewModel(mainPage);
+        mainPage.FolderView.ShowPopup = true;
+        viewModel.FolderName = "test";
+        viewModel.AddFeature();
+        Assert.That(viewModel.FolderName, Is.EqualTo(""));
+    }
+
+    [Test]
+    public void AddSearchTest()
+    {
+        var mainPage = _vmProvider.GetPopupMainPageViewModel();
+        var viewModel = new PopupBoatNumberViewModel(mainPage);
+        var folder = new SelectFolders("target", "targetPath");
+        Assert.That(viewModel.AffectedFolder, Is.Not.EqualTo(folder));
+        viewModel.AddSearch(folder);
+        Assert.That(viewModel.AffectedFolder, Is.EqualTo(folder));
     }
 
     [Test]

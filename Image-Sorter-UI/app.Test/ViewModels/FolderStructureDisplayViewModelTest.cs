@@ -114,4 +114,26 @@ public class FolderStructureDisplayViewModelTest
             Assert.That(viewModel.FeatureFolderDetailsList[0].AffectedFolders, Is.Empty);
         });
     }
+
+    [Test]
+    public void StructureFolderTest()
+    {
+        var viewModel = new FolderStructureDisplayViewModel();
+        var featureFolder1 = new MockFeatureFolder();
+        var featureFolder2 = new MockFeatureFolder();
+        viewModel.FeatureFolderDetailsList.Add(featureFolder1);
+        viewModel.StructureFolder();
+        Assert.Multiple(() =>
+        {
+            Assert.That(featureFolder1.FolderName, Is.Not.EqualTo("ran"));
+            Assert.That(featureFolder2.FolderName, Is.Not.EqualTo("ran"));
+        });
+        featureFolder1.Activate();
+        viewModel.StructureFolder();
+        Assert.Multiple(() =>
+        {
+            Assert.That(featureFolder1.FolderName, Is.EqualTo("ran"));
+            Assert.That(featureFolder2.FolderName, Is.Not.EqualTo("ran"));
+        });
+    }
 }

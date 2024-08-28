@@ -14,12 +14,18 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
     /// <summary>
     /// Backing field for <see cref="FeatureFolderList"/>
     /// </summary>
-    private ObservableCollection<DirectoryItem> _featureFolderList = new();
+    private ObservableCollection<DirectoryItem> _featureFolderList = new()
+    {
+        new DirectoryItem(new SelectFolders("test", "path"), 1)
+    };
     
     /// <summary>
     /// Backing field for <see cref="FeatureFolderDetailsList"/>
     /// </summary>
-    private ObservableCollection<IFeatureFolderDetails> _featureFolderDetailsList = new();
+    private ObservableCollection<IFeatureFolderDetails> _featureFolderDetailsList = new()
+    {
+        new MockFeatureFolder()
+    };
 
     public ViewModelBase View { get; set; } = new();
 

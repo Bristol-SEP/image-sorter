@@ -83,7 +83,7 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
     public List<BowNumberDetails> BowNumberFolders = new();
 
     /// <inheritdoc/>
-    public string ShellScript { get; private set; } = "BowNumberScript.sh";
+    public string ShellScript => "BowNumberScript.sh";
 
     /// <summary>
     /// Adds new folders to <see cref="AffectedFolders"/>
@@ -122,14 +122,5 @@ public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
             var isIndividualFolder = folder.IsIndividualFolder.ToString();
             RestructureBowNumbers(affectedFolder, numberOfBoats, isIndividualFolder);
         }
-    }
-
-    /// <summary>
-    /// Method used to alter the shell script. To be used for writing tests
-    /// </summary>
-    /// <param name="script">The mock script to be used</param>
-    public void ChangeShellScript(string script)
-    {
-        ShellScript = script;
     }
 }

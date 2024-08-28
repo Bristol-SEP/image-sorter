@@ -6,8 +6,8 @@ namespace Image_Sorter_UI.Mock.Model;
 
 public class MockFeatureFolder: IFeatureFolderDetails
 {
-    public string FolderName => "test feature";
-    public bool Active { get; } = false;
+    public string FolderName { get; private set; } = "test feature";
+    public bool Active { get; private set; }
     public ObservableCollection<DirectoryItem> AffectedFolders { get; } = new()
     {
         new DirectoryItem(new SelectFolders("test", "path"), 1)
@@ -20,6 +20,11 @@ public class MockFeatureFolder: IFeatureFolderDetails
 
     public void RunShellScript()
     {
-        throw new System.NotImplementedException();
+        FolderName = "ran";
+    }
+
+    public void Activate()
+    {
+        Active = true;
     }
 }
