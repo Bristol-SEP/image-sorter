@@ -5,6 +5,7 @@ using System.Linq;
 using app.Model;
 using app.ViewModels;
 using app.ViewModels.Interfaces;
+using Image_Sorter_UI.Mock.Model;
 using Image_Sorter_UI.Mock.ViewModels;
 using NUnit.Framework;
 
@@ -26,6 +27,7 @@ public class FolderStructureDisplayViewModelTest
             Assert.That(viewModel.FeatureList, Is.Not.Null);
             Assert.That(viewModel.FeatureFolderList, Is.Not.Null);
             Assert.That(viewModel.FeatureFolderDetailsList, Is.Not.Null);
+            Assert.That(viewModel.View, Is.TypeOf<ViewModelBase>());
         });
     }
    
@@ -72,23 +74,44 @@ public class FolderStructureDisplayViewModelTest
     public void UpdateFeatureFolderListTest()
     {
         var viewModel = new FolderStructureDisplayViewModel();
-        var folder = new SelectFolders("test", "path");
-        var directoryItem = new DirectoryItem(folder, 1);
-        var directoryList = new List<DirectoryItem>() { directoryItem };
+        var directoryList = new List<DirectoryItem>()
+        {
+            new (new SelectFolders("test1", "path1"), 1),
+            new (new SelectFolders("test2", "path2"), 1)
+        };
+        viewModel.FolderDirectories = new MockDirectoryPriorityList();
         viewModel.UpdateFeatureFolderList("Boat Codes", directoryList);
-        var item = viewModel.FeatureFolderDetailsList.Where(feature => feature.FolderName == "Boat Codes").ToList();
         Assert.Multiple(() =>
         {
-            Assert.That(item[0].AffectedFolders, Contains.Item(directoryItem));
-            // TODO create mock of DirectoryPriorityList so you may run this test
-            // Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryItem));
+            Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryList[0]));
+            Assert.That(viewModel.FolderDirectories.FolderDictionary.Count(), Is.EqualTo(3));
         });
     }
 
     [Test]
     public void RemoveFeatureTest()
     {
-        // TODO replace BoatNumberFeature with a mock of its interface
-        // TODO create mock of DirectoryPriorityList so you may run this test
+        var viewModel = new FolderStructureDisplayViewModel();
+        var folder = new DirectoryItem(new SelectFolders("test", "path"), 1);
+        var directoryList = new List<DirectoryItem>()
+        {
+            folder
+        };
+        viewModel.FolderDirectories = new MockDirectoryPriorityList()
+        {
+            FolderDictionary = new ObservableCollection<DirectoryItem>(directoryList)
+        };
+        viewModel.FeatureFolderDetailsList.Add(new MockFeatureFolder());
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderDirectories.FolderDictionary.Count(), Is.EqualTo(1));
+            Assert.That(viewModel.FeatureFolderDetailsList[0].AffectedFolders.Count, Is.EqualTo(1));
+        });
+        viewModel.RemoveFeature(folder);
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.FolderDirectories.FolderDictionary, Is.Empty);
+            Assert.That(viewModel.FeatureFolderDetailsList[0].AffectedFolders, Is.Empty);
+        });
     }
 }

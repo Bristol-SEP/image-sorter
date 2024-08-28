@@ -43,7 +43,7 @@ public interface IFolderStructureDisplayViewModel
     /// <summary>
     /// A <see cref="DirectoryPriorityList"/> used to find the directory levels
     /// </summary>
-    public DirectoryPriorityList FolderDirectories { get; set; }
+    public IDirectoryPriorityList FolderDirectories { get; set; }
     
     /// <summary>
     /// Sets the <see cref="IMainWindowViewModel"/> context

@@ -1,7 +1,5 @@
 using System.Collections.ObjectModel;
-using System.Linq;
 using app.Model;
-using app.Model.Interfaces;
 using app.ViewModels.Interfaces;
 using app.ViewModels.Popup;
 using Image_Sorter_UI.Mock.ViewModels;
@@ -10,7 +8,7 @@ using NUnit.Framework;
 namespace Image_Sorter_UI.ViewModels.Popup;
 
 [TestFixture]
-public class PopupBoatNumberViewModelTest
+public class PopupBowNumberViewModelTest
 {
     private readonly IViewModelProvider _vmProvider = new MockViewModelProvider();
     
@@ -18,12 +16,14 @@ public class PopupBoatNumberViewModelTest
     public void SetupTest()
     {
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
-        var viewModel = new PopupBoatNumberViewModel(mainPage);
+        var viewModel = new PopupBowNumberViewModel(mainPage);
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.MainPage, Is.EqualTo(mainPage));
             Assert.That(viewModel.FolderList, Is.Empty);
-            Assert.That(viewModel.BoatNumberFeature, Is.TypeOf<BoatNumberFeature>());
+            Assert.That(viewModel.BoatsPerFolder, Is.EqualTo(10));
+            Assert.That(viewModel.BowNumberFeature, Is.TypeOf<BowNumberFeature>());
+            Assert.That(viewModel.IsIndividualFolders, Is.True);
         });
     }
 
@@ -37,7 +37,7 @@ public class PopupBoatNumberViewModelTest
     public void SetContextTest()
     {
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
-        var viewModel = new PopupBoatNumberViewModel(mainPage);
+        var viewModel = new PopupBowNumberViewModel(mainPage);
         var newMainPage = _vmProvider.GetPopupMainPageViewModel();
         Assert.That(viewModel.MainPage, Is.EqualTo(mainPage));
         viewModel.SetContext(newMainPage);
@@ -54,7 +54,7 @@ public class PopupBoatNumberViewModelTest
     public void ReturnTest()
     {
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
-        var viewModel = new PopupBoatNumberViewModel(mainPage);
+        var viewModel = new PopupBowNumberViewModel(mainPage);
         mainPage.FolderView.View = viewModel;
         var folder = new SelectFolders("test", "path");
         var directoryItem = new DirectoryItem(folder, 1);
@@ -67,7 +67,7 @@ public class PopupBoatNumberViewModelTest
     public void CloseTest()
     {
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
-        var viewModel = new PopupBoatNumberViewModel(mainPage);
+        var viewModel = new PopupBowNumberViewModel(mainPage);
         var folder = new SelectFolders("test", "path");
         var directoryItem = new DirectoryItem(folder, 1);
         mainPage.FolderView.FeatureFolderList = new ObservableCollection<DirectoryItem>() { directoryItem };
@@ -84,7 +84,6 @@ public class PopupBoatNumberViewModelTest
     public void GetModelBasicTest()
     {
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
-        var viewModel = new PopupBoatNumberViewModel(mainPage);
-        Assert.That(viewModel.GetModelBasic(), Is.TypeOf<BoatNumberFeature>());
-    }
-}
+        var viewModel = new PopupBowNumberViewModel(mainPage);
+        Assert.That(viewModel.GetModelBasic(), Is.TypeOf<BowNumberFeature>());
+    }}

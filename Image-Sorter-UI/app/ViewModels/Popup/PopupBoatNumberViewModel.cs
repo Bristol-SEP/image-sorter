@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
+using app.Model.Interfaces;
 using app.ViewModels.Interfaces;
 using app.ViewModels.Interfaces.Popup;
 using ReactiveUI;
@@ -20,7 +21,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <see cref="DirectoryItem"/> holding all the folders with the same parent on the same
     /// level</returns>
     private List<DirectoryItem> GetAllFoldersOfLevel(DirectoryItem item,
-        DirectoryPriorityList dictionary)
+        IDirectoryPriorityList dictionary)
     {
         var folders = new List<DirectoryItem>();
         var level = item.Level;
@@ -65,6 +66,11 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     private string _folderList = "Error";
 
     /// <summary>
+    /// Backing field for <see cref="BoatNumberFeature"/>
+    /// </summary>
+    private BoatNumberFeature _boatNumberFeature = new();
+    
+    /// <summary>
     /// Holds the instance of the original selected item so it may be toggled
     /// between one and many
     /// </summary>
@@ -90,6 +96,20 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         }
     }
     
+    /// <summary>
+    /// A method to update <see cref="BowNumberFeature"/>
+    /// </summary>
+    private void SetFolderChanges()
+    {
+        BoatNumberFeature.AddAffectedFolders(FeatureFolderList);
+    }
+
+    /// <inheritdoc/>
+    public BoatNumberFeature BoatNumberFeature
+    {
+        get => _boatNumberFeature;
+        private set => this.RaiseAndSetIfChanged(ref _boatNumberFeature, value);
+    }
     /// <inheritdoc/>
     public string FolderList
     {
@@ -117,9 +137,15 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// <inheritdoc/>
     public void AddFeature()
     {
+        SetFolderChanges();
         MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
         FeatureFolderList.Clear();
         Close();
+    }
+
+    public IFeatureFolderDetails GetModelBasic()
+    {
+        return new BoatNumberFeature();
     }
 
     /// <inheritdoc/>

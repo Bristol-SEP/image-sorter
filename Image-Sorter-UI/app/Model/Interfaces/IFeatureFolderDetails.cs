@@ -31,12 +31,6 @@ public interface IFeatureFolderDetails
     public string ShellScript { get; }
 
     /// <summary>
-    /// Adds new folders to <see cref="AffectedFolders"/>
-    /// </summary>
-    /// <param name="folders">Folders to be added</param>
-    public void AddAffectedFolders(List<DirectoryItem> folders);
-
-    /// <summary>
     /// Removes a folder from <see cref="AffectedFolders"/>
     /// </summary>
     /// <param name="folder">Folder to be removed</param>

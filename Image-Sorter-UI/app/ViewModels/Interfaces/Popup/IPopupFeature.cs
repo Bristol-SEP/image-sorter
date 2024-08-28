@@ -1,3 +1,5 @@
+using app.Model.Interfaces;
+
 namespace app.ViewModels.Interfaces.Popup;
 
 /// <summary>
@@ -21,4 +23,11 @@ public interface IPopupFeature
     /// Packs popup inputs and updates the display before closing the popup
     /// </summary>
     public void AddFeature();
+
+    /// <summary>
+    /// Converts the specified model into <see cref="IFeatureFolderDetails"/>
+    /// so that it may be affected by <see cref="FolderStructureDisplayViewModel"/>
+    /// </summary>
+    /// <returns>The model</returns>
+    public IFeatureFolderDetails GetModelBasic();
 }

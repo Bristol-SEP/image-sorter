@@ -13,21 +13,12 @@ namespace app.Model;
 /// A model with creates a <see cref="FolderDictionary"/>, showing the different subfolders
 /// and their levels
 /// </summary>
-public class DirectoryPriorityList: ViewModelBase
+public class DirectoryPriorityList: ViewModelBase, IDirectoryPriorityList
 {
-    private ObservableCollection<DirectoryItem> _folderDictionary = new();
-
     /// <summary>
-    /// A <see cref="Dictionary{TKey,TValue}">Dictionary</see> which holds
-    /// the selected folders and their subfolders in the form
-    /// (<see cref="SelectFolders">Folder</see>, <see cref="int">priorityLevel</see>)
-    /// Where priority level is the level of subfolder
+    /// Backing field for <see cref="FolderDictionary"/>
     /// </summary>
-    public ObservableCollection<DirectoryItem> FolderDictionary
-    {
-        get => _folderDictionary;
-        set => this.RaiseAndSetIfChanged(ref _folderDictionary, value);
-    }
+    private ObservableCollection<DirectoryItem> _folderDictionary = new();
 
     /// <summary>
     /// Looks at the folder and adds its children (recursively in order with priority levels)
@@ -81,13 +72,16 @@ public class DirectoryPriorityList: ViewModelBase
 
         return newList;
     }
+    
+    /// <inheritdoc/>
+    public ObservableCollection<DirectoryItem> FolderDictionary
+    {
+        get => _folderDictionary;
+        set => this.RaiseAndSetIfChanged(ref _folderDictionary, value);
+    }
 
-    /// <summary>
-    /// Takes item and appends the structure of the directory list so the feature
-    /// appears in the list
-    /// </summary>
-    /// <param name="item">The <see cref="IFeatureFolderDetails"/> to be added to structure</param>
-    /// <param name="name">The name of the folders to be added to structure</param>
+
+    /// <inheritdoc/>
     public void AddFeature(string name, List<DirectoryItem> item)
     {
         var list = FolderDictionary.ToList();
@@ -101,12 +95,7 @@ public class DirectoryPriorityList: ViewModelBase
         FolderDictionary = new ObservableCollection<DirectoryItem>(list);
     }
 
-    /// <summary>
-    /// Takes item and appends the structure of the directory list so the feature
-    /// is removed from the list
-    /// </summary>
-    /// <param name="item">The <see cref="DirectoryItem"/> to be deleted from the structure</param>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <inheritdoc/>
     public void DeleteFeature(DirectoryItem item)
     {
         var pos = FolderDictionary.IndexOf(item);
@@ -116,7 +105,7 @@ public class DirectoryPriorityList: ViewModelBase
         for (var i = pos+1; i < FolderDictionary.Count; i++)
         {
             var folder = FolderDictionary[i];
-            if(FolderDictionary[i].Level >= level) folder.DedentFolder();
+            if(FolderDictionary[i].Level > level) folder.DedentFolder();
             else
             {
                 var secondHalf = FolderDictionary.Where(feature =>

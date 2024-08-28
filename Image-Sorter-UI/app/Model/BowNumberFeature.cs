@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,9 +8,9 @@ using ReactiveUI;
 namespace app.Model;
 
 /// <summary>
-/// Holds the details for this feature
+/// Holds the details for the bow number feature
 /// </summary>
-public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
+public class BowNumberFeature: ViewModelBase, IFeatureFolderDetails
 {
     /// <summary>
     /// Backing field for <see cref="AffectedFolders"/>
@@ -19,8 +18,8 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     private ObservableCollection<DirectoryItem> _affectedFolders = new();
     
     /// <inheritdoc/>
-    public string FolderName => "Boat Codes";
-
+    public string FolderName => "Bow Number";
+    
     /// <inheritdoc/>
     public bool Active { get; private set; }
 
@@ -31,6 +30,12 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
         set => this.RaiseAndSetIfChanged(ref _affectedFolders, value);
     }
 
+    /// <summary>
+    /// A list of <see cref="BowNumberDetails"/> used to display the personalised
+    /// features for each folder
+    /// </summary>
+    public List<BowNumberDetails> BowNumberFolders = new();
+
     /// <inheritdoc/>
     public string ShellScript => "";
 
@@ -38,11 +43,16 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     /// Adds new folders to <see cref="AffectedFolders"/>
     /// </summary>
     /// <param name="folders">Folders to be added</param>
-    public void AddAffectedFolders(List<DirectoryItem> folders)
+    /// <param name="isIndividualFolder">Parameter to create <see cref="BowNumberDetails"/></param>
+    /// <param name="boatsPerFolder">Parameter to create <see cref="BowNumberDetails"/></param>
+    public void AddAffectedFolders(IEnumerable<DirectoryItem> folders, bool isIndividualFolder, int boatsPerFolder)
     {
         foreach (var folder in folders.Where(folder => !AffectedFolders.Contains(folder)))
         {
             AffectedFolders.Add(folder);
+            BowNumberFolders.Add(
+                new BowNumberDetails(folder, isIndividualFolder, boatsPerFolder)
+                );
         }
 
         Active = true;
@@ -52,6 +62,7 @@ public class BoatNumberFeature: ViewModelBase, IFeatureFolderDetails
     public void DeleteAffectedFolders(DirectoryItem folder)
     {
         AffectedFolders.Remove(folder);
+        BowNumberFolders.Remove(BowNumberFolders.First(bowNumber => bowNumber.AffectedFolder == folder));
         if (AffectedFolders.Count == 0) Active = false;
     }
 }
