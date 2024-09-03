@@ -11,6 +11,7 @@ namespace app.ViewModels.Popup;
 
 public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel, IPopupFeature, INavigationControl
 {
+    // TODO implement the change folder button for search folder
     /// <summary>
     /// Looks through <see cref="DirectoryPriorityList"/> and returns all the folders
     /// with the same parent on the same level
@@ -75,8 +76,22 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// between one and many
     /// </summary>
     private DirectoryItem _coreFolder;
+
+    /// <summary>
+    /// Backing field for <see cref="FolderName"/>
+    /// </summary>
+    private string _folderName = "";
     
+    /// <summary>
+    /// Backing field for <see cref="FeatureFolderList"/>
+    /// </summary>
     private List<DirectoryItem> _featureFolderList = new();
+    
+    /// <summary>
+    /// Backing field for <see cref="AffectedFolder"/>
+    /// </summary>
+    private SelectFolders _affectedFolder = new("", "");
+    
     /// <summary>
     /// Holds an instance of <see cref="IFolderStructureDisplayViewModel.FolderDirectories"/>
     /// </summary>
@@ -86,7 +101,7 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
         {
             if (_featureFolderList.Any()) return _featureFolderList;
             var ffl = MainPage.FolderView.FeatureFolderList;
-            _coreFolder = ffl[0];
+            if (ffl.Count != 0) _coreFolder = ffl[0];
             return ffl.ToList();
         }
         set
@@ -101,7 +116,25 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     /// </summary>
     private void SetFolderChanges()
     {
-        BoatNumberFeature.AddAffectedFolders(FeatureFolderList);
+        var folderName = FolderName != "" ? FolderName : "Boat Clubs";
+        BoatNumberFeature.AddAffectedFolders(FeatureFolderList, AffectedFolder, folderName);
+    }
+
+    /// <inheritdoc/>
+    public string FolderName
+    {
+        get => _folderName;
+        set => this.RaiseAndSetIfChanged(ref _folderName, value);
+    }
+
+    /// <inheritdoc/>
+    public SelectFolders AffectedFolder
+    {
+        get => _affectedFolder.Path == "" 
+            ? MainPage.FolderView.FolderDirectories.FolderDictionary[0].Folder 
+            : _affectedFolder;
+        private set => this.RaiseAndSetIfChanged(ref _affectedFolder, value);
+
     }
 
     /// <inheritdoc/>
@@ -126,6 +159,12 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     }
 
     /// <inheritdoc/>
+    public void AddSearch(SelectFolders folder)
+    {
+        AffectedFolder = folder;
+    }
+
+    /// <inheritdoc/>
     public IPopupMainPageViewModel MainPage { get; private set; }
 
     /// <inheritdoc/>
@@ -138,14 +177,17 @@ public class PopupBoatNumberViewModel: ViewModelBase, IPopupBoatNumberViewModel,
     public void AddFeature()
     {
         SetFolderChanges();
-        MainPage.FolderView.UpdateFeatureFolderList("Boat Code", FeatureFolderList);
+        var folderName = FolderName != "" ? FolderName : "Boat Clubs";
+        MainPage.FolderView.UpdateFeatureFolderList(folderName, FeatureFolderList, false);
         FeatureFolderList.Clear();
+        FolderName = "";
         Close();
     }
 
+    /// <inheritdoc/>
     public IFeatureFolderDetails GetModelBasic()
     {
-        return new BoatNumberFeature();
+        return BoatNumberFeature;
     }
 
     /// <inheritdoc/>

@@ -29,7 +29,7 @@ public class BoatNumberFeatureTest
          {
              new DirectoryItem(new SelectFolders("test", "folder"), 1)
          };
-         model.AddAffectedFolders(folders);
+         model.AddAffectedFolders(folders, new SelectFolders("test", "path"), "test folder");
          Assert.Multiple(() =>
          {
              Assert.That(model.AffectedFolders.Contains(folders[0]), Is.True);
@@ -42,18 +42,23 @@ public class BoatNumberFeatureTest
      {
          var folders = new List<DirectoryItem>()
          {
-             new DirectoryItem(new SelectFolders("test", "folder"), 1)
+             new(new SelectFolders("test", "folder"), 1)
          };
          var model = new BoatNumberFeature()
          {
              AffectedFolders = new ObservableCollection<DirectoryItem>(folders),
+             BoatNumberFolder = new List<BoatNumberDetails>
+             {
+                 new(
+                     folders[0], folders[0].Folder, "test folder")
+             }
          };
+         
          model.DeleteAffectedFolders(folders[0]);
-         Assert.Multiple(() =>
          {
              Assert.That(model.AffectedFolders, Is.Empty);
+             Assert.That(model.BoatNumberFolder, Is.Empty);
              Assert.That(model.Active, Is.False);
-         });
-         
+         }
      }   
 }

@@ -70,7 +70,8 @@ public interface IFolderStructureDisplayViewModel
     /// <param name="name">The name of the feature type to be added</param>
     /// <param name="featureModel">A list of <see cref="DirectoryItem"/> which hold
     /// features to be added</param>
-    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel);
+    /// <param name="increment">Whether or not the new feature should indent folders below it</param>
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel, bool increment);
 
     /// <summary>
     /// Removes the feature from the <see cref="FolderDirectories"/>
@@ -78,4 +79,10 @@ public interface IFolderStructureDisplayViewModel
     /// </summary>
     /// <param name="folder">The folder to be removed</param>
     public void RemoveFeature(DirectoryItem folder);
+
+    /// <summary>
+    /// Goes through all the <see cref="FeatureFolderDetailsList"/>
+    /// and runs the scripts, reorganising the folder structure
+    /// </summary>
+    public void StructureFolder();
 }

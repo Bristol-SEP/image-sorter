@@ -119,10 +119,10 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
     }
 
     /// <inheritdoc/>
-    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel)
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel, bool increment)
     {
         // update the UI
-        FolderDirectories.AddFeature(name, featureModel);
+        FolderDirectories.AddFeature(name, featureModel, increment);
     }
 
     /// <inheritdoc/>
@@ -140,5 +140,16 @@ public class FolderStructureDisplayViewModel: ViewModelBase, IFolderStructureDis
                 return;
             }
         }
+    }
+
+    /// <inheritdoc/>
+    public void StructureFolder()
+    {
+        
+        foreach (var folder in FeatureFolderDetailsList.Where(feature => feature.Active))
+        {
+           folder.RunShellScript(); 
+        }
+        
     }
 }

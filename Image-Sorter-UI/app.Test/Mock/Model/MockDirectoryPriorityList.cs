@@ -13,7 +13,8 @@ public class MockDirectoryPriorityList: IDirectoryPriorityList
     {
         new DirectoryItem(new SelectFolders("test", "path"), 1)
     };
-    public void AddFeature(string name, List<DirectoryItem> item)
+
+    public void AddFeature(string name, List<DirectoryItem> item, bool increment)
     {
         foreach (var folder in item)
         {

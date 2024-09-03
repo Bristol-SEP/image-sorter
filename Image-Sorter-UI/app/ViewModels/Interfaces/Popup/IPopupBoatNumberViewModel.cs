@@ -8,6 +8,16 @@ namespace app.ViewModels.Interfaces.Popup;
 public interface IPopupBoatNumberViewModel
 {
     /// <summary>
+    /// The name of the folder to be created
+    /// </summary>
+    public string FolderName { get; set; }
+    
+    /// <summary>
+    /// Reference to the location of the folder to be searched
+    /// </summary>
+    public SelectFolders AffectedFolder { get; }
+    
+    /// <summary>
     /// A string of the affected folders 
     /// </summary>
     public string FolderList { get; }
@@ -21,4 +31,10 @@ public interface IPopupBoatNumberViewModel
     /// Toggles between 1 folder being affected and all folders on that level being affected
     /// </summary>
     public void AddFolderLevel();
+
+    /// <summary>
+    /// Adds the search folder to <see cref="BoatNumberFeature"/>
+    /// </summary>
+    /// <param name="folder">The folder to be used</param>
+    public void AddSearch(SelectFolders folder);
 }

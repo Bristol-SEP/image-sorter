@@ -10,7 +10,16 @@
     <Grid RowDefinitions="*, Auto">
         <StackPanel Grid.Row="0">
             <style:PopupCommand Text="Boat Code" IsFeaturePage="True" DataContext="{Binding}" />
-            <Grid ColumnDefinitions="Auto, Auto *">
+            <Grid ColumnDefinitions="Auto, *">
+                <TextBlock Grid.Column="0" Text="Folder Name:"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Foreground="{DynamicResource Text}"
+                           Padding="3, 0"/>
+                <TextBox Grid.Column="1" Classes="baseTextBox"
+                         Watermark="Boat Clubs"
+                         Text="{Binding FolderName}"/>
+            </Grid>
+            <Grid ColumnDefinitions="Auto, Auto, *">
                 <TextBlock Grid.Column="0" Text="Affected Folders:"
                            VerticalAlignment="Center" HorizontalAlignment="Left"
                            Foreground="{DynamicResource Text}"
@@ -19,13 +28,22 @@
                            VerticalAlignment="Center" HorizontalAlignment="Left"
                            Foreground="{DynamicResource Text}" />
             </Grid>
-            <CheckBox Margin="3,0" Content="Implement for all folders on this level" 
+            <CheckBox Margin="3,0" Content="Implement for all folders on this level"
                       Classes="baseCheckBox"
-                      Command="{Binding AddFolderLevel}"/>
+                      Command="{Binding AddFolderLevel}" />
+            <Grid ColumnDefinitions="Auto, Auto, *">
+                <TextBlock Grid.Column="0" Text="Search Area: " Foreground="{DynamicResource Text}"/>
+                <TextBlock Grid.Column="1" Text="{Binding AffectedFolder.Name}" 
+                           Foreground="{DynamicResource Text}"/>
+            </Grid>
+            <Button Classes="baseButton" Content="Change Folder" 
+                    Click="OpenFileButton_Clicked"
+                    Margin="5" Padding="1" Width="150"
+                    HorizontalAlignment="Left"/>
         </StackPanel>
         <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" VerticalAlignment="Bottom" Margin="0,5">
-            <Button Grid.Column="1" Classes="baseButton" Content="Add Feature" 
-                    Command="{Binding (vm:IPopupFeature).AddFeature}"/>
+            <Button Grid.Column="1" Classes="baseButton" Content="Add Feature"
+                    Command="{Binding (vm:IPopupFeature).AddFeature}" />
         </Grid>
     </Grid>
 </UserControl>

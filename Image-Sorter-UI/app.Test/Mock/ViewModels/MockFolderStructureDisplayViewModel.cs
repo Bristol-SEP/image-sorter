@@ -14,12 +14,18 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
     /// <summary>
     /// Backing field for <see cref="FeatureFolderList"/>
     /// </summary>
-    private ObservableCollection<DirectoryItem> _featureFolderList = new();
+    private ObservableCollection<DirectoryItem> _featureFolderList = new()
+    {
+        new DirectoryItem(new SelectFolders("test", "path"), 1)
+    };
     
     /// <summary>
     /// Backing field for <see cref="FeatureFolderDetailsList"/>
     /// </summary>
-    private ObservableCollection<IFeatureFolderDetails> _featureFolderDetailsList = new();
+    private ObservableCollection<IFeatureFolderDetails> _featureFolderDetailsList = new()
+    {
+        new MockFeatureFolder()
+    };
 
     public ViewModelBase View { get; set; } = new();
 
@@ -51,7 +57,7 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
         throw new System.NotImplementedException();
     }
 
-    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel)
+    public void UpdateFeatureFolderList(string name, List<DirectoryItem> featureModel, bool increment)
     {
         var folder = new SelectFolders("default", "basicPath");
         var directoryItem = new DirectoryItem(folder, 1);
@@ -59,6 +65,11 @@ public class MockFolderStructureDisplayViewModel: ViewModelBase, IFolderStructur
     }
 
     public void RemoveFeature(DirectoryItem folder)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void StructureFolder()
     {
         throw new System.NotImplementedException();
     }

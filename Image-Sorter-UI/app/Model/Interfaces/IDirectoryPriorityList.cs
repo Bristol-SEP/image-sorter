@@ -22,7 +22,8 @@ public interface IDirectoryPriorityList
     /// </summary>
     /// <param name="item">The <see cref="IFeatureFolderDetails"/> to be added to structure</param>
     /// <param name="name">The name of the folders to be added to structure</param>
-    public void AddFeature(string name, List<DirectoryItem> item);
+    /// <param name="increment">Whether lower folders should be indented by 1</param>
+    public void AddFeature(string name, List<DirectoryItem> item, bool increment);
 
     /// <summary>
     /// Takes item and appends the structure of the directory list so the feature

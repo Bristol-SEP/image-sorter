@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using app.Model;
+using app.ViewModels;
 using NUnit.Framework;
 
 namespace Image_Sorter_UI.Model;
@@ -62,5 +64,24 @@ public class BowNumberFeatureTest
             Assert.That(model.BowNumberFolders, Is.Empty);
         });
         
+    }
+
+    // TODO figure out how to test runshellscript function
+    [Test]
+    public void RunShellScriptTest()
+    {
+        // var folders = new List<DirectoryItem>()
+        // {
+        //     new(new SelectFolders("test", "folder"), 1)
+        // };
+        // var model = new BowNumberFeature()
+        // {
+        //     AffectedFolders = new ObservableCollection<DirectoryItem>(folders),
+        //     BowNumberFolders = new List<BowNumberDetails>()
+        //     {
+        //         new(folders[0], false, 20)
+        //     },
+        // };
+        // Assert.Throws<NotSupportedException>(() => model.RunShellScript());
     }
 }

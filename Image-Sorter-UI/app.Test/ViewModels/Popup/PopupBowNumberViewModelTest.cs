@@ -11,7 +11,7 @@ namespace Image_Sorter_UI.ViewModels.Popup;
 public class PopupBowNumberViewModelTest
 {
     private readonly IViewModelProvider _vmProvider = new MockViewModelProvider();
-    
+
     [Test]
     public void SetupTest()
     {
@@ -20,10 +20,23 @@ public class PopupBowNumberViewModelTest
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.MainPage, Is.EqualTo(mainPage));
-            Assert.That(viewModel.FolderList, Is.Empty);
+            Assert.That(viewModel.FolderList, Is.EqualTo("test"));
             Assert.That(viewModel.BoatsPerFolder, Is.EqualTo(10));
             Assert.That(viewModel.BowNumberFeature, Is.TypeOf<BowNumberFeature>());
             Assert.That(viewModel.IsIndividualFolders, Is.True);
+        });
+        viewModel.BoatsPerFolder = 0;
+        viewModel.ToggleIsIndividualFolder();
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.BoatsPerFolder, Is.EqualTo(0));
+            Assert.That(viewModel.IsIndividualFolders, Is.True);
+        });
+        viewModel.ToggleIsIndividualFolder();
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.IsIndividualFolders, Is.False);
+            Assert.That(viewModel.BoatsPerFolder, Is.EqualTo(5));
         });
     }
 
@@ -47,7 +60,17 @@ public class PopupBowNumberViewModelTest
     [Test]
     public void AddFeatureTest()
     {
-        // TODO write test for this function
+        var mainPage = _vmProvider.GetPopupMainPageViewModel();
+        var viewModel = new PopupBowNumberViewModel(mainPage);
+        mainPage.FolderView.ShowPopup = true;
+        viewModel.BoatsPerFolder = 5;
+        viewModel.ToggleIsIndividualFolder();
+        viewModel.AddFeature();
+        Assert.Multiple(() =>
+        {
+            Assert.That(viewModel.BoatsPerFolder, Is.EqualTo(10));
+            Assert.That(viewModel.IsIndividualFolders, Is.True);
+        });
     }
 
     [Test]
@@ -86,4 +109,17 @@ public class PopupBowNumberViewModelTest
         var mainPage = _vmProvider.GetPopupMainPageViewModel();
         var viewModel = new PopupBowNumberViewModel(mainPage);
         Assert.That(viewModel.GetModelBasic(), Is.TypeOf<BowNumberFeature>());
-    }}
+    }
+
+    [Test]
+    public void ToggleIsIndividualFolderTest()
+    {
+        var mainPage = _vmProvider.GetPopupMainPageViewModel();
+        var viewModel = new PopupBowNumberViewModel(mainPage);
+        Assert.That(viewModel.IsIndividualFolders, Is.True);
+        viewModel.ToggleIsIndividualFolder();
+        Assert.That(viewModel.IsIndividualFolders, Is.False);
+        viewModel.ToggleIsIndividualFolder();
+        Assert.That(viewModel.IsIndividualFolders, Is.True);
+    }
+}

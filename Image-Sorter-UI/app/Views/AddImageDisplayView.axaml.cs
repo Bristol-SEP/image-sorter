@@ -43,7 +43,7 @@ public partial class AddImageDisplayView : UserControl
             : throw new NullReferenceException();
     
         // Pass into viewModel
-        var folderList = folders.Select(folder => new SelectFolders(folder.Name, folder.Path.AbsolutePath)).ToList();
+        var folderList = folders.Select(folder => new SelectFolders(folder.Name, folder.Path.AbsolutePath.Replace("%20", " "))).ToList();
         viewModel.AddFolders(folderList);
     }
 

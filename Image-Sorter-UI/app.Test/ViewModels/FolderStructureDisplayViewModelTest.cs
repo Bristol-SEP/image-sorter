@@ -80,7 +80,7 @@ public class FolderStructureDisplayViewModelTest
             new (new SelectFolders("test2", "path2"), 1)
         };
         viewModel.FolderDirectories = new MockDirectoryPriorityList();
-        viewModel.UpdateFeatureFolderList("Boat Codes", directoryList);
+        viewModel.UpdateFeatureFolderList("Boat Codes", directoryList, true);
         Assert.Multiple(() =>
         {
             Assert.That(viewModel.FolderDirectories.FolderDictionary, Contains.Item(directoryList[0]));
@@ -112,6 +112,28 @@ public class FolderStructureDisplayViewModelTest
         {
             Assert.That(viewModel.FolderDirectories.FolderDictionary, Is.Empty);
             Assert.That(viewModel.FeatureFolderDetailsList[0].AffectedFolders, Is.Empty);
+        });
+    }
+
+    [Test]
+    public void StructureFolderTest()
+    {
+        var viewModel = new FolderStructureDisplayViewModel();
+        var featureFolder1 = new MockFeatureFolder();
+        var featureFolder2 = new MockFeatureFolder();
+        viewModel.FeatureFolderDetailsList.Add(featureFolder1);
+        viewModel.StructureFolder();
+        Assert.Multiple(() =>
+        {
+            Assert.That(featureFolder1.FolderName, Is.Not.EqualTo("ran"));
+            Assert.That(featureFolder2.FolderName, Is.Not.EqualTo("ran"));
+        });
+        featureFolder1.Activate();
+        viewModel.StructureFolder();
+        Assert.Multiple(() =>
+        {
+            Assert.That(featureFolder1.FolderName, Is.EqualTo("ran"));
+            Assert.That(featureFolder2.FolderName, Is.Not.EqualTo("ran"));
         });
     }
 }

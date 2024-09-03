@@ -92,7 +92,8 @@
             </Grid>
             <!-- Create structure button -->
             <Grid Grid.Row="6" ColumnDefinitions="*,Auto,*">
-                <Button Grid.Column="1" Classes="baseButton">Create Structure</Button>
+                <Button Grid.Column="1" Classes="baseButton"
+                        Command="{Binding StructureFolder}">Create Structure</Button>
             </Grid>
         </Grid>
         <!-- Popup -->

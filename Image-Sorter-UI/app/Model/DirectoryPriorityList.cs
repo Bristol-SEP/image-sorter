@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -43,7 +42,7 @@ public class DirectoryPriorityList: ViewModelBase, IDirectoryPriorityList
     /// <summary>
     /// Adds the new feature into <see cref="FolderDictionary"/>
     /// </summary>
-    /// <param name="pos">Where the effected folder is located</param>
+    /// <param name="pos">Where the affected folder is located</param>
     /// <param name="list">The list to alter and return</param>
     /// <param name="name">The name of the folder to be added</param>
     private List<DirectoryItem> AddFeatureFolder(int pos, IList<DirectoryItem> list, string name)
@@ -72,6 +71,28 @@ public class DirectoryPriorityList: ViewModelBase, IDirectoryPriorityList
 
         return newList;
     }
+
+    /// <summary>
+    /// Similar to <see cref="AddFeatureFolder"/> however does not indent folders below
+    /// itself
+    /// </summary>
+    /// <param name="pos">Where the affected folder is located</param>
+    /// <param name="list">The list to alter and return</param>
+    /// <param name="name">The name of the folder to be added</param>
+    /// <returns>The updated list with the new element included</returns>
+    private List<DirectoryItem> AddFeatureFolderBasic(int pos, IList<DirectoryItem> list, string name)
+    {
+        var selectFolder = new SelectFolders(name, list[pos].Folder.Path);
+        var featureItem = new DirectoryItem(selectFolder, list[pos].Level + 1, true);
+        var newList = list.Where(feature =>
+            list.IndexOf(feature) <= pos).ToList();
+        newList.Add(featureItem);
+        if (pos == (list.Count - 1)) return newList;
+        var secondHalf = list.Where(feature =>
+            list.IndexOf(feature) >= pos + 1);
+        newList.AddRange(secondHalf);
+        return newList;
+    }
     
     /// <inheritdoc/>
     public ObservableCollection<DirectoryItem> FolderDictionary
@@ -82,14 +103,16 @@ public class DirectoryPriorityList: ViewModelBase, IDirectoryPriorityList
 
 
     /// <inheritdoc/>
-    public void AddFeature(string name, List<DirectoryItem> item)
+    public void AddFeature(string name, List<DirectoryItem> item, bool increment)
     {
         var list = FolderDictionary.ToList();
         foreach (var directoryItem in FolderDictionary)
         {
             if (item.Contains(directoryItem))
             {
-                list = AddFeatureFolder(list.IndexOf(directoryItem), list, name);
+                list = increment
+                    ? AddFeatureFolder(list.IndexOf(directoryItem), list, name)
+                    : AddFeatureFolderBasic(list.IndexOf(directoryItem), list, name);
             }
         }
         FolderDictionary = new ObservableCollection<DirectoryItem>(list);
